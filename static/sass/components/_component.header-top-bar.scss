@@ -1,0 +1,9 @@
+.c-header__top {
+    border-bottom: 1px solid $black;
+    padding: 15px 0;
+    &__container {
+      @include flexbox;
+      @include justify-content(space-between);
+      @include align-items(center);
+    }
+  }
