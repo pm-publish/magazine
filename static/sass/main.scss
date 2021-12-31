@@ -7,7 +7,6 @@
 @import "settings.variables";
 // @import 'datetimepicker';
 
-@import "tools.functions";
 @import "tools.mixins";
 
 @import "owl-theme";
@@ -37,15 +36,18 @@
 @import "component.error";
 
 @import "component.article";
+@import "component.contact";
 @import "component.advertisment";
 @import "component.related-articles";
 @import "component.article-gallery";
 @import "component.author";
+@import "component.notify";
 
 // Events
 @import "component.eventform";
 @import "component.events";
 @import "component.event";
+@import "component.events-panel";
 
 //header
 @import "component.header";
@@ -53,15 +55,14 @@
 @import "component.navigation";
 @import "component.search-bar";
 @import "component.responsiveNav";
-@import "component.buttons";
 
 @import "component.footer";
 
 @import "component.messagebox";
 @import "component.modals";
 @import "component.modal";
-@import "component.pagination";
 @import "component.search";
+@import "component.buttons";
 @import "component.nav1";
 @import "component.nav2";
 @import "component.nav3";
@@ -73,6 +74,11 @@
 @import "component.form-pulldown";
 
 //my account page
+@import "cus_acnt_grid";
+@import "cus_acnt_page";
+
+//coming soon page
+@import "cus_coming_soon";
 
 // old
 @import "component.modal-login-form";
@@ -81,6 +87,7 @@
 @import "component.signin-modal";
 @import "component.spinner-modal";
 @import "component.lightbox-modal";
+@import "component.subscription";
 
 //Cards
 @import "card";
@@ -89,9 +96,17 @@
 @import "card-3";
 @import "card-4";
 @import "card-5";
-
+@import "card-6";
+@import "card-7";
+@import "card-8";
+@import "card-9";
+@import "card-10";
+@import "card-11";
 @import "event-card";
+@import "event-card-2";
+@import "event-card-3";
 
 //trumps
 @import "trumps.utilities";
+
 @import "utility/utility";

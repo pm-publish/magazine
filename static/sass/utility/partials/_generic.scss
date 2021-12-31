@@ -1,5 +1,4 @@
 /* Begin links view style */
-
 .u-sf {
 	font-family: $secondaryFont;
 }
@@ -9,7 +8,6 @@
 		padding-right: 6px;
 	}
 }
-
 .u-pl {
 	&--6 {
 		padding-left: 6px;
@@ -22,16 +20,9 @@
 	}
 }
 
-.u-mr {
-	&--30 {
-		margin-right: 32px;
-	}
-}
-
 .u-image-covered {
 	@include image_background();
 }
-
 .u-advertisement-section {
 	text-align: center;
 	&__m80 {
@@ -78,20 +69,81 @@
 
 .u-generic-socialIcons {
 	@include flexbox;
-	&__item {
-		text-decoration: none;
-		display: block;
-		@include font-size(14);
-		color: $black;
-		font-weight: $weightRegular;
+	@include align-items(center);
 
-		img {
-			display: block;
+	&__item {
+		color: $white;
+		text-decoration: none;
+		@include transition(all 0.3s ease);
+		&:hover {
+			color: $blue_sh5;
 		}
-		+ .u-generic-socialIcons {
-			&__item {
-				margin-left: 16px;
+		+ .u-generic-socialIcons__item {
+			margin-left: 18px;
+		}
+	}
+
+	&-text {
+		font-size: 12px;
+		margin-right: 20px;
+		color: #636567;
+	}
+
+	&--alignRight {
+		@include align-items(flex-end);
+		margin-bottom: 15px;
+	}
+
+	@include responsive(xs) {
+		@include respond-to(md) {
+			@include flex-direction(column, vertical);
+			@include align-items(flex-start);
+			position: sticky;
+			left: 0;
+			top: 15px;
+
+			&.u-generic-socialIcons {
+				&--alignRight {
+					@include align-items(flex-end !important);
+					margin-bottom: 0px;
+				}
 			}
+
+			.u-generic-socialIcons__item + .u-generic-socialIcons__item {
+				margin-top: 8px;
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+.u-generic-topBorder {
+	position: relative;
+	height: 6px;
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 1.5px;
+		width: 100%;
+		background-color: $black;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 5px;
+		height: 1px;
+		width: 100%;
+		background-color: $grey4;
+	}
+
+	&.inverse {
+		&:before {
+			background-color: $white;
 		}
 	}
 }

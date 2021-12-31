@@ -3,11 +3,6 @@
   &__top {
     border-bottom: 1px solid $grey4;
     padding: 18px 0;
-    &__container {
-      @include flexbox;
-      @include align-items(center);
-      @include justify-content(space-between);
-    }
   }
   &__time {
     &-info {
@@ -16,86 +11,150 @@
 
       &--label {
         margin-left: 10px;
-        @include font-size(14);
-        color: $grey3;
+        @include font-size(12);
+        color: $grey5;
         font-family: $primaryFont;
+        font-weight: $weightMedium;
+        @include flexbox;
+        margin-top: 3px;
+      }
+    }
+  }
+
+  .u-generic-socialIcons {
+    &--sticky {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__category {
+    color: $blue_sh5;
+    @include font-size(12);
+    line-height: 1.33;
+    font-weight: $weightMedium;
+  }
+
+  &__category-wrap {
+    @include flexbox;
+    @include align-items(center);
+    margin-bottom: 10px;
+  }
+
+  &__edit-link {
+    display: block;
+    margin: 20px 0 10px;
+    background-color: var(--main-color);
+    color: $white;
+    font-weight: $weightBold;
+    @include font-size(16);
+    line-height: 1.5;
+    @include border-radius(6px);
+    height: 40px;
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    text-decoration: none;
+  }
+
+  &__additional-category {
+    margin-right: 10px;
+    color: $white;
+    @include font-size(12);
+    line-height: 1.33;
+    font-weight: $weightMedium;
+    padding: 2px 5px;
+    background-color: $blue_sh5;
+  }
+
+  &__title {
+    @include font-size(32);
+    line-height: 1.25;
+    font-family: $secondaryFont;
+    font-weight: $weightBold;
+    color: $black;
+  }
+
+  &__additionalInfo {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(space-between);
+    margin-top: 15px;
+  }
+
+  &__posted-on {
+    @include calc(max-width, "100% - 100px");
+    width: 100%;
+    @include flexbox();
+    @include align-items(center);
+    @include flex-wrap(wrap);
+  }
+
+  &__published,
+  &__updated {
+    color: $grey5;
+    @include font-size(12);
+    line-height: 1.33;
+    margin-bottom: 4px;
+  }
+  &__updated {
+    border-left: 1px solid $grey5;
+    padding-left: 6px;
+    margin-left: 6px;
+  }
+  &__author {
+    @include flexbox;
+    @include align-items(center);
+    margin-left: 12px;
+    margin-bottom: 4px;
+
+    &-name {
+      @include font-size(12);
+      color: $black;
+      line-height: 1.33;
+      font-family: $primaryFont;
+      font-weight: $weightMedium;
+      position: relative;
+      padding-left: 12px;
+      text-decoration: none;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        @include translate(0, -50%);
+        @include size(4px);
+        background-color: $blue_sh5;
       }
     }
   }
 
   &__main {
-    margin-top: 30px;
+    &__paywall-container {
+      position: relative;
+      &:before {
+        content: "";
+        background-image: linear-gradient(to top, #ffffff 19%, rgba(255, 255, 255, 0.8) 45%);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+      }
+    }
 
-    &-content {
-      display: block;
-      overflow: hidden;
-      width: 100%;
-      margin-top: 60px;
+    &-container {
+      margin-top: 35px !important;
     }
   }
 
-  &__category {
-    color: $grey3;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    @include font-size(13);
-    line-height: 1.23;
-    font-weight: $weightBold;
-    margin-bottom: 10px;
-  }
-
-  &__title {
-    @include font-size(50);
-    line-height: 1.16;
-    font-family: $secondaryFont;
-    font-weight: $weightRegular;
-    color: $black;
-  }
-
-  &__posted-by {
-    @include flexbox();
-    @include align-items(center);
-    @include justify-content(space-between);
-    @include margin-top(25);
-    @include margin-bottom(15);
-    &__container {
-      @include flexbox();
-      @include align-items(center);
-      @include calc(max-width, "100% - 95px");
-      @include flex-wrap(wrap);
-    }
-  }
-
-  &__author {
-    @include flexbox;
-    @include align-items(center);
-    margin-right: 20px;
-    margin-bottom: 10px;
-
-    &-name {
-      @include font-size(14);
-      color: $grey3;
-      font-family: $secondaryFont;
-      font-weight: $weightBold;
-      font-style: italic;
-    }
-  }
-  &__published {
-    color: $grey3;
-    font-family: $primaryFont;
-    @include font-size(13);
-    line-height: 1.23;
-    font-weight: $weightRegular;
-    letter-spacing: normal;
-    margin-bottom: 15px;
-    @include flexbox;
-  }
   &__excerpt {
     color: $black;
     font-family: $secondaryFont;
-    @include font-size(20);
-    line-height: 32px;
-    font-weight: $weightUltabold;
+    @include font-size(16);
+    line-height: 1.75;
+    font-weight: $weightRegular;
     @include margin-bottom(20);
   }
 
@@ -105,9 +164,10 @@
     h2,
     h3,
     h4,
-    h5 {
-      color: $grey3;
-      font-family: $primaryFont !important;
+    h5,
+    li {
+      color: $black;
+      font-family: $secondaryFont !important;
       font-size: 16px !important;
       line-height: 1.5 !important;
       font-weight: $weightRegular !important;
@@ -118,15 +178,15 @@
       * {
         line-height: 1.5 !important;
         letter-spacing: normal !important;
-        font-family: $primaryFont !important;
+        font-family: $secondaryFont !important;
         word-wrap: break-word;
       }
       span,
       b,
       u,
       a {
-        color: $grey3;
-        font-family: $primaryFont !important;
+        color: $black;
+        font-family: $secondaryFont !important;
         font-size: 16px !important;
         line-height: 1.5 !important;
         font-weight: $weightRegular !important;
@@ -137,234 +197,313 @@
         * {
           line-height: 1.5 !important;
           letter-spacing: normal !important;
-          font-family: $primaryFont !important;
+          font-family: $secondaryFont !important;
           word-wrap: break-word;
         }
       }
     }
 
-    > span {
-      color: $grey3 !important;
+    h1 {
+      font-size: 32px !important;
+      span,
+      b,
+      u,
+      a {
+        font-size: 32px !important;
+      }
+    }
+
+    h2 {
+      font-size: 26px !important;
+      line-height: 1.23;
+      span,
+      b,
+      u,
+      a {
+        font-size: 26px !important;
+        line-height: 1.23;
+      }
+    }
+
+    h3 {
+      font-size: 22px !important;
+      font-weight: $weightBold !important;
+      line-height: 1.09;
+      span,
+      b,
+      u,
+      a {
+        font-size: 22px !important;
+        font-weight: $weightBold !important;
+        line-height: 1.09;
+      }
+    }
+
+    h4 {
+      font-size: 20px !important;
+      font-weight: $weightBold !important;
+      line-height: 1.2;
+      span,
+      b,
+      u,
+      a {
+        font-size: 20px !important;
+        font-weight: $weightBold !important;
+        line-height: 1.2;
+      }
+    }
+
+    h5 {
+      font-size: 20px !important;
       font-family: $primaryFont !important;
+      font-weight: $weightBold !important;
+      line-height: 1.2;
+      span,
+      b,
+      u,
+      a {
+        font-size: 20px !important;
+        font-family: $primaryFont !important;
+        font-weight: $weightBold !important;
+        line-height: 1.2;
+      }
+    }
+
+    h6 {
+      font-size: 18px !important;
+      font-family: $primaryFont !important;
+      font-weight: $weightBold !important;
+      color: $blue_sh5;
+      line-height: 1.33;
+      span,
+      b,
+      u,
+      a {
+        font-size: 18px !important;
+        font-family: $primaryFont !important;
+        font-weight: $weightBold !important;
+        color: $blue_sh5;
+        line-height: 1.33;
+      }
+    }
+
+    ul li {
+      list-style-type: none !important;
+      position: relative;
+      &:before {
+        content: "";
+        @include size(8px);
+        background-color: $blue_sh5;
+        position: absolute;
+        display: block;
+        left: -28px;
+        top: 8px;
+      }
+
+      span {
+        list-style-type: decimal !important;
+      }
+    }
+
+    ol {
+      li {
+        list-style-type: auto !important;
+      }
+    }
+
+    > span {
+      color: $black !important;
+      font-family: $secondaryFont !important;
       font-size: 16px !important;
       margin-bottom: 0px !important;
     }
 
     a {
-      border-bottom: 1px solid $black;
+      text-decoration: none;
       @include transition(all 0.3s ease);
-      font-family: $primaryFont !important;
-      color: $black;
+      font-family: $secondaryFont !important;
+      color: $blue_sh5 !important;
     }
 
     blockquote {
       @include flexbox;
       @include flex-direction(column, vertical);
-      @include align-items(center);
-      margin-bottom: 100px;
-      margin-top: 40px;
+      @include align-items(flex-start);
+      margin: 40px 0px 40px 50px;
       position: relative;
-
-      &:before {
-        content: "";
-        background-image: url("../icons/quote-marks.svg");
-        margin-bottom: 15px;
-        @include size(48px);
-      }
+      padding-left: 30px;
+      border-left: 8px solid $blue_sh5;
+      color: $black;
+      font-family: $primaryFont !important;
+      font-size: 22px !important;
+      font-weight: $weightBold !important;
+      line-height: 1.45;
       p {
         color: $black;
-        font-family: $secondaryFont !important;
-        font-size: 32px !important;
-        font-weight: $weightRegular;
-        text-align: center;
-        max-width: 500px;
+        font-family: $primaryFont !important;
+        font-size: 22px !important;
+        font-weight: $weightBold !important;
         margin-bottom: 0px !important;
+        line-height: 1.45;
+      }
+    }
 
-        &.sub-text {
-          color: $grey3;
-          font-size: 13px !important;
-          font-weight: $weightRegular;
-          font-family: $primaryFont !important;
-        }
+    [style*="center"] {
+      img {
+        left: auto;
+        @include translate(0, 0);
+      }
+    }
+
+    img[style*="left"] {
+      margin: 0 20px 40px 0 !important;
+      max-width: 100%;
+    }
+
+    img[style*="right"] {
+      margin: 0 0 40px 20px !important;
+      max-width: 100%;
+    }
+
+    figure[style*="right"] {
+      margin-right: 0px;
+      margin-left: 20px;
+    }
+
+    figure[style*="right"],
+    figure[style*="left"] {
+      left: auto !important;
+      @include translate(0%, 0);
+      margin-right: 20px;
+    }
+
+    div[style*="text-align:center"],
+    div[style*="text-align: center"] {
+      overflow: hidden;
+    }
+
+    figure {
+      position: relative;
+      @include inline-flex;
+      margin-bottom: 20px !important;
+      figcaption {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: $black;
+        color: $white;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.33;
+        padding: 10px;
+      }
+    }
+
+    &__highlight-sec {
+      background-color: $black;
+      max-width: 300px;
+      float: left;
+      padding: 30px;
+      margin-right: 25px;
+
+      .u-heading__large {
+        color: $white;
+      }
+      ul li {
+        color: $white;
       }
     }
   }
 
-  [style*="center"] {
-    img {
-      left: auto;
-      @include translate(0, 0);
-    }
-  }
-
-  img[style*="left"] {
-    margin: 0 20px 40px 0 !important;
-    max-width: 100%;
-  }
-
-  img[style*="right"] {
-    margin: 0 0 40px 20px !important;
-    max-width: 100%;
-  }
-
-  figure[style*="right"] {
-    margin-right: 0px;
-    margin-left: 20px;
-  }
-
-  figure[style*="right"],
-  figure[style*="left"] {
-    left: auto !important;
-    @include translate(0%, 0);
-    margin-right: 20px;
-  }
-
-  div[style*="text-align:center"],
-  div[style*="text-align: center"] {
-    overflow: hidden;
-  }
-
-  h4,
-  h5 {
-    color: $black !important;
-    font-family: $secondaryFont !important;
-  }
-
-  h1 {
-    font-size: 50px !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 50px !important;
-    }
-  }
-
-  h2 {
-    font-size: 20px !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 20px !important;
-    }
-  }
-
-  h3 {
-    font-size: 20px !important;
-    font-family: $primaryFont !important;
-    font-weight: $weightBold !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 20px !important;
-      font-family: $primaryFont !important;
-      font-weight: $weightBold !important;
-    }
-  }
-
-  h4 {
-    font-size: 18px !important;
-    font-weight: $weightBold !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 18px !important;
-      font-weight: $weightBold !important;
-    }
-  }
-
-  h5 {
-    font-size: 18px !important;
-    font-family: $primaryFont !important;
-    font-weight: $weightBold !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 18px !important;
-      font-family: $primaryFont !important;
-      font-weight: $weightBold !important;
-    }
-  }
-
-  margin-bottom: 20px;
-  font-weight: $weightRegular;
-  letter-spacing: 0.5px;
-  u {
-    text-decoration: underline;
-  }
-
-  ul li {
-    list-style-type: none !important;
+  &__paywalled-view {
+    box-shadow: 5px 2px 17px 8px rgba(0, 0, 0, 0.1);
+    background-color: $grey3;
+    padding: 50px 0;
     position: relative;
-    &:before {
-      content: "";
-      background-image: url("../icons/icons-navigation-arrow-small.png");
-      @include size(16px);
-      position: absolute;
-      display: block;
-      left: -28px;
-      top: 5px;
-    }
+    z-index: 20;
+    text-align: center;
 
-    span {
-      list-style-type: decimal !important;
-    }
-  }
-
-  &__galleryView {
-    .c-article__title {
-      @include margin-bottom(30);
-    }
-    .article-gallery {
-      max-width: 90%;
-      margin: 0 auto;
-    }
-    .article-gallery__caption {
-      @include calc(width, "100% - 80px");
-    }
-    #counter {
-      position: absolute;
-      bottom: 15px;
-      right: 5%;
-      width: 60px;
-      color: $black;
-      @include font-size(16);
-      font-family: $secondaryFont;
-      font-style: italic;
-      text-align: right;
-      background-color: $white;
-      z-index: 9;
-    }
-    .owl-nav {
-      @include calc(width, "100% + 10%");
-      left: -5%;
-      right: -5%;
-    }
-
-    .owl-thumbs {
-      border-top: 1px solid $grey4;
-      border-bottom: 1px solid $grey4;
-      margin-top: 35px;
-      padding: 25px 0;
-    }
-    .owl-thumb-item {
-      width: 159px;
-      height: 105px;
-
-      + .owl-thumb-item {
-        margin-left: 30px;
+    .o-paywalled {
+      &__head {
+        @include font-size(32);
+        line-height: 1.25;
+        font-family: $secondaryFont;
+        font-weight: $weightBold;
+        color: $black;
+      }
+      &__text {
+        font-weight: $weightMedium;
+        @include font-size(20);
+        line-height: 1.2;
+        color: $grey5;
+      }
+      &__period {
+        margin-top: 16px;
+        @include font-size(20);
+        line-height: 1.2;
+        color: $grey5;
       }
 
-      &.active {
-        border: none;
-        @include opacity(0.3);
+      &__action {
+        margin-top: 40px;
       }
     }
   }
 }
 
-/* End article style */
+.c-propertyarticle {
+  &-agent {
+    &__imagebar {
+      width: 82px;
+    }
+
+    &__name {
+      @include font-size(18);
+      font-weight: $weightBold;
+      line-height: 1.22;
+      color: $black;
+    }
+
+    &__agency {
+      @include font-size(16);
+      font-weight: $weightRegular;
+      line-height: 1.13;
+      color: $grey5;
+      margin-top: 5px;
+    }
+
+    &__phone {
+      @include font-size(16);
+      font-weight: $weightMedium;
+      line-height: 1.5;
+      color: $black;
+    }
+
+    &__box {
+      @include flexbox;
+
+      &-content {
+        @include flex(1 0);
+        margin-left: 24px;
+      }
+    }
+  }
+
+  &-inspection {
+    &__title {
+      @include font-size(26);
+      line-height: 1.23;
+      font-weight: $weightBold;
+      color: $black;
+    }
+
+    &__text {
+      @include font-size(16);
+      font-weight: $weightRegular;
+      line-height: 1.13;
+      color: $grey5;
+      margin-top: 8px;
+    }
+  }
+}

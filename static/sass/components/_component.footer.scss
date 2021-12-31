@@ -5,7 +5,7 @@
     background: $white;
   
     &__top {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       &-bar {
         @include flexbox;
         @include align-items(center);
@@ -50,10 +50,7 @@
       }
     }
   
-    &__address {
-      border-top: 1px solid rgba($grey3, 0.5);
-      padding: 20px 0;
-  
+    &__address {  
       &__heading {
         @include font-size(14);
         line-height: 1.3;
@@ -80,14 +77,14 @@
   
     &__main {
       border-top: 1px solid rgba($grey3, 0.5);
-      padding: 25px 0 80px;
+      padding: 25px 0 40px;
       @media #{$mobile} {
         padding: 25px 0 20px;
       }
       &__container {
-        margin-bottom: 28px;
+        margin-bottom: 20px;
         @media #{$mobile} {
-          margin-bottom: 20px;
+          margin-bottom: 15px;
         }
         h3 {
           color: $black;
@@ -199,6 +196,12 @@
               }
             }
           }
+        }
+    }
+
+    &--themecolour{
+        .c-footer__bottom-p2 {
+            background-color: $mainColor;
         }
     }
   }

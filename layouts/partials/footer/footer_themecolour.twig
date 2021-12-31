@@ -1,74 +1,192 @@
-{% set link = _Blog.getHomeBlogSettings() %}
+{% set defaultBlog = _Blog.getHomeBlogSettings() %}
 {% set logo = networkData.templatePath~'/static/images/logo.svg'%}
+{% set footerBottomFavicon = networkData.templatePath~'/static/icons/path.svg'%}
 {% if networkData.logoMedia | length > 0 %}
-    {% set logo = _Media.getMediaUrl(networkData.secondaryLogoMedia, 650, 144, {'crop': 'fit'} )%}
+{% set logo = _Media.getMediaUrl(networkData.secondaryLogoMedia, 650, 144, {'crop': 'fit'} )%}
 {% endif %}
 {% set footerMenu = _Menu.get({'menuType': 'header', 'menuGroupName': 'footer'}) %}
+{% set footerTopMenu = _Menu.get({'menuType': 'header', 'menuGroupName': 'footer-top'}) %}
+{% set footerBottomMenu = _Menu.get({'menuType': 'header', 'menuGroupName': 'footer-bottom'}) %}
+{% set addresses = defaultBlog.contact %}
+{% set paywall = true %}
 
-{% if config['footer-settings']['statement'] is defined and config['footer-settings']['statement'] != '' %}
-    <div class="container">
-        <div class="row">
-            <div class="col-12 u-margin-top-30 u-margin-bottom-30">
-                <p class="c-footer-white__statement">
-                    {{config['footer-settings']['statement']|raw}}
-                </p>
-            </div>
-        </div>
-    </div>
+{% if config['paywall'] is defined and config['paywall'] == false %}
+{% set paywall = false %}
 {% endif %}
 
-<footer class="c-footer c-footer-sm c-footer--themecolour">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
+{% set loggedin = _User.isGuest() ? false : true %}
+{% set user = loggedin ? _User.getUser() : null %}
 
-                <div class="c-footer__container">
-                    <div class="row">
-                        <div class="col-12 col-lg-5">
+
+
+
+<footer class="c-footer c-footer-xs c-footer--themecolour">
+    <div class="c-footer__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="c-footer__top-bar">
+                        <div class="c-footer__logo">
                             <a href="{{networkData.defaultBlogUrl}}" class="c-footer__logo">
-                                <img src="{{logo}}" class="image-fluid"/>
+                                <img src="{{logo}}" class="image-fluid" />
                             </a>
-
-                            <div class="c-footer__addresses">
-                                {% if addresses.name != "" %}
-                                    <p class="c-footer__addresses__content">{{addresses.name}}</p>
-                                {% endif %}
-                                {% if addresses.email != "" %}
-                                    <p class="c-footer__addresses__content">{{addresses.email}}</p>
-                                {% endif %}
-                                <p class="c-footer__addresses__content">{{addresses.address}}<br />{{addresses.city}}<br />{{addresses.state}} {{addresses.postcode}}</p>
+                        </div>
+                        <div class="c-footer__additionalInfo {{additionalInfo}}">
+							{% if paywall %}
+                                <div class="c-footer__additionalInfo-btns d-flex d-lg-none">
+                                    {% if loggedin %}
+                                        <a href="{{_AppHelper.getLogoffUrl()}}" class="c-button c-button--black-bordered d-inline-block d-md-none">Logout</a>
+                                        <a href="{{networkData.defaultBlogUrl}}/user/edit-profile" class="c-button c-button--mainThemeClr">My account</a>
+                                    {% else %}
+                                        <a id="signinBtn" href="javascript:;" class="c-button c-button--black-bordered d-inline-block d-md-none">Sign in</a>
+                                        <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
+                                    {% endif %}
+                                </div>
+                			{% endif %}
+                            <div class="c-nav c-nav-1 d-none d-md-flex">
+                                <ul class="c-nav__grid">
+									{{this.render('../_submenu_navigation.twig', {
+										items: footerTopMenu
+									}) | raw }}
+                                </ul>
+								{% if paywall %}
+                					{% if loggedin %}
+                                		<a class="c-nav--signIn" href="{{_AppHelper.getLogoffUrl()}}">Logout</a>
+									{% else %}
+                                		<a class="c-nav--signIn" id="signinBtn" href="javascript:;">Sign in</a>
+									{% endif %}
+								{% endif %}
                             </div>
                         </div>
-
-                        <div class="col-12 col-md-12 col-lg-7 u-tablet-margin-top-40">
-                            <div class="row justify-content-end">
-
-                                {% set footercols = 0 %}
-                                {% for i in 0..3 if footerMenu | length > footercols %}
-                                    <div class="col-12 col-md-3  u-tablet-margin-bottom-40 u-mobile-margin-top-20">
-                                        <div class="c-footer__navigation c-footer__navigation-sm">
-                                            {{this.render('../_submenu_navigation.twig', {
-                                                items: footerMenu | slice(footercols, 4),
-                                                class: '',
-                                            }) | raw}}
-                                        </div>
-                                    </div>
-                                    {% set footercols = footercols + 4 %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                        
-                        
                     </div>
-                </div>
-                <div class="c-footer__bottom u-margin-top-80 u-tablet-margin-top-40">
-                    <div class="c-footer__bottom__copyright">&copy; Copyright {{networkData.title}} {{ "now"|date("Y") }}</div>
-                    <a href="https://pagemasters.com" class="c-footer__bottom__powered">DESIGNED AND POWERED BY PAGEMASTERS PUBLISH</a>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="c-footer__address d-none d-md-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-lg-3">
+                    <div class="c-footer__address__container">
+                        <div class="c-footer__address__heading">Address</div>
+                        <div class="c-footer__address__content address">
+                            {{addresses.address}}<br />{{addresses.city}}<br />{{addresses.state}}
+                            {{addresses.postcode}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-lg-3">
+                    <div class="c-footer__address__container">
+                        <div class="c-footer__address__heading">Email</div>
+                        {% if addresses.email != "" %}
+                        <div class="c-footer__address__content">
+                            <a href="mailto:{{addresses.email}}"
+                                class="c-footer__addresses__content">{{addresses.email}}</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-4 col-lg-6">
+                    <div class="d-flex justify-content-between">
+                        <div class="c-footer__address__container">
+                            <div class="c-footer__address__heading">Telephone</div>
+                            {% if addresses.phone != "" %}
+                                <div class="c-footer__address__content">{{addresses.phone}}</div>
+                            {% endif %}
+                        </div>
+                        {% if paywall %}
+                            <div class="d-none d-lg-flex justify-content-end">
+                                <div class="c-footer__address__container">
+                                    {% if loggedin %}
+                                        <a href="{{networkData.defaultBlogUrl}}/user/edit-profile" class="c-button c-button--black-bordered">My account</a>
+                                    {% else %}
+                                        <a href="javascript:;" class="c-button c-navigation__item subscribe c-button--black-bordered">Subscribe</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="c-footer__main">
+        <div class="container">
+            <div class="row">
+				{{this.render('../_footer_navigation.twig', {
+					items: footerMenu
+				}) | raw }}
+            </div>
+        </div>
+    </div>
+    <div class="c-footer__responsive d-block d-md-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="c-nav c-nav-3">
+                        <ul class="c-nav__grid">
+                            {{this.render('../_submenu_navigation.twig', {
+								items: footerTopMenu
+							}) | raw }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="c-footer__bottom">
+        <div class="c-footer__bottom-p1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-8 mx-auto">
+                        <div class="c-footer__bottom__ack-heading">Acknowledgement</div>
+                        <div class="c-footer__bottom__ack-content">'[Publication] acknowledges the Traditional
+                            Custodians of country throughout Australia and their connections to land, sea and community.
+                            We pay our respect to their Elders past and present and extend that respect to all
+                            Aboriginal and Torres Strait Islander peoples today.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-footer__bottom-p2">
+            <div class="container">
+                <div class="c-footer__bottom-p2-container">
+                    <aside class="c-footer__bottom__info">
+                        <div class="c-footer__bottom__info__copy">&copy; {{networkData.title}}</div>
+                        <div class="c-footer__bottom__info__nav d-none d-md-flex">
+                            {{this.render('../_submenu_navigation.twig', {
+								items: footerBottomMenu
+							}) | raw }}
+                        </div>
+                    </aside>
+                    <aside class="c-footer__bottom__rightSide">
+                        <div class="desginer-info d-none d-xl-flex">Designed and powered by <a target="_blank" href="https://publish.pagemasters.com/">Pagemasters Publish</a></div>
+                        <div class="u-generic-socialIcons">
+                            {% if config.social.facebook is defined and config.social.facebook is not empty %}
+                                <a href="{{config.social.facebook}}" class="u-generic-socialIcons__item">
+                                    <img src="{{networkData.templatePath}}/static/icons/fb-white.svg" alt="image" />
+                                </a>
+                            {% endif %}
+                            {% if config.social.instagram is defined and config.social.instagram is not empty %}
+                                <a href="{{config.social.instagram}}" class="u-generic-socialIcons__item">
+                                    <img src="{{networkData.templatePath}}/static/icons/insta-white.svg" alt="image" />
+                                </a>
+                             {% endif %}
+                            {% if config.social.twitter is defined and config.social.twitter is not empty %}
+                                <a href="{{config.social.twitter}}" class="u-generic-socialIcons__item">
+                                    <img src="{{networkData.templatePath}}/static/icons/twitter-white.svg" alt="image" />
+                                </a>
+                            {% endif %}
+                            {% if config.social.vimeo is defined and config.social.vimeo is not empty %}
+                                <a href="{{config.social.vimeo}}" class="u-generic-socialIcons__item">
+                                    <img src="{{networkData.templatePath}}/static/icons/vimeo-white.svg" alt="image" />
+                                </a>
+                            {% endif %}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
     {{ networkData['styling']['customFooter'] | raw }}
-
 </footer>

@@ -47,12 +47,12 @@ $warning: #fcba08;
 $info: #129eff;
 $white: #ffffff;
 $offwhite: #e7e7e7;
-$mainColor: #4a90e2;
+$mainColor: #f44d42;
 
 :root {
   --main-color: $blue;
 }
-@if (var(--main-color) != #4a90e2) {
+@if (var(--main-color) != #f44d42) {
   $mainColor: var(--main-color);
 }
 $border: $offwhite;
@@ -71,18 +71,17 @@ $linkedin: #1f7bc2;
 $flickr: #377ede;
 
 $black_sh1: #333333;
-$black_sh2: lighten(
-  $black_sh1,
-  20%
-); /* color code == #666666 also (0,0,0,0.6) */
+$black_sh2: lighten($black_sh1, 20%); /* color code == #666666 also (0,0,0,0.6) */
 $black_sh3: lighten($black_sh1, 40%); /* color code == #999999 */
 $black_sh4: lighten($black_sh1, 60%); /* color code == #cccccc */
 $black_sh5: lighten($black_sh1, 41%); /* color code == #9c9c9c */
 $blue: #0e215d;
-$blue_sh1: #4573cd;
+$blue_sh1: #0a1630;
 $blue_sh2: #4772cc;
 $blue_sh3: #ebf4f8;
 $blue_sh4: #7197e2;
+$blue_sh5: #5748f6;
+$cusAcc_headBar: #0a1630;
 
 //Buttons
 // $btn-primary-color:              #fff !default;
