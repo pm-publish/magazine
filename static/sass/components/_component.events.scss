@@ -6,9 +6,7 @@
         @include margin-bottom(30);
 
         .c-page-head {
-            border-bottom: 1.5px solid $black;
-            padding-bottom: 15px;
-            margin-top: 0;
+            @include margin-bottom(0);
         }
     }
 
@@ -32,13 +30,14 @@
         width: 100%;
         list-style: none;
 
-        > li {
+        >li {
             margin: 0;
             padding: 0;
             width: 100%;
             list-style: none;
         }
     }
+
 
     &__text {
         color: $greyish;

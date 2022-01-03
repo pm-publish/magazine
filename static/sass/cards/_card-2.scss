@@ -2,117 +2,78 @@
     @include card-name("C2 mobile");
 
     .c-cards-view {
-        @include flex-direction(column, vertical);
-        border-bottom: 1px solid $grey4;
-        padding-bottom: 15px;
-        margin-bottom: 15px;
+        @include flexbox;
+        @include flex-direction(column,vertical);
+        &__category {}
 
         &__media {
-            margin-bottom: 15px;
-            height: 40vw;
+            height: 56.25vw;
             min-height: 145px;
-            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        &__category {
+            margin-bottom: 20px;
         }
 
         &__heading {
-            @include font-size(14);
-            line-height: 1.33;
-            margin-top: 5px;
+            font-family: var(--sec-font);
+            color: $black;
+            font-weight: $weightBold;
+            @include font-size(26);
+            line-height: 1.26;
+            overflow: hidden;
+            max-height: 66px;
         }
 
-        &__description {
-            color: $grey5;
-            @include font-size(13);
-            line-height: 1.38;
-        }
-        &__author {
-            @include flexbox;
-            @include align-items(center);
-
-            &-name {
-                @include font-size(12);
-                color: $black;
-                line-height: 1.33;
-                font-family: $primaryFont;
-                font-weight: $weightMedium;
-                margin-right: 15px;
-                position: relative;
-                padding-left: 12px;
-
-                &:before {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    @include translate(0, -50%);
-                    @include size(4px);
-                    background-color: $blue_sh5;
-                }
-            }
+        &__description{
+            @include font-size(16);
+            font-family: var(--main-font);
+            line-height: 1.5;
+            color: $grey3;
+            font-weight: $weightLight;
         }
     }
 }
-.card-2 {
-    &--noDescription {
-        .c-cards-view {
-            &__description {
-                display: none;
-            }
 
-            &.without-image {
-                .c-cards-view {
-                    &__description {
-                        display: block;
-                    }
-                }
-            }
-        }
-    }
-}
+
+
 .card-2-mobile {
     @media #{$mobile} {
         @include card-2-base();
     }
 }
 
-@mixin card-2-tablet-base() {
+
+.card-2-tablet {
+
+    @media #{$tablet} {
+
+        @include card-2-base();
+        @include card-name("C2 tablet");
+    }
+}
+
+
+@mixin card-2-desktop-base {
     @include card-2-base();
-    @include card-name("C2 tablet");
+    @include card-name("C2 desktop");
+
     .c-cards-view {
-        &__heading {
-            @include font-size(18);
-            line-height: 1.33;
-        }
         &__media {
-            height: 40vw;
-            min-height: 145px;
+            height: 400px;
+        }
+        &__heading {
+            @include font-size(38);
+            line-height: 1.26;
+            max-height: 96px;
         }
     }
 }
 
-.card-2-tablet {
-    @media #{$tablet} {
-        @include card-2-tablet-base();
-        @include card-name("C2 tablet");
-    }
-}
 .card-2-desktop {
+    
     @media #{$desktop-up} {
-        @include card-2-tablet-base();
-        @include card-name("C2 desktop");
-        height: 100%;
-        .card-infoo {
-            height: 100%;
-        }
-        .c-cards-view {
-            border-bottom: none;
-            padding-bottom: 0px;
-            margin-bottom: 0px;
-            
-            &__media {
-                max-height: 185px;
-                min-height: 185px;
-            }
-        }
+        @include card-2-desktop-base();
     }
 }

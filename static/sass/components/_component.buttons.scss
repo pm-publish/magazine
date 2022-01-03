@@ -46,9 +46,6 @@
 
     &--spinner {
         color:white !important;
-        &:hover {
-            color:lightness($black);
-        }
     }
     &--black {
         background-color: $black;

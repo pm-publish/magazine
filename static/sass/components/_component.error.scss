@@ -1,14 +1,22 @@
 .c-error {
-    min-height: 400px;
-    margin: 70px 0;
+
+    background-color: $offwhite;
     text-align: center;
+    height: 550px;
+    padding-top:60px;
 
     &__title {
-        margin: 30px 0 60px;
-        @include font-size(25);
-        line-height:  1.26;
-        color: $black;
-        font-family: $secondaryFont;
-        font-weight: $weightLight;
+        color: $blackred;
+        @include font-size(22);
+        font-weight: $weightBold;
     }
+
+    &__message {
+        @include font-size(13);
+        margin-top: 23px;
+    }
+    &__button {
+        margin-top: 85px;
+    }
+
 }

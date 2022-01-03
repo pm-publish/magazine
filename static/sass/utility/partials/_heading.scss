@@ -2,17 +2,12 @@
 .u-heading {
     &__large {
         @include font-size(20);
-        font-family: $secondaryFont;
         font-weight: $weightBold;
         color: $black;
         z-index: 11;
 
-        @include responsive(xs) {
-            @include font-size(26);
-
-            &.u-heading__large_32 {
-                @include font-size(32);
-            }
+        @include responsive (xs) {
+            @include font-size(28);
         }
     }
 }
@@ -21,19 +16,19 @@
     &-white {
         background-color: $white;
     }
-    &-offwhite {
+    &-offwhite{
         background-color: $offwhite;
     }
 }
-.u-page-info {
-    $self: &;
-    &__title {
+.u-page-info{
+    $self: &; 
+    &__title{
         @include font-size(20);
         font-weight: $weightBold;
         color: $black;
         z-index: 11;
-        margin-bottom: 19px;
-        @include responsive(xs) {
+        margin-bottom:19px;
+        @include responsive (xs) {
             @include font-size(28);
         }
     }
@@ -41,63 +36,9 @@
         p {
             @include font-size(13);
             color: $greyish;
-            line-height: 1.54;
-            margin-bottom: 18px;
-        }
-    }
-}
+            line-height:1.54;
+            margin-bottom:18px;
 
-.c-page-head {
-    @include flexbox;
-    @include flex-direction(column, vertical);
-    margin: 20px 0;
-
-    &__link {
-        color: $grey5;
-        @include font-size(12);
-        font-weight: $weightMedium;
-        line-height: 1.33;
-        text-decoration: none;
-        @include flexbox;
-        @include align-items(center);
-
-        &:after {
-            content: "";
-            background-image: url("../icons/icons-navigation-arrow.svg");
-            width: 24px;
-            height: 34px;
-            display: block;
-            margin-left: 10px;
-        }
-    }
-
-    &--withBorder {
-        border-bottom: 1.5px solid $black;
-        padding-bottom: 15px;
-    }
-
-    @include responsive(xs) {
-        @include respond-to(md) {
-            @include flex-direction(row, horizontal);
-            @include align-items(center);
-            @include justify-content(space-between);
-        }
-    }
-
-    &.inverse {
-        &.c-page-head {
-            &--withBorder {
-                border-bottom: 1.5px solid $white;
-            }
-        }
-        .u-heading__large {
-            color: $white;
-        }
-
-        .c-page-head {
-            &__link {
-                color: $white;
-            }
         }
     }
 }

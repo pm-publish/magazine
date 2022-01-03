@@ -2,28 +2,10 @@
 
 .c-section-panel__background {
     @include padding(25 0);
-    background: $black;
+    background:rgba(185,185,185,.2);
     @media #{$desktop-up} {
         @include margin(30 0 0 0);
     }
 }
-.c-section-secondWrap {
-    .card-7-desktop {
-        @media #{$desktop-up} {
-            .c-cards-view {
-                &__media {
-                    width: 65%;
-                }
 
-                &__container {
-                    width: 35%;
-
-                    &-topSection {
-                        height: initial;
-                    }
-                }
-            }
-        }
-    }
-}
 /* End section page  style */
