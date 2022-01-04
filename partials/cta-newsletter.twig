@@ -1,0 +1,30 @@
+{% set cta = _CallToAction.getKeywordBasedCTA('newsletter')%}
+
+<div class="cta__newsletter cta__newsletter-xs">
+    <div class="cta__newsletter-container">
+        <aside class="cta__newsletter-text">
+            <span class="icon">
+                <svg width="64" height="65" viewBox="0 0 64 65" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <path d="m2.51 38.867 22.685-17.96 6.144 4.865c.117.092.26.139.402.139a.643.643 0 0 0 .3-.084c.035-.018.071-.031.102-.055l6.144-4.865 22.686 17.96H2.51zM24.152 20.08 1.296 38.175V1.986l22.856 18.095zm36.82-18.786L31.742 24.437l-6.144-4.864L2.51 1.295h58.463zm1.215 36.88L39.33 20.081 62.187 1.986v36.19zm1.294 1.318V.642c-.002-.07-.012-.139-.035-.207-.003-.008-.008-.013-.012-.02-.009-.023-.021-.042-.033-.063a.613.613 0 0 0-.089-.132.644.644 0 0 0-.185-.141c-.022-.011-.042-.024-.065-.033A.633.633 0 0 0 62.834 0H.647a.643.643 0 0 0-.23.046C.396.055.377.067.355.078a.619.619 0 0 0-.13.088C.204.184.186.2.17.22a.654.654 0 0 0-.09.134C.069.373.056.392.047.413.044.422.04.427.036.435A.647.647 0 0 0 0 .642V39.52c0 .07.011.14.035.207.003.007.008.013.011.022.01.022.022.04.033.06a.672.672 0 0 0 .09.134.606.606 0 0 0 .185.141c.021.01.041.023.064.032a.623.623 0 0 0 .229.046h62.189c.357 0 .647-.29.647-.648 0-.007-.002-.014-.003-.02z" id="a"/>
+                    </defs>
+                    <g transform="translate(0 13)" fill="none" fill-rule="evenodd">
+                        <mask id="b" fill="#fff">
+                            <use xlink:href="#a"/>
+                        </mask>
+                        <use fill="#BA1717" xlink:href="#a"/>
+                        <g mask="url(#b)" fill="#FFF">
+                            <rect width="320" height="320" rx="24" transform="translate(-128 -140)"/>
+                        </g>
+                    </g>
+                </svg>
+            </span>
+            <span class="label">{{cta.title}}</span>
+        </aside>
+        {% if cta.button['url'] is not empty and cta.button['url'] is defined %}
+            <aside class="cta__newsletter-button">
+                <a href="{{cta.button['url']}}" class="c-button c-button--white c-button--joinBtn">{{cta.button['text']}}</a>
+            </aside>
+        {% endif %}
+    </div>
+</div>

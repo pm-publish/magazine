@@ -4,7 +4,9 @@
     .c-cards-view {
         @include flexbox;
         @include flex-direction(column,vertical);
-        &__category {}
+        border-bottom: 1px solid $black;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
 
         &__media {
             height: 56.25vw;
@@ -14,6 +16,30 @@
 
         &__category {
             margin-bottom: 20px;
+        }
+
+        &__author {
+            margin-top: 5px;
+            &-name {
+                font-family: var(--sec-font);
+                @include font-size(14);
+                font-weight: $weightBold;
+                font-style: italic;
+                color: $grey3;
+                position: relative;
+                padding-left: 45px;
+
+                &:before {
+                    content:'';
+                    width: 30px;
+                    background-color: #535353;
+                    height: 0.5px;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    @include translate(0,-50%);
+                }
+            }
         }
 
         &__heading {
@@ -61,7 +87,17 @@
 
     .c-cards-view {
         &__media {
-            height: 400px;
+            height: 420px;
+        }
+
+        &__author {
+            &-name {
+                padding-left: 65px;
+
+                &:before {
+                    width: 50px;
+                }
+            }
         }
         &__heading {
             @include font-size(38);

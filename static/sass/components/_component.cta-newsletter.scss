@@ -1,0 +1,70 @@
+/* Begin cta newsletter */
+
+
+.cta__newsletter {
+  $selfCTANewsletter: &;
+  border-bottom: 1px solid $grey4;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+
+  &-container {
+    @include flexbox;
+    @include flex-direction(column, vertical);
+    background-color: var(--main-color);
+    padding: 20px 30px;
+  }
+
+  &-text {
+    @include flexbox;
+    @include align-items(center);
+
+    .icon {
+
+    }
+    .label {
+      color: $white;
+      font-family: var(--sec-font);
+      font-weight: $weightBold;
+      margin-left: 30px;
+      @include font-size(24);
+      line-height: 1.25;
+    }
+  }
+
+  &-button {
+    width: 100%;
+    margin-top: 15px;
+    .c-button--joinBtn {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  
+  @include responsive(xs) {
+    @include respond-to(md) {
+      #{$selfCTANewsletter} {
+        &-container {
+          @include flex-direction(row, horizontal);
+          @include align-items(center);
+          @include justify-content(space-between);
+        }
+
+        &-button {
+          width: 185px;
+          margin-top: 0px;
+        }
+
+        &-text {
+          @include flexbox;
+          .label {
+              @include font-size(32);
+              line-height: 1.25;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* End cta newsletter */

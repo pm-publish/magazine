@@ -1,44 +1,32 @@
-@mixin card-3-base() {
-    @include card-name("C3 mobile");
+@mixin card-7-base() {
+    @include card-name("C7 mobile");
 
     .c-cards-view {
-        border-bottom: 1px solid $grey4;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        min-height: 102px;
+        @include flexbox;
+        @include flex-direction(column,vertical);
+        margin-bottom: 20px;
 
         &__media {
-            @include size(96px);
-            order: 2;
-        }
-
-        &__container {
-            flex: 1;
+            display: none;
         }
 
         &__category {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         &__heading {
-            font-family: var(--sec-font);
+            font-family: var(--main-font);
             color: $black;
-            font-weight: $weightRegular;
-            @include font-size(20);
-            line-height: 1.2;
+            font-weight: $weightBold;
+            @include font-size(18);
+            line-height: 1.33;
             overflow: hidden;
             height: 48px;
-            max-height: inherit;
-            padding-right: 30px;
-            
-        }
 
-        &__description{
-            display: none
         }
 
         &__author {
-            margin-top: 5px;
+            margin-top: 15px;
             &-name {
                 font-family: var(--sec-font);
                 @include font-size(14);
@@ -61,49 +49,52 @@
             }
         }
 
+        &__description{
+            display: none
+        }
+
         &.without-image {
-            .c-cards-view {
-                @include flex-direction(column, vertical);
-                &__heading {
-                    height: 48px;
-                    max-height: inherit;
-                }
-            }
+            background-color: $white;
         }
     }
 }
 
 
-.card-3-mobile {
+.card-7-mobile {
     @media #{$mobile} {
-        @include card-3-base();
+        @include card-7-base();
     }
 }
 
 
-.card-3-tablet {
+
+
+.card-7-mobile {
+    @media #{$mobile} {
+        @include card-7-base();
+    }
+}
+
+
+.card-7-tablet {
 
     @media #{$tablet} {
-        
-        @include card-3-base();
-        @include card-name("C3 tablet");
-        // .c-cards-view {
-
-        //     &__container {
-        //         width: auto;
-        //     margin-left: 14px;
-        //     }
-        // }
+        @include card-7-base();
+        @include card-name("C7 tablet");
     }
 }
 
 
-.card-3-desktop {
+@mixin card-7-desktop-base {
+    @include card-7-base();
+    @include card-name("C7 desktop");
+}
 
+.card-7-desktop {
     @media #{$desktop-up} {
-
-        @include card-3-base();
-        @include card-name("C3 desktop");
+        @include flexbox;
+        height: 100%;
+        @include card-7-desktop-base();
 
         .c-cards-view {
             &__author {

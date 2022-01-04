@@ -70,6 +70,30 @@
         }
     }
 
+    &--white {
+        color: $black;
+        border-color: $white;
+        background-color: $white;
+
+        &:hover {
+            color: $black;
+            border-color: $white;
+            background-color: $white;
+        }
+
+        &-bordered {
+            color: $white;
+            border-color: $white;
+            background-color: transparent;
+
+            &:hover {
+                color: $black;
+                border-color: $white;
+                background-color: $white;
+            }
+        }
+    }
+
 
 
     &--red {
@@ -83,7 +107,7 @@
             background-color: $blackred;
         }
 
-        &--bordered {
+        &-bordered {
             color: $error;
             border-color: $greyish;
             background-color: transparent;
@@ -141,6 +165,17 @@
         text-transform: none;
         margin-top: -7px;
         letter-spacing: 1px;
+    }
+
+    &--joinBtn {
+        height: 56px;
+        @include font-size(22);
+        max-width: 184px;
+        width: 100%;
+        text-transform: inherit;
+        @include flexbox;
+        @include justify-content(center);
+        @include align-items(center);
     }
 }
 
