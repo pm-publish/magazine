@@ -281,3 +281,29 @@ div[class^="card"] {
         }
     }
 }
+
+.c-section-panel__background {
+    .card-3-mobile,
+    .card-3-tablet,
+    .card-3-desktop,
+    .card-7-mobile,
+    .card-7-tablet,
+    .card-7-desktop {
+        .c-cards-view {
+            border-color: $white;
+            
+            &__category,
+            &__heading,
+            &__description,
+            &__author-name {
+                color: $white;
+                &:before {
+                    background-color: $white;
+                }
+            }
+            &.without-image {
+                background-color: $black;
+            }
+        }
+    }
+}

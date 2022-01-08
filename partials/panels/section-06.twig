@@ -3,7 +3,7 @@
 {% set cardIndex = 0 %}
 
 
-<div class="row" data-section="04">
+<div class="row" data-section="06">
     <div class="col-12">
         <div class="c-page-head c-page-head--d1 c-page-head-xs">
             <div class="u-heading__large u-heading__large-xs u-pr--6">{{title}}</div>
@@ -11,15 +11,26 @@
         </div>
     </div>
 
-    <div class="col-12">
+
+    <div class="col-12 col-lg-6">
+        {{this.render('../_single-article.twig', {
+            article: articles[articleCount], 
+            position: (articleCount+1),
+            imageSize: {width: 635, height: 450},
+            containerClass: "card-2-mobile card-2-tablet card-2-desktop",
+            timeSuppress: timeSuppress
+        }) | raw}}
+        {% set articleCount = (dev) ? articleCount : articleCount + 1 %}
+    </div>
+    <div class="col-12 col-lg-6">
         <div class="row">
-            {% for i in 0..3 if articles[articleCount] %}
-                <div class="col-12 col-lg-3">
+            {% for i in 1..5 if articles[articleCount] %}
+                <div class="col-12">
                     {{this.render('../_single-article.twig', {
                     article: articles[articleCount],
                     position: (articleCount+1),
-                    imageSize: {width: 255, height: 276},
-                    containerClass: "card-3-mobile card-3-tablet card-3-desktop",
+                    imageSize: {width: 96, height: 96},
+                    containerClass: "card-6-mobile card-6-tablet card-6-desktop",
                     timeSuppress: timeSuppress
                     }) | raw}}
                     {% set articleCount = (dev) ? articleCount : articleCount + 1 %}

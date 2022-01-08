@@ -6,4 +6,10 @@
       @include justify-content(space-between);
       @include align-items(center);
     }
+
+    .u-generic-socialIcons__item {
+      svg {
+        fill: var(--sec-color);
+      }
+    }
   }

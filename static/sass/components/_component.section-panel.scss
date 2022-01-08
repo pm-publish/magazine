@@ -1,8 +1,19 @@
 /* section page  style */
 
 .c-section-panel__background {
-    @include padding(25 0);
-    background:rgba(185,185,185,.2);
+    @include padding(50 0);
+    background: $black;
+
+    .c-page-head {
+        .u-heading__large {
+            color: $white;
+        }
+
+        &__link {
+            color: $white;
+        }
+    }
+
     @media #{$desktop-up} {
         @include margin(30 0 0 0);
     }

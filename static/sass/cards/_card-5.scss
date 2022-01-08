@@ -2,86 +2,74 @@
     @include card-name("C5 mobile");
 
     .c-cards-view {
-
-
-        height: inherit;
-        align-items: stretch;
+        @include flexbox;
+        @include flex-direction(column,vertical);
+        border-bottom: 1px solid $black;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        min-height: 220px;
 
         &__media {
-            @include flex-width(86px);
-            height: 110px;
-
-            &--video {
-                &:before {
-                    @include size(55px);
-                }
-            }
+            height: 56.25vw;
+            min-height: 145px;
+            margin-bottom: 20px;
         }
 
-        &__container {
-            margin-left: 14px;
-            width:100%;
-            height: inherit;
-        }
         &__category {
-            margin-bottom:3px;
+            margin-bottom: 10px;
         }
 
         &__heading {
-            @include flex-height(66px);
-            @include font-size(18);
+            font-family: var(--sec-font);
+            color: $black;
+            font-weight: $weightRegular;
+            @include font-size(20);
+            line-height: 1.09;
+            overflow: hidden;
         }
+
         &__author {
-            margin-top: 3px;
-        }
-
-        &__author-name {
-            @include font-size(10);
-        }
-        &__time {
-            @include font-size(10);
-        }
-
-
-        &.social {
-            .social-icon {
-                @include size(30px);
-
-                &:before {
-                    @include font-size(13);
-                    line-height: 32px;
-                }
-            }
-
-            &.without-image {
-                .card {
-                    &__container {
-                        @include calc(width, '100% - 30px');
-                        margin-left: 30px;
-                        padding: 0 20px;
-                        margin: 15px 0;
-                        height: inherit;
-                    }
-                }
+            margin-top: 15px;
+            &-name {
+                font-family: var(--sec-font);
+                @include font-size(14);
+                font-weight: $weightBold;
+                font-style: italic;
+                color: $grey3;
+                position: relative;
             }
         }
 
+        &__description{
+            display: none
+        }
 
         &.without-image {
-            background-color:white;
-
+            background-color: $white;
             .c-cards-view {
-
                 &__container {
-                    width: 100%;
-                    padding: 0 0;
-                    margin-left: 0;
-                    height: inherit;
+                    background-color: $black;
+                    flex: 1;
+                    padding: 20px 16px 18px;
+                    @include flexbox;
+                    @include flex-direction(column,vertical);
+                }
+
+                &__heading {
+                    max-height: inherit;
+                    flex: 1;
+                }
+
+                &__category,
+                &__heading,
+                &__author-name {
+                    color: $white;
                 }
             }
         }
     }
 }
+
 
 .card-5-mobile {
     @media #{$mobile} {
@@ -89,104 +77,54 @@
     }
 }
 
-@mixin card-5-tablet-base() {
-
-    @include card-5-base();
-
-    .c-cards-view {
-
-        &__media {
-            min-width: 254px;
-            height: 167px;
-
-            &--video {
-                &:before {
-                    @include size(70px);
-                }
-            }
-        }
-
-        &__category {
-            margin-bottom:12px;
-        }
-
-        &__container {
-            margin-left: 20px;
-        }
-
-        &__author {
-            margin-top:42px;
-        }
-
-        &__author-name {
-            @include font-size(11);
-        }
-
-        &__time {
-            @include font-size(11);
-        }
 
 
-        &__heading {
-            @include font-size(22);
-            @include flex-height(70px);
-        }
+
+.card-5-mobile {
+    @media #{$mobile} {
+        @include card-5-base();
+    }
+}
 
 
-        &.social {
-            .social-icon {
-                @include size(50px);
+.card-5-tablet {
 
-                &:before {
-                    @include font-size(22);
-                    line-height: 52px;
-                }
-            }
+    @media #{$tablet} {
+        @include card-5-base();
+        @include card-name("C5 tablet");
 
-            &.without-image {
-                .c-cards-view {
-                    &__container {
-                        @include calc(width, '100% - 50px');
-                        margin-left: 50px;
-                    }
-                }
-            }
-        }
+        .c-cards-view {
+            min-height: 300px;
 
-        &.without-image {
-
-            .c-cards-view {
-
-                &__description {
-                    @include font-size(13);
-                    @include flex-height(42px);
-                    display:block;
-                    margin-top:10px;
-                    line-height:1.54;
-                }
-                &__author {
-                    margin-top:34px;
-                }
-                &__author-name {
-                    font-style:normal;
-                    font-family: $font-family-sans-serif;
-                    font-weight: $weightMedium;
-                }
+            &__media {
+                height: 160px;
             }
         }
     }
 }
 
-.card-5-tablet {
-    @media #{$tablet} {
-        @include card-5-tablet-base();
-        @include card-name("C5 tablet");
+
+@mixin card-5-desktop-base {
+    @include card-5-base();
+    @include card-name("C5 desktop");
+
+    .c-cards-view {
+        min-height: 329px;
+        &__media {
+            height: 160px;
+        }
+        &__heading {
+            @include font-size(22);
+            line-height: 1.2;
+            height: 81px;
+        }
     }
 }
 
 .card-5-desktop {
     @media #{$desktop-up} {
-        @include card-5-tablet-base();
-        @include card-name("C5 desktop");
+        @include flexbox;
+        height: 100%;
+        @include card-5-desktop-base();
     }
 }

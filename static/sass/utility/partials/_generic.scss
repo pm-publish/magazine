@@ -96,4 +96,27 @@
 	}
 }
 
+
+.home_slider {
+	.owl-nav {
+		.owl-prev {
+			position: absolute;
+			left: -40px;
+			top: 40%;
+			@include translate(0,-50%);
+			background-image: url('../icons/icons-navigation-arrow-tip-default.svg');
+			@include size(33px);
+			@include rotate(-90);
+		}
+		.owl-next {
+			position: absolute;
+			right: -40px;
+			top: 40%;
+			@include translate(0,-50%);
+			background-image: url('../icons/icons-navigation-arrow-tip-default.svg');
+			@include size(33px);
+			@include rotate(90);
+		}
+	}
+}
 /* Begin links view style */

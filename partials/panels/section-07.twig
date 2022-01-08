@@ -1,0 +1,27 @@
+{% set articleCount = 0 %}
+{% set cardIndex = 0 %}
+
+
+<div class="row" data-section="07">
+    <div class="col-12">
+        <div class="c-page-head c-page-head-xs">
+            <div class="u-heading__large u-heading__large-xs u-pr--6">{{title}}</div>
+            <a href="{{link}}" class="c-page-head__link">View all stories</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% for i in 0..3 if articles[articleCount] %}
+        <div class="col-12 col-lg-3">
+            {{this.render('../_single-article.twig', {
+            article: articles[articleCount],
+            position: (articleCount+1),
+            imageSize: {width: 96, height: 96},
+            containerClass: "card-7-mobile card-7-tablet card-7-desktop",
+            timeSuppress: timeSuppress
+            }) | raw}}
+            {% set articleCount = (dev) ? articleCount : articleCount + 1 %}
+        </div>
+    {% endfor %}
+</div>

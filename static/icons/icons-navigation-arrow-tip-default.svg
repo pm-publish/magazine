@@ -1,16 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33" viewBox="0 0 33 33">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 56.3 (101010) - https://sketch.com -->
+    <title>CF472129-D765-4897-B4EC-F5D88B7F4A8D</title>
+    <desc>Created with sketchtool.</desc>
     <defs>
-        <path id="pg6jc1on9a" d="M7.603 22.602L8.397 23.398 23.34 8.5 8.397 -6.398 7.603 -5.602 21.746 8.5z"/>
+        <polygon id="path-1" points="7.60283771 22.601668 8.39716229 23.398332 23.3395828 8.49978905 8.39715665 -6.3983376 7.60284335 -5.6016624 21.7462367 8.49980033"></polygon>
     </defs>
-    <g fill="none" fill-rule="evenodd">
-        <g>
-            <g>
-                <g transform="translate(-1213.000000, -673.000000) translate(1229.500000, 689.500000) rotate(-90.000000) translate(-1229.500000, -689.500000) translate(1213.000000, 673.000000) translate(1.500000, 8.000000)">
-                    <mask id="fib0f59cdb" fill="#fff">
-                        <use xlink:href="#pg6jc1on9a"/>
-                    </mask>
-                    <g fill="#636567" mask="url(#fib0f59cdb)">
-                        <rect width="80" height="80" rx="6" transform="translate(-21.000000, -38.000000)"/>
+    <g id="Extra-large-(XL)-≥1200px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01A-Homepage--v-XL" transform="translate(-1394.000000, -3051.000000)">
+            <g id="section-/-5" transform="translate(0.000000, 2797.000000)">
+                <g id="icons-/-navigation-/-arrow-tip-/-default" transform="translate(1410.500000, 270.500000) rotate(-90.000000) translate(-1410.500000, -270.500000) translate(1394.000000, 254.000000)">
+                    <g id="colour-/-dark-grey" transform="translate(1.500000, 8.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Mask" fill-rule="nonzero" transform="translate(15.471210, 8.499997) rotate(90.000000) translate(-15.471210, -8.499997) "></g>
+                        <g mask="url(#mask-2)" fill="#636567">
+                            <g transform="translate(-21.000000, -38.000000)">
+                                <rect x="0" y="0" width="80" height="80" rx="6"></rect>
+                            </g>
+                        </g>
                     </g>
                 </g>
             </g>

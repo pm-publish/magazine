@@ -58,6 +58,29 @@
             line-height: 1.5;
             color: $grey3;
             font-weight: $weightLight;
+            overflow: hidden;
+        }
+
+        &.without-image {
+            background-color: $black;
+            @include flexbox;
+            @include flex-direction(column,vertical);
+            @include justify-content(center);
+            padding: 50px 30px;
+
+            .c-cards-view {
+                &__category,
+                &__heading,
+                &__description,
+                &__author-name {
+                    color: $white;
+                }
+
+                &__description,
+                &__author {
+                    margin-top: 20px
+                }
+            }
         }
     }
 }
@@ -99,17 +122,33 @@
                 }
             }
         }
+
+        &__description {
+            height: 74px;
+        }
         &__heading {
             @include font-size(38);
             line-height: 1.26;
             max-height: 96px;
         }
+        
+        &.without-image {
+            padding: 60px 40px;
+        }
     }
 }
 
 .card-2-desktop {
-    
     @media #{$desktop-up} {
+        height: 100%;
+        >a {
+            height: 100%;
+        }
+        .c-cards-view {
+            &.without-image {
+                padding: 60px 56px;
+            }
+        }
         @include card-2-desktop-base();
     }
 }

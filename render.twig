@@ -60,15 +60,17 @@
     {% if config.background %}
         <div class="c-section-panel__background {{margin}}">
             {% set margin = '' %}
-
-    {% endif %}
-
+            <section class="container {{margin}}">
+                {{this.render(config.template ~ ".twig" , params) | raw}} 
+            </section>
+        </div>
+        {% elseif config.slider  %}
+            {{this.render(config.template ~ ".twig" , params) | raw}} 
+        </div>
+        {% else %}
         <section class="container {{margin}}">
             {{this.render(config.template ~ ".twig" , params) | raw}} 
         </section>
-
-    {% if config.background %}
-        </div>
     {% endif %}
 
 {% endif %}

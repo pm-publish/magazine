@@ -22,7 +22,7 @@
                             article: articles[articleCount],
                             position: (articleCount+1),
                             imageSize: {width: 96, height: 96},
-                            containerClass: "card-3-mobile card-3-tablet card-3-desktop",
+                            containerClass: "card-6-mobile card-6-tablet card-6-desktop",
                             timeSuppress: timeSuppress
                             }) | raw}}
                             {% set articleCount = (dev) ? articleCount : articleCount + 1 %}
@@ -36,7 +36,7 @@
                             article: articles[articleCount],
                             position: (articleCount+1),
                             imageSize: {width: 306, height: 250},
-                            containerClass: "card-6-mobile card-6-tablet card-6-desktop",
+                            containerClass: "card-3-mobile card-3-tablet card-3-desktop",
                             timeSuppress: timeSuppress
                             }) | raw}}
                             {% set articleCount = (dev) ? articleCount : articleCount + 1 %}
@@ -71,3 +71,13 @@
 
     </div>
 </div>
+
+{% if adslots[0] is defined %}
+    <div class="adBlocker adBlocker--fullwidth d-none d-xl-block">
+        <div class="row">
+            <div class="col-12">
+                <div class="j-adslot" id="{{adslots[0]}}" data-adshape="mrec"></div>
+            </div>
+        </div>
+    </div>
+{% endif %}

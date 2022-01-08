@@ -1,46 +1,153 @@
 /* Begin utility view style */
+
+
+.c-page-head {
+  $selfpageHead: &;
+  @include flexbox;
+  @include flex-direction(column,vertical);
+  border-bottom: 1px solid $black;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+
+  .u-heading__large {
+    @include font-size(32);
+    line-height: 1.25;
+    font-family: var(--sec-font);
+    font-weight: $weightBold;
+    font-style: italic;
+  }
+
+  &__link {
+    @include font-size(16);
+    line-height: 1.5;
+    font-family: var(--main-font);
+    color: $grey3;
+    @include transition(all 0.3s ease);
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--main-color)
+    }
+  }
+  
+  @include responsive(xs) {
+    @include respond-to(md) {
+      @include flex-direction(row,horizontal);
+      @include justify-content(space-between);
+      @include align-items(center);
+
+      &#{$selfpageHead} {
+        &--d1 {
+          @include flex-direction(column, vertical);
+          @include align-items(inherit);
+        }
+      }
+    }
+  }
+}
+
+
 .u-heading {
-    &__large {
+  &__large {
+    @include font-size(20);
+    font-weight: $weightBold;
+    color: $black;
+    z-index: 11;
+
+    @include responsive(xs) {
+      @include font-size(28);
+    }
+  }
+}
+
+.c-page-head {
+  &--d1 {
+    @include flexbox;
+    @include flex-direction(column, vertical);
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: none;
+    padding-bottom: 0px;
+
+    .u-heading {
+      &__large {
         @include font-size(20);
         font-weight: $weightBold;
         color: $black;
         z-index: 11;
+        font-style: italic;
+        font-family: var(--sec-font);
 
-        @include responsive (xs) {
-            @include font-size(28);
+        @include responsive(xs) {
+          @include font-size(32);
         }
+      }
     }
+
+    .c-page-head {
+      &__link {
+        position: relative;
+        margin-top: 5px;
+        @include transition(all 0.3s ease);
+        
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 0.5px;
+          background-color: $grey4;
+          left: 0;
+          top: 50%;
+          @include translate(0, -50%);
+        }
+
+        .text {
+          color: $grey3;
+          text-decoration: underline;
+          background-color: $white;
+          padding: 0 15px;
+          position: relative;
+          font-family: var(--main-font);
+          @include font-size(16);
+          font-weight: $weightRegular;
+          line-height: 1.5;
+        }
+
+        &:hover {
+          .text {
+            color: var(--main-color)
+          }
+        }
+      }
+    }
+  }
 }
 
-.u-bg {
-    &-white {
-        background-color: $white;
-    }
-    &-offwhite{
-        background-color: $offwhite;
-    }
-}
-.u-page-info{
-    $self: &; 
-    &__title{
-        @include font-size(20);
-        font-weight: $weightBold;
-        color: $black;
-        z-index: 11;
-        margin-bottom:19px;
-        @include responsive (xs) {
-            @include font-size(28);
-        }
-    }
-    &__discription {
-        p {
-            @include font-size(13);
-            color: $greyish;
-            line-height:1.54;
-            margin-bottom:18px;
 
-        }
-    }
-}
+.adBlocker{
+  background-color: $grey5;
+  &--fullwidth {
+    margin-left: calc(-50vw + 100%/2);
+    width: 100vw;
+    padding: 35px 0;
+    margin-top: 30px;
+  }
+  &--d2 {
+    @include flexbox;
+    @include flex-direction(column,vertical);
+    @include align-items(center);
+    @include justify-content(center);
+    @include calc(height,'100% - 40px');
+  }
 
+  &--d3 {
+    @include flexbox;
+    @include flex-direction(column,vertical);
+    @include align-items(center);
+    @include justify-content(center);
+    padding: 25px 0;
+    width: 100%;
+  }
+}
 /* Begin utility view style */

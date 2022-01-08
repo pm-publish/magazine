@@ -2,22 +2,25 @@
     @include card-name("C3 mobile");
 
     .c-cards-view {
-        border-bottom: 1px solid $grey4;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        min-height: 102px;
+        @include flexbox;
+        @include flex-direction(column,vertical);
+        border-bottom: 1px solid $black;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        min-height: 220px;
 
         &__media {
-            @include size(96px);
-            order: 2;
+            height: 56.25vw;
+            min-height: 145px;
+            margin-bottom: 20px;
         }
 
         &__container {
-            flex: 1;
+            text-align: center;
         }
 
         &__category {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         &__heading {
@@ -25,20 +28,12 @@
             color: $black;
             font-weight: $weightRegular;
             @include font-size(20);
-            line-height: 1.2;
+            line-height: 1.09;
             overflow: hidden;
-            height: 48px;
-            max-height: inherit;
-            padding-right: 30px;
-            
-        }
-
-        &__description{
-            display: none
         }
 
         &__author {
-            margin-top: 5px;
+            margin-top: 15px;
             &-name {
                 font-family: var(--sec-font);
                 @include font-size(14);
@@ -46,27 +41,33 @@
                 font-style: italic;
                 color: $grey3;
                 position: relative;
-                padding-left: 45px;
-
-                &:before {
-                    content:'';
-                    width: 30px;
-                    background-color: #535353;
-                    height: 0.5px;
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    @include translate(0,-50%);
-                }
             }
         }
 
+        &__description{
+            display: none
+        }
+
         &.without-image {
+            background-color: $white;
             .c-cards-view {
-                @include flex-direction(column, vertical);
+                &__container {
+                    background-color: $black;
+                    flex: 1;
+                    padding: 20px 16px 18px;
+                    @include flexbox;
+                    @include flex-direction(column,vertical);
+                }
+
                 &__heading {
-                    height: 48px;
                     max-height: inherit;
+                    flex: 1;
+                }
+
+                &__category,
+                &__heading,
+                &__author-name {
+                    color: $white;
                 }
             }
         }
@@ -81,40 +82,52 @@
 }
 
 
-.card-3-tablet {
 
-    @media #{$tablet} {
-        
+
+.card-3-mobile {
+    @media #{$mobile} {
         @include card-3-base();
-        @include card-name("C3 tablet");
-        // .c-cards-view {
-
-        //     &__container {
-        //         width: auto;
-        //     margin-left: 14px;
-        //     }
-        // }
     }
 }
 
 
-.card-3-desktop {
+.card-3-tablet {
 
-    @media #{$desktop-up} {
-
+    @media #{$tablet} {
         @include card-3-base();
-        @include card-name("C3 desktop");
+        @include card-name("C3 tablet");
 
         .c-cards-view {
-            &__author {
-                &-name {
-                    padding-left: 65px;
-    
-                    &:before {
-                        width: 50px;
-                    }
-                }
+            min-height: 423px;
+
+            &__media {
+                height: 270px;
             }
         }
+    }
+}
+
+
+@mixin card-3-desktop-base {
+    @include card-3-base();
+    @include card-name("C3 desktop");
+
+    .c-cards-view {
+        &__media {
+            height: 270px;
+        }
+        &__heading {
+            @include font-size(22);
+            line-height: 1.09;
+            height: 75px;
+        }
+    }
+}
+
+.card-3-desktop {
+    @media #{$desktop-up} {
+        @include flexbox;
+        height: 100%;
+        @include card-3-desktop-base();
     }
 }

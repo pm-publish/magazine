@@ -50,8 +50,8 @@ $offwhite: #e7e7e7;
 $mainColor: #f44d42;
 $blue2: #554ff7;
 :root {
-  --main-color: $black;
-  --sec-color: $white;
+  --main-color: #000000;
+  --sec-color: #554ff7;
 }
 @if (var(--main-color) != #f44d42) {
   $mainColor: var(--main-color);
