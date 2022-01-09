@@ -1,0 +1,33 @@
+{% set headermenu = _Menu.get({'menuType': 'header', "menuGroupName":"header-main"}) %}
+{% set headerTopMenu = _Menu.get({'menuType': 'header', 'menuGroupName': 'header-top'}) %}
+{% set headerSubMenu = _Menu.get({'menuType': 'header', 'menuGroupName': 'header-sub-menu'}) %}
+
+<div class="c-sidebarMenu">
+    <div class="c-sidebarMenu__closeInfo">
+        <button class="js-closeMenu">
+            <span class="text">Close</span>
+            <span class="icon">
+                <img src="{{networkData.templatePath}}/static/icons/icons-reverse.svg" class="img-fluid" /> 
+            </span>
+        </button>
+    </div>
+    <div class="c-sidebarMenu__mainNav">
+
+        <ul class="c-navigation-1__list">
+            {{ this.render('../../partials/_menu.twig', {'menu': headermenu}) | raw }}
+        </ul>
+
+    </div>
+    <div class="c-sidebarMenu__subNav">
+        <div class="c-navigation-5 c-navigation-5-xs">
+            <ul class="c-navigation__grid">
+                {{this.render('_submenu_navigation.twig', {
+                items: headerTopMenu
+                }) | raw }}
+            </ul>
+        </div>
+    </div>
+    <div class="c-sidebarMenu__copyInfo">
+        <div class="copy-text">&copy; {{ "now"|date("Y")}} {{networkData.title}}</div>
+    </div>
+</div>

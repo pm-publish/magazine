@@ -16,11 +16,12 @@
             <div class="row">
                 {% for i in 0..3 %}
                     {% if events[i] is defined %}
-                        <div class="col-12 col-lg-3 left-border">
+                        <div class="col-12 col-lg-6">
                             {{this.render('../_single-event-list.twig', {
                                 event: events[i], 
                                 imageSuppress: 'true',
-                                containerClass: "event-card-3-mobile event-card-3-tablet event-card-3-desktop"
+                                imageSize: {width: 96, height: 96},
+                                containerClass: "event-card-1-mobile event-card-1-tablet event-card-1-desktop"
                             }) | raw}}
                         </div>
                     {% endif %}

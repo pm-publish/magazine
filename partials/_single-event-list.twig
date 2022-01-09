@@ -29,6 +29,7 @@
 {% set startDayname  = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'd') %}
 {% set startDay      = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'd') %}
 {% set startMonth    = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'M') %}
+{% set startFullMonth= _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'F') %}
 {% set startTime     = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'g:ia') %}
 {% set eventTitle    = quotes.smarten(titleTruncateLength is defined ? event.title | truncate(titleTruncateLength) : event.title)  %}
 {% set figureClass   = event.media['type'] == 'video' ? 'video' : '' %}
@@ -49,6 +50,7 @@
 {% set fullStartDate    = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'j F') %}
 {% set fullStartDate    = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'l, dS F Y') %}
 {% set fullEndDate      = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'l, dS F Y') %}
+{% set startDayName      = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'l, ') %}
 {% set endDate          = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'j M') %}
 
 {% set startDay         = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'd') %}
@@ -88,6 +90,24 @@
         data-event-image="{{eventImg}}" 
         data-event-text="{{Helper.htmlToText(event.title, -1) | raw | escape('html')}}">
 
-            sds
+        <article class="c-eventcards-view  {{lightbox}} {{figureClass}}">
+            <div class="c-eventcards-view__date">
+                <span class="c-eventcards-view__date-value">{{ startDay }}</span>
+                <span class="c-eventcards-view__date-label">{{startFullMonth}}</span>
+            </div>
+            <div class="c-eventcards-view__container">
+                <div class="c-eventcards-view__info">
+                    <div class="c-eventcards-view__sec1">
+                        <div class="c-eventcards-view__category">Events</div>
+                        <h2  class="c-eventcards-view__heading js-card-heading j-truncate {{figureClass}}">{{ quotes.smarten(event.title) }}</h2>
+                    </div>
+                </div>
+                {% if event.media[0].path is defined and event.media[0].path is not empty  %}
+                    <div class="c-eventcards-view__conditionalImage">
+                        <img width="{{params.imgWidth}}" height="{{params.imgHeight}}" src={{event.media[0].path}} alt={{ quotes.smarten(event.title) }} />
+                    </div>
+                {% endif %}
+            </div>
+        </article>
     </a>
 </div>

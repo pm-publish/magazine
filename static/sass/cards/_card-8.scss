@@ -1,0 +1,122 @@
+@mixin card-8-base() {
+    @include card-name("C8 mobile");
+
+    .c-cards-view {
+        @include flexbox;
+        @include flex-direction(column,vertical);
+        border-bottom: 1px solid $grey4;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+
+        &__customDate {
+            color: $black;
+            text-transform: uppercase;
+            font-family: var(--main-font);
+            font-weight: $weightBold;
+            @include font-size(13);
+            line-height: 1.23;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            min-width: 140px;
+        }
+
+        &__media {
+            width: 95px;
+            height: 130px;
+        }
+
+        &__base-container {
+            @include flexbox;
+        }
+
+        &__container{
+            flex: 1;
+            margin-left: 60px;
+        } 
+
+        &__heading {
+            @include font-size(32);
+            line-height: 1.25;
+            font-family: var(--sec-font);
+            font-weight: $weightBold;
+            color: $black;
+            height: 80px;
+            overflow: hidden;
+        }
+
+        &__author {
+            margin-top: 5px;
+            &-name {
+                font-family: var(--sec-font);
+                @include font-size(14);
+                font-weight: $weightBold;
+                font-style: italic;
+                color: $grey3;
+                position: relative;
+                padding-left: 45px;
+
+                &:before {
+                    content:'';
+                    width: 30px;
+                    background-color: #535353;
+                    height: 0.5px;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    @include translate(0,-50%);
+                }
+            }
+        }
+
+    }
+    
+}
+
+
+.card-8-mobile {
+    @media #{$mobile} {
+        @include card-8-base();
+    }
+}
+
+
+.card-8-tablet {
+
+    @media #{$tablet} {
+        @include card-8-base();
+        @include card-name("C8 tablet");
+    }
+}
+
+
+@mixin card-8-desktop-base {
+    @include card-8-base();
+    @include card-name("C8 desktop");
+
+    .c-cards-view {
+        @include flex-direction(row,horizontal);
+
+        &__customDate {
+            margin-bottom: 0;
+            white-space: nowrap;
+            margin-right: 50px;
+            @include flexbox;
+            @include align-items(center);
+        }
+        &__author {
+            &-name {
+                padding-left: 65px;
+
+                &:before {
+                    width: 50px;
+                }
+            }
+        }
+    }
+}
+
+.card-8-desktop {
+    @media #{$desktop-up} {
+        @include card-8-desktop-base();
+    }
+}

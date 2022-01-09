@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 56.3 (101010) - https://sketch.com -->
+    <title>4BF8FFCC-6612-48B5-BC51-C097A3FE0299</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M5.36136959,19.3992906 L0.707106781,24.0535534 L-1.76481052e-12,23.3464466 L4.65426281,18.6921838 C0.665838743,14.3339712 0.781084472,7.56536214 5,3.34644661 C9.33739777,-0.99095116 16.369709,-0.99095116 20.7071068,3.34644661 C25.0445046,7.68384438 25.0445046,14.7161556 20.7071068,19.0535534 C16.4881913,23.2724689 9.71958219,23.3877146 5.36136959,19.3992906 Z M5.70710678,18.3464466 C9.65398026,22.2933201 16.0531265,22.2933201 20,18.3464466 C23.9468735,14.3995731 23.9468735,8.00042687 20,4.05355339 C16.0531265,0.106679913 9.65398026,0.106679913 5.70710678,4.05355339 C1.7602333,8.00042687 1.7602333,14.3995731 5.70710678,18.3464466 Z" id="path-1"></path>
+    </defs>
+    <g id="Extra-large-(XL)-≥1200px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="00-Inventory" transform="translate(-1423.000000, -1755.000000)">
+            <g id="Group-4" transform="translate(136.000000, 1567.000000)">
+                <g id="header-/-without-paywall" transform="translate(85.000000, 96.000000)">
+                    <g id="icons-/-navigation-/-search" transform="translate(1201.000000, 92.000000)">
+                        <g id="colour-/-dark-grey" transform="translate(0.946447, 0.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Mask" fill-rule="nonzero"></g>
+                            <g mask="url(#mask-2)" fill="#636567">
+                                <g transform="translate(-2.000000, -28.000000)">
+                                    <rect x="0" y="0" width="80" height="80" rx="6"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
