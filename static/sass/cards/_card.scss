@@ -144,6 +144,9 @@
         }
     }
 }
+.hide {
+    display: none !important;
+}
 
 div[class^="card"] {
     > a {

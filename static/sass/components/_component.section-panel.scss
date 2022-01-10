@@ -1,5 +1,21 @@
 /* section page  style */
 
+.c-section__first-container {
+    .card-3-mobile, .card-7-mobile {
+        height: inherit;
+
+        .c-cards-view {
+            height: inherit;
+        }
+    }
+
+    .card-7-mobile + .card-7-mobile {
+        .c-cards-view {
+            border: none;
+        }
+    }
+}
+
 .c-section-panel__background {
     @include padding(50 0);
     background: $black;
