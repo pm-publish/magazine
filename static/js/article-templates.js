@@ -309,26 +309,29 @@ signinFormTmpl:
     // <script> tag possible ios safari login fix
     '<form name="loginForm" id="loginForm" class="{{class-prefix}}login-form active" action="javascript:void(0);" method="post" accept-charset="UTF-8" autocomplete="off"> \
         \
-        <input id="loginName" class="{{class-prefix}}login-form__input j-register-username" type="text" name="username" placeholder="Email address" value="" /> \
-        <input id="loginPass" class="{{class-prefix}}login-form__input j-signin-password" type="password" name="password" placeholder="Password" value="" /> \
-        \
-        <div class="remember"> \
-            <p class="{{class-prefix}}login-form__forgot layout" data-layout="forgot" class="">Forgot password</p> \
+        <div class="signin-modal__form-group"> \
+            <div class="signin-modal__form-group__label"> \
+                <label class="signin-modal__form-group__label-text">Email address</label> \
+            </div> \
+            <input id="loginName" class="{{class-prefix}}login-form__input j-register-username" type="text" name="username" placeholder="Email address" value="" /> \
+        </div> \
+        <div class="signin-modal__form-group"> \
+            <div class="signin-modal__form-group__label"> \
+                <label class="signin-modal__form-group__label-text">Password</label> \
+                <p class="{{class-prefix}}login-form__forgot layout" data-layout="forgot" class="">Forgot password</p> \
+            </div> \
+            <input id="loginPass" class="{{class-prefix}}login-form__input j-signin-password" type="password" name="password" placeholder="Password" value="" /> \
         </div> \
         \
         <div class="{{class-prefix}}login-form__error message active u-hide"> \
             <div class="{{class-prefix}}login-form__error_text">Invalid Email or Password</div> \
         </div> \
         \
-        <button data-elem="signin" id="modal-signinBtn" type="submit" class="{{class-prefix}}login-form__button _btn _btn--red signin">SIGN IN</button> \
+        <div class="button-set"> \
+            <button type="submit" class="login-form__button cancel">Cancel</button> \
+            <button data-elem="signin" id="modal-signinBtn" type="submit" class="{{class-prefix}}login-form__button _btn _btn--red signin">Log in</button> \
+        </div> \
         \
-        <p class="{{class-prefix}}login-form__faq u-no-margin u-margin-top-15 login-form-faq">Trouble signing in? <a class="login-form-faq__link" href="'+_appJsConfig.appHostName +'/faq" target="_blank">Read our FAQ</a></p> \
-        \
-        {{# ifCond name "!=" "donate-"}} \
-            <div class="reset"> \
-                <p class="layout" data-layout="forgot" class="">Set my password</p> \
-            </div> \
-        {{/ifCond}} \
         <script>$("#loginName").on("input", function() {window.scrollBy(0,1);window.scrollBy(0,-1);})</script>\
     </form>',
 

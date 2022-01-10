@@ -107,3 +107,13 @@ $('body').not('.js-menu').on('click', function (e) {
         $('.body').removeClass("u-noscroll");
     }
 });
+
+function searchBarOpen() {
+    let searchElem = document.getElementById('searchBarAction');
+    searchElem.classList.add('active');
+}
+
+function searchBarClose() {
+    let searchElem = document.getElementById('searchBarAction');
+    searchElem.classList.remove('active');
+}

@@ -1,60 +1,181 @@
 .signin-modal {
-    position:fixed;
-    top:0;
-    width:100%;
-    height:100%;
-    z-index:1001;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
     background: rgba(0,0,0,0.7);
 }
 
 .signin-modal__window {
     margin: auto auto;
-    width:468px;
-    background:white;
-    padding:0 25px 20px 25px;
-    border-radius:3px;
+    width: 468px;
+    background: white;
+    padding: 0 50px 60px 50px;
     text-align: center;
     @media #{$media-ipadSmall} {
-        width:auto;
+        width: auto;
     }
 }
 
 .signin-modal__container {
-    position:relative;
-    margin:auto;
+    position: relative;
+    margin: auto;
 }
 
 .signin-modal__header {
     // max-width:94%;
     min-height: 30px;
     margin-top: 10px;
-    padding-bottom:15px;
-    position:relative;
+    padding-bottom: 15px;
+    position: relative;
     .popupVideo__headerlogo {
         display: none;
     }
-
-}
-.signin-modal__title {
-    @include font-size(22);
-    text-align:center;
-    font-weight: $weightRegular;
-    // margin-bottom:28px;
 }
 
-.signin-modal__close {
-    display:block;
-    position:absolute;
-    top: 8px;
-    right: 0;
-    height:20px;
-    width:20px;
-    background:url("../icons/cross-black.svg");
-    background-repeat:no-repeat;
-    cursor: pointer;
+.password-reset-form {
+    .password-reset-form__p {
+        color: $grey3;
+        @include font-size(16);
+        line-height: 1.5;
+        font-style: italic;
+        font-family: $secondaryFont;
+        margin-bottom: 25px;
+    }
 
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        border: none;
+        background: $white;
+        border: 1px solid $grey4;
+        color: $black;
+        @include font-size(16);
+        line-height: 1.5;
+        outline: none;
+
+        &:placeholder {
+            color: $grey4;
+        }
+    }
+
+    ._btn {
+        &.forgot {
+            background-color: $black;
+            color: $white;
+            height: 48px;
+            width: 100%;
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(center);
+            border: 1px solid $black;
+            @include font-size(16);
+            line-height: 1;
+            font-weight: $weightBold;
+        }
+    }
 }
 
-.signin-modal__content-window {
-}
+.signin-modal {
+    &__close {
+        display: block;
+        position: absolute;
+        top: 8px;
+        right: 0;
+        height: 30px;
+        width: 30px;
+        background: url("../icons/cross.svg");
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+    &__title {
+        @include font-size(26);
+        font-family: $primaryFont;
+        text-align: center;
+        font-weight: $weightBold;
+        padding-top: 25px;
+        color: $black;
+    }
+    &__description {
+        @include font-size(16);
+        line-height: 1.14;
+        font-family: $secondaryFont;
+        font-style: italic;
+        color: $grey5;
+        margin-top: 15px;
+    }
 
+    .login-form__forgot {
+        margin-bottom: 0;
+        font-family: $secondaryFont;
+        font-style: italic;
+        font-weight: $weightRegular;
+        @include font-size(16);
+        line-height: 1.23;
+        text-decoration: underline;
+        color: $black;
+    }
+
+    .button-set {
+        @include flexbox;
+        @include align-items(center);
+        width: 100%;
+        margin-top: 10px;
+
+        .login-form__button {
+            height: 48px;
+            width: 50%;
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(center);
+            border: 1px solid $black;
+            background-color: $white;
+            color: $black;
+            @include font-size(16);
+            line-height: 1;
+            font-weight: $weightBold;
+
+            &.signin {
+                background-color: $black;
+                color: $white;
+            }
+
+            + .login-form__button {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    &__form-group {
+        margin-top: 12px;
+        &__label {
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(space-between);
+            margin-bottom: 10px;
+
+            &-text {
+                @include font-size(16);
+                line-height: 1.5;
+                color: $black;
+            }
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            border: none;
+            background: $white;
+            border: 1px solid $grey4;
+            color: $black;
+            @include font-size(16);
+            line-height: 1.5;
+            outline: none;
+
+            &:placeholder {
+                color: $grey4;
+            }
+        }
+    }
+}

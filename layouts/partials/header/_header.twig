@@ -190,7 +190,7 @@
                         </div>
                         
                         <div class="c-header__main__otherInfo">
-                            <div class="loggedin-info">
+                            <div class="loggedin-info d-none d-md-flex">
                                 {% if paywall %}
                                     {% if loggedin %}
                                         <a href="javascript:;" onclick="headerMicroMenuOpen()" class="loggedin-info__label">
@@ -216,7 +216,7 @@
                                 {% endif %}
                             {% endif %}
                             <div class="c-header__main__icons-container">
-                                <a href="javascript:;"  class="c-header__main__icons-item">
+                                <a href="javascript:;"  class="c-header__main__icons-item" onClick="searchBarOpen()">
                                     <img src="{{networkData.templatePath}}/static/icons/icons-navigation-search.svg" class="img-fluid" /> 
                                 </a>
                                 <a href="javascript:;"  class="c-header__main__icons-item js-menu">
@@ -224,11 +224,59 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div class="c-searchBar" id="searchBarAction">
+                            <div class="c-searchBar__content">
+                                <form class="c-searchBar__form" method="get" id="searchform" action="{{networkData.defaultBlogUrl}}/search">
+                                    <div class="c-searchBar__submit">
+                                        <img src="{{networkData.templatePath}}/static/icons/icons-navigation-search.svg" class="img-fluid" /> 
+                                    </div>
+                                    <input class="c-searchBar__input" type="text" name="s" placeholder="Search" />
+                                </form>
+                            </div>
+                            <div class="c-searchBar__close" onClick="searchBarClose()">
+                                <span class="icon">
+                                    <img src="{{networkData.templatePath}}/static/icons/icons-navigation-close.svg" class="img-fluid" /> 
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% if paywall %}
+        {% if loggedin %}
+            <div class="c-header__responsive d-md-none">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="c-header__responsive-content">
+                                <div class="c-header__responsive__user-info">{{user.firstname}} {{user.lastname}}</div>
+                                <div class="c-header__responsive__additional-info">
+                                    <a class="c-header__responsive__additional-info__item" href="{{networkData.defaultBlogUrl}}/user/edit-profile">My Account</a>
+                                    <a class="c-header__responsive__additional-info__item" href="{{_AppHelper.getLogoffUrl()}}">Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="c-header__res-btn">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="c-header__res-btn__content">
+                                <a id="signinBtn" href="javascript:;" class="c-button c-button--black-bordered d-inline-block d-md-none">Sign in</a>
+                                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
 </header>
 
 {{ this.render('../_header_navigation.twig', {networkData: networkData}) | raw }}

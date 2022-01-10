@@ -229,7 +229,59 @@
 
 
 .c-header {
-    margin-bottom: 45px;
+    margin-bottom: 20px;
+
+    &__responsive {
+      background-color: $black;
+      padding: 10px 0;
+
+      &-content {
+        @include flexbox;
+        @include justify-content(space-between);
+      }
+
+      &__user-info {
+        color: $white;
+        font-family: var(--main-font);
+        @include font-size(16);
+        line-height: 1.5;
+        font-weight: $weightBold;
+      }
+
+      &__additional-info {
+        @include flexbox;
+        @include align-items(center);
+
+        &__item {
+          color: $white;
+          @include font-size(18);
+          line-height: 1.33;
+          font-style: italic;
+          font-family: var(--sec-font);
+          text-decoration: none;
+
+          + .c-header__responsive__additional-info__item {
+            margin-left: 25px;
+          }
+        }
+      }
+    }
+
+    &__res-btn {
+      margin-top: 20px;
+
+      &__content {
+        @include flexbox;
+        width: 100%;
+
+        .c-button {
+          flex: 1;
+          + .c-button {
+            margin-left: 24px;
+          }
+        }
+      }
+    }
   
     &__main {
       border-bottom: 1px solid $grey4;
@@ -238,6 +290,7 @@
         @include flexbox;
         @include align-items(center);
         @include justify-content(space-between);
+        position: relative;
       }
 
       &__logo {
