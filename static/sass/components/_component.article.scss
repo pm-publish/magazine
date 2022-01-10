@@ -96,6 +96,7 @@
     @include font-size(20);
     line-height: 32px;
     font-weight: $weightUltabold;
+    @include margin-top(10);
     @include margin-bottom(20);
   }
 

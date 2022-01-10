@@ -143,18 +143,17 @@ article.additionalInfo.image_crop == 'full' %}
 
 
 <main id="main" class="o-body-container o-body-container-md" role="main" data-paywall-type="{{paywallType}}">
-    <div class="c-article c-article-xs {% if article.media|length > 1 %} c-article__galleryView {% endif %}">
+    <div class="c-article c-article-xs">
         <div class="c-article__top">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="c-article__top__container">
                             <div class="u-generic-socialIcons">
-                                <div class="u-generic-socialIcons__item">Share</div>
                                 <a href="mailto:?subject=Check%20out%20this%20article&body={{article.url}}"
                                     class="u-generic-socialIcons__item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="15" viewbox="0 0 23 15">
-                                        <path fill="{{themeColor}}" fill-rule="evenodd"
+                                        <path fill="#000000" fill-rule="evenodd"
                                             d="M.232 13.818l7.203-6.825L.211.903l-.064.399v12.096c0 .084.028.224.085.42zm8.12-7.644l.959.756 1.896 1.533 1.897-1.533.96-.756L21.308.063C21.181.021 21.053 0 20.925 0H1.468c-.142 0-.263.021-.362.063l7.246 6.111zM1.468 14.7h19.457c.128 0 .25-.021.363-.063L14.02 7.77l-2.814 2.247L8.394 7.77l-7.267 6.867c.114.042.228.063.341.063zm20.715-.882c.042-.154.064-.294.064-.42V1.302c0-.14-.022-.273-.064-.399l-7.203 6.09 7.203 6.825z" />
                                     </svg>
                                 </a>
@@ -168,7 +167,7 @@ article.additionalInfo.image_crop == 'full' %}
                                         alt="image" />
                                 </a>
                             </div>
-                            {% if article.media|length <= 1 %} <div class="c-article__time-info">
+                            <div class="c-article__time-info">
                                 <div class="c-article__time-info--img">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="24" height="24" viewbox="0 0 24 24">
@@ -200,121 +199,116 @@ article.additionalInfo.image_crop == 'full' %}
                                 <div class="c-article__time-info--label">
                                     {{article.readingTime}} min read
                                 </div>
+                            </div>
                         </div>
-                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 {% if article.media|length <= 1 %} col-lg-8 {% endif %}">
-                <div class="c-article__main">
-                    <div class="c-article__head">
-                        <div class="row">
-                            <div class="col-12 {% if article.media|length > 1 %} col-lg-10 {% endif %}">
-                                <div class="c-article__head-top">
-                                    <div class="c-article__category">
-                                        {{article.label}}
-                                    </div>
-                                    {% if article.media|length > 1 %}
-                                    <div class="c-article__posted-on">
-                                        <time class="c-article__published">{{article.publishedDate}}</time>
-                                        {% if updated %}
-                                        <time class="c-article__updated">Updated
-                                            {{ updateDate | capitalize }}</time>
-                                        {% endif %}
-                                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 {% if config['inventory']['adSpace']['side-fix'][0] is defined %} col-lg-8 {% endif %}">
+                    <div class="c-article__main">
+                        <div class="c-article__head">
+                            <div class="c-article__head-top">
+                                <div class="c-article__category">
+                                    {{article.label}}
+                                </div>
+                                {% if article.media|length > 1 %}
+                                <div class="c-article__posted-on">
+                                    <time class="c-article__published">{{article.publishedDate}}</time>
+                                    {% if updated %}
+                                    <time class="c-article__updated">Updated
+                                        {{ updateDate | capitalize }}</time>
                                     {% endif %}
                                 </div>
-
-                                <div class="c-article__title">
-                                    {{ quotes.smarten(article.title) }}
+                                {% endif %}
+                            </div>
+                            <div class="c-article__title">
+                                {{ quotes.smarten(article.title) }}
+                            </div>
+                            <div class="c-article__excerpt">
+                                {{article.excerpt}}
+                            </div>
+                        </div>
+                        <div class="c-article__posted-by">
+                            <div class="c-article__posted-by__container">
+                                <div class="c-article__author">
+                                    <div class="c-article__avatar" style="background-image: url({{profileImg}})"></div>
+                                    {% if config['hide-author'] is defined and config['hide-author'] %}
+                                    <p class="c-article__author-name">{{ article.createdBy['displayName'] }}</p>
+                                    {% else %}
+                                    <a class="c-article__author-name"
+                                        href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}/posts">{{
+                                        article.createdBy['displayName'] }}</a>
+                                    {% endif %}
                                 </div>
+                                {% if article['createdBy']['coauthors'] %}
+                                    {% for author in article['createdBy']['coauthors'] %}
+                                        <div class="c-article__author">
+                                            <div class="c-article__avatar"
+                                                style="background-image: url({{_Media.getMediaUrl(author['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'})}})">
+                                            </div>
+                                            {% if config['hide-author'] is defined and config['hide-author'] %}
+                                                <p class="c-article__author-name">{{ author['displayName'] }}</p>
+                                            {% else %}
+                                                <a class="c-article__author-name"
+                                                    href="{{_AppHelper.getUserProfileUrl(author['username'])}}/posts">{{
+                                                    author['displayName'] }}
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="c-article__posted-on">
+                                <time class="c-article__published">{{article.publishedDate}}</time>
+                                {% if updated %}
+                                    <time class="c-article__updated">Updated
+                                        {{ updateDate | capitalize }}
+                                    </time>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-                    {% if article.media|length <= 1 %} <div class="c-article__posted-by">
-                        <div class="c-article__posted-by__container">
-                            <div class="c-article__author">
-                                <div class="c-article__avatar" style="background-image: url({{profileImg}})"></div>
-                                {% if config['hide-author'] is defined and config['hide-author'] %}
-                                <p class="c-article__author-name">{{ article.createdBy['displayName'] }}</p>
-                                {% else %}
-                                <a class="c-article__author-name"
-                                    href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}/posts">{{
-                                    article.createdBy['displayName'] }}</a>
-                                {% endif %}
-                            </div>
-                            {% if article['createdBy']['coauthors'] %}
-                            {% for author in article['createdBy']['coauthors'] %}
-                            <div class="c-article__author">
-                                <div class="c-article__avatar"
-                                    style="background-image: url({{_Media.getMediaUrl(author['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'})}})">
-                                </div>
-                                {% if config['hide-author'] is defined and config['hide-author'] %}
-                                <p class="c-article__author-name">{{ author['displayName'] }}</p>
-                                {% else %}
-                                <a class="c-article__author-name"
-                                    href="{{_AppHelper.getUserProfileUrl(author['username'])}}/posts">{{
-                                    author['displayName'] }}</a>
-                                {% endif %}
-                            </div>
-                            {% endfor %}
+                    <div class="">
+                        {% if articleImg %}
+
+                        <div class="gallery-container relative">
+                            {% set galleryStyle = 'article' %}
+                            {% if article.media|length > 1 or not cropped %}
+                            {% set galleryStyle = 'gallery' %}
                             {% endif %}
-                        </div>
-                        <div class="c-article__posted-on">
-                            <time class="c-article__published">{{article.publishedDate}}</time>
-                            {% if updated %}
-                            <time class="c-article__updated">Updated
-                                {{ updateDate | capitalize }}</time>
+
+
+                            {% if article.media|length > 0 %}
+                            {% set imageFeature = featured == 'image' ? true : false %}
+                            {{this.render('partials/gallery.twig', {
+                            media: article.media,
+                            default: imageFeature,
+                            watermark: watermark,
+                            galleryStyle: galleryStyle,
+                            showPaywall: showPaywall
+                            }) | raw}}
                             {% endif %}
+
                         </div>
+
+                        {% endif %}
+                    </div>
+
+                    <div class="c-article__main-content">
+                        <div class="c-article__container">
+                            {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
+                        </div>
+                    </div>
                 </div>
+                {% if config['inventory']['adSpace']['side-fix'][0] is defined %}
+                    <div class="col-12 col-lg-4">
+                        <div class="j-adslot" id="{{config['inventory']['adSpace']['side-fix'][0]}}" data-adshape="side-fix"></div>
+                    </div>
                 {% endif %}
-
-                <div class="">
-                    {% if articleImg %}
-
-                    <div class="gallery-container relative">
-                        {% set galleryStyle = 'article' %}
-                        {% if article.media|length > 1 or not cropped %}
-                        {% set galleryStyle = 'gallery' %}
-                        {% endif %}
-
-
-                        {% if article.media|length > 0 %}
-                        {% set imageFeature = featured == 'image' ? true : false %}
-                        {{this.render('partials/gallery.twig', {
-                        media: article.media,
-                        default: imageFeature,
-                        watermark: watermark,
-                        galleryStyle: galleryStyle,
-                        showPaywall: showPaywall
-                        }) | raw}}
-                        {% endif %}
-
-                    </div>
-
-                    {% endif %}
-                </div>
-
-                <div class="c-article__main-content">
-                    <div class="c-article__excerpt">
-                        {{article.excerpt}}
-                    </div>
-                    <div class="c-article__container">
-                        {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
-                    </div>
-                </div>
             </div>
         </div>
-        {% if article.media|length <= 1 %} <div class="col-12 col-lg-4">advertisement here
-    </div>
-    {% endif %}
-    </div>
-    </div>
     </div>
 </main>
