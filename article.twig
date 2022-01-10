@@ -309,6 +309,29 @@ article.additionalInfo.image_crop == 'full' %}
                     </div>
                 {% endif %}
             </div>
+
+
+            {% if showPaywall == false %}
+                <div class="row">
+                <div class="col-12">
+                        <div class="c-cards-container c-cards-container-xs bottom-border">
+                            <div class="u-generic-heading u-generic-heading--withBorder">You might also like</div>
+                            <div class="row">
+                                {% for i in 0..3 if recentArticles[i] %}
+                                <div class="col-12 col-lg-3">
+                                    {{this.render('partials/_single-article.twig', {
+                                    article: recentArticles[i],
+                                    imageSize: {width: 255, height: 276},
+                                    containerClass: "card-3-mobile card-3-tablet card-3-desktop",
+                                    site: site
+                                    }) | raw}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            {% endif %}
         </div>
     </div>
 </main>

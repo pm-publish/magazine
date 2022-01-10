@@ -923,5 +923,18 @@ hr.divide {
 	}
 }
 
+.u-generic-heading {
+    border-bottom: 1px solid $grey4;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    color: $black;
+    @include font-size(32);
+    line-height: 1.25;
+    font-weight: $weightBold;
+    font-family: var(--sec-font);
+    font-style: italic;
+    margin-top: 30px;
+    text-align: center;
+}
 
 /* Begin links view style */
