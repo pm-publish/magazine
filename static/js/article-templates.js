@@ -475,9 +475,29 @@ systemCardTemplate:
                 <p>{{ author }}</p>\
             </div>\
         </div>' + 
+    cardTemplateBottom,
+
+    feature_card: 
+    cardTemplateTop + 
+        '<div class="c-cards-view__customDate">{{publishedDate}}</div>\
+            <div class="c-cards-view__base-container">\
+                {{#if hasMedia}}\
+                    <figure class="{{cardType}}c-cards-view__media">\
+                        <img draggable="false" class="img-responsive {{imgClass}}" data-original="{{imageUrl}}" src="{{imageUrl}}" {{imgBackgroundStyle}}">\
+                    </figure>\
+                {{/if}} \
+                \
+                <div class="{{cardType}}c-cards-view__container">\
+                    <div class="c-cards-view__container-topSection">\
+                        <h2 class="{{cardType}}c-cards-view__heading j-truncate">{{{ title }}}</h2>\
+                        <div class="{{cardType}}c-cards-view__author">\
+                            <div class="{{cardType}}c-cards-view__author-name">{{ author }}</div>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>'+
     cardTemplateBottom
 };
-
 
 // var systemCardTemplate = 
 // '<div class="{{containerClass}} "> \

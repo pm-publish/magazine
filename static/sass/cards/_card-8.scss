@@ -23,6 +23,7 @@
         &__media {
             width: 95px;
             height: 130px;
+            margin-right: 60px;
         }
 
         &__base-container {
@@ -31,7 +32,6 @@
 
         &__container{
             flex: 1;
-            margin-left: 60px;
         } 
 
         &__heading {

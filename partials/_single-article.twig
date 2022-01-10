@@ -92,6 +92,7 @@
     {% set publishDate = (article.publishDate is defined) ? article.publishDate : article.publishedDate %}
     {% set publishDateTime = (article.publishDateTime is defined) ? article.publishDateTime : article.publishedDateTime %}
     {% set publishDate  = _AppHelper.getDefaultTimezoneDateTime(publishDate, 'F Y') %}
+    {% set publishMonthYear  = _AppHelper.getDefaultTimezoneDateTime(publishDate, 'F Y') %}
     {% set publishedAgo = _AppHelper.getSecondsSincePublished(publishDateTime) %}
     
     {% if publishedAgo < 86400 %}
@@ -152,6 +153,7 @@
         imageMedium     : imageMedium,
         imageSmall      : imageSmall,
         publishDate     : publishDate,
+        publishMonthYear: publishMonthYear,
         videoClass      : article.featuredMedia['type'] == 'video' ? 'c-cards-view__media--video' : '',
         profileImg      : profileImg,
         hasMedia        : (displayMedia) ? 'True' : 'False',

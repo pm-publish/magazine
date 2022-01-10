@@ -9,6 +9,14 @@
         }
     }
 
+    .card-3-mobile {
+        .c-cards-view {
+            &.without-image {
+                min-height: 440px;
+            }
+        }
+    }
+
     .card-7-mobile + .card-7-mobile {
         .c-cards-view {
             border: none;

@@ -93,6 +93,7 @@ Card.prototype.render = function(options = {})
     card['excerpt'] = this.data.excerpt;
     card['title'] = this.data.title;
     card['author'] = this.data.createdBy.displayName;
+    card['publishedDate'] = this.data.publishDate;
     card['titleString'] = "";
 
 

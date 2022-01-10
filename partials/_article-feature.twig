@@ -5,7 +5,7 @@
     {% set imageSize = "Width: " ~ params.imgWidth ~ " Height: " ~ params.imgHeight %}
 {% endif %}
 
-<div class="c-cards-view__customDate">{{params.publishDate}}</div>
+<div class="c-cards-view__customDate">{{params.publishMonthYear}}</div>
 <div class="c-cards-view__base-container">
     {% if params.hasMedia %}
         <figure class="{{params.cardType}}c-cards-view__media {{params.videoClass}}" title="{{imageSize}}">
