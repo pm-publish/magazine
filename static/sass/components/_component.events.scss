@@ -13,14 +13,14 @@
     &__head {
         width: 100%;
         color: $black;
-        @include font-size(16);
-        line-height: 1.35;
+        @include font-size(18);
+        line-height: 1.09;
         @include margin-bottom(15);
         font-weight: $weightBold;
 
         @include responsive(xs) {
-            @include font-size(18);
-            line-height: 1.35;
+            @include font-size(22);
+            line-height: 1.09;
         }
     }
 

@@ -43,52 +43,31 @@
 
             <section class="middle">
                 <div class="row row-space maincards">
-                    <div class="col-12 col-lg-7">
-                        {% for i in 0..49 if events[eventCount] %}
+                    <div class="col-12">
+                        <div class="row">
+                            {% for i in 0..49 if events[eventCount] %}
 
-                            {% set eventMonth = _AppHelper.getDateTimeBasedOnTimezone(events[eventCount].startDate, 'F') %}
-                            {% if monthDivider != eventMonth %}
-                                <p class="c-events__head c-events__head-xs">{{ eventMonth }}</p>
-                                {% set monthDivider = eventMonth %}
-                            {% endif %}
+                                {% set eventMonth = _AppHelper.getDateTimeBasedOnTimezone(events[eventCount].startDate, 'F') %}
+                                {% if monthDivider != eventMonth %}
+                                    <div class="col-12">
+                                        <p class="c-events__head c-events__head-xs">{{ eventMonth }}</p>
+                                    </div>
+                                    {% set monthDivider = eventMonth %}
+                                {% endif %}
 
-                            {{this.render('partials/_single-event.twig', {
-                                event: events[eventCount], 
-                                position: eventCount + 1, 
-                                imageSize: {width:300},
-                                containerClass: 'event-card-1__desktop event-card-1__tablet event-card-1__mobile',
-                            }) | raw}}
-                            {% set eventCount = (dev) ? eventCount : eventCount + 1 %}
-                        {% endfor %}
-                    </div>
-
-
-                    <div class="col-12 offset-lg-1 col-lg-4 d-md-none d-lg-block c-events">
-                        <div class="c-events-panel c-events-panel-xs">
-                            <h4 class="c-events-panel__head c-events-panel__head-xs">Upcoming Events</h4>
-                            <div class="c-events-panel__details">
-                                
-                                {% for i in 0..3 if events[i] %}
-
+                                <div class="col-12 col-lg-6">
                                     {{this.render('partials/_single-event-list.twig', {
-                                        event: events[i], 
-                                        imageSuppress: 'true',
-                                        containerClass: "event-card-2-mobile event-card-2-tablet event-card-2-desktop"
+                                        event: events[eventCount], 
+                                        position: eventCount + 1, 
+                                        imageSize: {width: 96, height: 96},
+                                        containerClass: 'event-card-1-mobile event-card-1-tablet event-card-1-desktop',
                                     }) | raw}}
-                               
-                                {% endfor %}
+                                </div>
+                                {% set eventCount = (dev) ? eventCount : eventCount + 1 %}
+                            {% endfor %}
 
-                            </div>
-                        </div>
-                        <div class="">
-                            {% if config['inventory']['adSpace']['side-fix'][0] is defined %}
-                                <div class="j-adslot" id="{{config['inventory']['adSpace']['side-fix'][0]}}" data-adshape="side-fix"></div>
-                            {% endif %}
                         </div>
                     </div>
-
-
-
                 </div>
             </section>
 

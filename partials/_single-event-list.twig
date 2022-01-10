@@ -104,7 +104,7 @@
                 </div>
                 {% if event.media[0].path is defined and event.media[0].path is not empty  %}
                     <div class="c-eventcards-view__conditionalImage">
-                        <img width="{{params.imgWidth}}" height="{{params.imgHeight}}" src={{event.media[0].path}} alt={{ quotes.smarten(event.title) }} />
+                        <img width="{{params.imgWidth}}" height="{{params.imgHeight}}" src={{eventImg}} alt={{ quotes.smarten(event.title) }} />
                     </div>
                 {% endif %}
             </div>

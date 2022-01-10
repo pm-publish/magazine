@@ -2,6 +2,11 @@
     .c-eventcards-view {
         @include flexbox;
         @include flex-direction(column,vertical);
+        border-bottom: 1px solid $grey4;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        min-height: 120px;
+
 
         &__date {
             @include flexbox;
@@ -31,6 +36,25 @@
                 color: $black;
                 margin-left: 10px;
             }
+        }
+
+        &__container {
+            @include flexbox;
+            flex: 1;
+        }
+
+        &__info {
+            flex: 1;
+            margin-top: 15px;
+        }
+
+        &__heading {
+            @include font-size(20);
+            line-height: 1.2;
+            color: $black;
+            font-family: var(--sec-font);
+            margin-top: 10px;
+            height: 50px;
         }
 
         &__conditionalImage {
