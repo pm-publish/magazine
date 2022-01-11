@@ -7,6 +7,10 @@
 
 {% if params.hasMedia %}
     <figure class="{{params.cardType}}c-cards-view__media {{params.videoClass}}" title="{{imageSize}}">
+        <div class="video-icon">
+            <span class="icon"></span>
+            <span class="text">video</span>
+        </div>
         <picture>
             <source media="(max-width: 767px) and (min-width: 501px)" srcset="{{params.imageMedium}}">
             <source media="(max-width: 991px) and (min-width: 768px)" srcset="{{params.imageMedium}}">
@@ -18,8 +22,6 @@
             {# ADD LAZYLOAD  class="lazyload" src="{{params.placeholder}}" #}
                 <img width="{{params.imgWidth}}" height="{{params.imgHeight}}" class="img-fluid" src="{{params.image}}" data-original="{{params.articleImg}}">
             {% endif %}
-            <div class="video-icon"></div>
-
         </picture>
     </figure>
     

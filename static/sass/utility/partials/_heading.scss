@@ -45,6 +45,16 @@
       }
     }
   }
+
+  &--withBorder {
+    border-bottom: 1px solid $grey; 
+  }
+
+  &.inverse {
+    .c-page-head--withBorder {
+      border-color: $white;
+    }
+  }
 }
 
 
