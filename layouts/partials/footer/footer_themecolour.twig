@@ -160,22 +160,22 @@
                         <div class="desginer-info d-none d-xl-flex">Designed and powered by <a target="_blank" href="https://publish.pagemasters.com/">Pagemasters Publish</a></div>
                         <div class="u-generic-socialIcons">
                             {% if config.social.facebook is defined and config.social.facebook is not empty %}
-                                <a href="{{config.social.facebook}}" class="u-generic-socialIcons__item">
+                                <a href="{{config.social.facebook}}" target="_blank" class="u-generic-socialIcons__item">
                                     <img src="{{networkData.templatePath}}/static/icons/fb-white.svg" alt="image" />
                                 </a>
                             {% endif %}
                             {% if config.social.instagram is defined and config.social.instagram is not empty %}
-                                <a href="{{config.social.instagram}}" class="u-generic-socialIcons__item">
+                                <a href="{{config.social.instagram}}" target="_blank" class="u-generic-socialIcons__item">
                                     <img src="{{networkData.templatePath}}/static/icons/insta-white.svg" alt="image" />
                                 </a>
                              {% endif %}
                             {% if config.social.twitter is defined and config.social.twitter is not empty %}
-                                <a href="{{config.social.twitter}}" class="u-generic-socialIcons__item">
+                                <a href="{{config.social.twitter}}" target="_blank" class="u-generic-socialIcons__item">
                                     <img src="{{networkData.templatePath}}/static/icons/twitter-white.svg" alt="image" />
                                 </a>
                             {% endif %}
                             {% if config.social.vimeo is defined and config.social.vimeo is not empty %}
-                                <a href="{{config.social.vimeo}}" class="u-generic-socialIcons__item">
+                                <a href="{{config.social.vimeo}}" target="_blank" class="u-generic-socialIcons__item">
                                     <img src="{{networkData.templatePath}}/static/icons/vimeo-white.svg" alt="image" />
                                 </a>
                             {% endif %}
