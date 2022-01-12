@@ -1,0 +1,133 @@
+@mixin card-property-base() {
+    @include card-name("C3 mobile");
+
+    .c-cards-view {
+        @include flexbox;
+        @include flex-direction(column,vertical);
+        border-bottom: 1px solid $black;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        min-height: 220px;
+
+        &__media {
+            height: 56.25vw;
+            min-height: 145px;
+            margin-bottom: 20px;
+        }
+
+        &__container {
+            text-align: center;
+        }
+
+        &__category {
+            margin-bottom: 10px;
+        }
+
+        &__heading {
+            font-family: var(--sec-font);
+            color: $black;
+            font-weight: $weightRegular;
+            @include font-size(20);
+            line-height: 1.09;
+            overflow: hidden;
+        }
+
+        &__author {
+            margin-top: 15px;
+            &-name {
+                font-family: var(--sec-font);
+                @include font-size(14);
+                font-weight: $weightBold;
+                font-style: italic;
+                color: $grey3;
+                position: relative;
+            }
+        }
+
+        &__description{
+            display: none
+        }
+
+        &.without-image {
+            background-color: $white;
+            .c-cards-view {
+                &__container {
+                    background-color: $black;
+                    flex: 1;
+                    padding: 20px 16px 18px;
+                    @include flexbox;
+                    @include flex-direction(column,vertical);
+                }
+
+                &__heading {
+                    max-height: inherit;
+                    flex: 1;
+                }
+
+                &__category,
+                &__heading,
+                &__author-name {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+
+.card-property-mobile {
+    @media #{$mobile} {
+        @include card-property-base();
+    }
+}
+
+
+
+
+.card-property-mobile {
+    @media #{$mobile} {
+        @include card-property-base();
+    }
+}
+
+
+.card-property-tablet {
+
+    @media #{$tablet} {
+        @include card-property-base();
+        @include card-name("C3 tablet");
+
+        .c-cards-view {
+            min-height: 423px;
+
+            &__media {
+                height: 270px;
+            }
+        }
+    }
+}
+
+
+@mixin card-property-desktop-base {
+    @include card-property-base();
+    @include card-name("C3 desktop");
+
+    .c-cards-view {
+        &__media {
+            height: 270px;
+        }
+        &__heading {
+            @include font-size(22);
+            line-height: 1.09;
+            height: 75px;
+        }
+    }
+}
+
+.card-property-desktop {
+    @media #{$desktop-up} {
+        @include flexbox;
+        height: 100%;
+        @include card-property-desktop-base();
+    }
+}

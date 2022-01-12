@@ -42,7 +42,25 @@
         @include margin(30 0 0 0);
     }
 }
-.c-section__video {
-    margin-top: -20px !important;
+.c-section {
+    &__video {
+        margin-top: -20px !important;
+    }
+
+    &__real-estate {
+        margin-top: -20px !important;
+        background: #f6f5f5;
+
+        .c-page-head {
+            .u-heading__large {
+                color: $black;
+            }
+    
+            &__link {
+                color: $black;
+            }
+        }
+    }
 }
+
 /* End section page  style */

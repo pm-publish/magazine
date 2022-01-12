@@ -295,6 +295,16 @@
 
       &__logo {
         @include flexbox;
+
+        a {
+          max-height: 45px;
+
+          img {
+            width: auto;
+            max-width: inherit;
+            height: 100%;
+          }
+        }
       }
 
       &__otherInfo {
