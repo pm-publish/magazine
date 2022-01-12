@@ -11,12 +11,8 @@
 
         &__media {
             height: 56.25vw;
-            min-height: 145px;
+            min-height: 186px;
             margin-bottom: 20px;
-        }
-
-        &__container {
-            text-align: center;
         }
 
         &__category {
@@ -45,7 +41,53 @@
         }
 
         &__description{
-            display: none
+            @include font-size(16);
+            line-height: 1.5;
+            color: $grey3;
+            height: 50px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        &__additional-info {
+            @include flexbox;
+            @include flex-direction(column,vertical);
+            @include align-items(flex-start);
+            margin-bottom: 10px;
+
+            &__features {
+                @include flexbox;
+                @include align-items(center);
+
+                &-list {
+                    margin-left: 0;
+                    @include flexbox;
+                    @include align-items(center);
+                    margin-right: 15px;
+
+                    .text {
+                        margin-left: 6px;
+                        @include font-size(16);
+                        line-height: 1.5;
+                        color: $black;
+                    }
+                }
+            }
+
+            &__icon--fill {
+                svg, svg * {
+                    fill: var(--sec-color) !important;
+                }
+            }
+
+            &__price {
+                @include font-size(18);
+                letter-spacing: 0.9px;
+                color: $black;
+                margin-top: 5px;
+                font-weight: $weightRegular;
+                font-family: $primaryFont;
+            }
         }
 
         &.without-image {
@@ -101,7 +143,7 @@
             min-height: 423px;
 
             &__media {
-                height: 270px;
+                height: 186px;
             }
         }
     }
@@ -114,7 +156,7 @@
 
     .c-cards-view {
         &__media {
-            height: 270px;
+            height: 186px;
         }
         &__heading {
             @include font-size(22);
@@ -129,5 +171,23 @@
         @include flexbox;
         height: 100%;
         @include card-property-desktop-base();
+
+        &.card-property-highlighter {
+            .c-cards-view {
+                &__media {
+                    height: 450px;
+                }
+                &__heading {
+                    @include font-size(32);
+                    line-height: 1.25;
+                    font-weight: $weightBold;
+                }
+
+                &__additional-info {
+                    @include flex-direction(row,horizontal);
+                    @include align-items(center);
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,10 @@
 {% import "quotes.twig" as quotes %}
 
+{% set themeColor   = "#4A90E2" %}
+{% if networkData['styling']['colours']['headingColor'] is defined %}
+    {% set themeColor = networkData['styling']['colours']['headingColor'] %}
+{% endif %}
+
 {% if params.hasMedia %}
     <figure class="{{params.cardType}}c-cards-view__media {{params.videoClass}}" title="{{imageSize}}">
         <picture>
