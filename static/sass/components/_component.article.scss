@@ -100,13 +100,15 @@
     @include margin-bottom(20);
   }
 
+
   &__container {
     p,
     h1,
     h2,
     h3,
     h4,
-    h5 {
+    h5,
+    li {
       color: $grey3;
       font-family: $primaryFont !important;
       font-size: 16px !important;
@@ -144,25 +146,134 @@
       }
     }
 
-    > span {
-      color: $grey3 !important;
+    h1 {
+      font-size: 50px !important;
+      font-family: $secondaryFont !important;
+      color: $black;
+      span,
+      b,
+      u,
+      a {
+        font-size: 50px !important;
+        font-family: $secondaryFont !important;
+        color: $black;
+      }
+    }
+
+    h2 {
+      font-size: 20px !important;
+      line-height: 1.23;
+      font-family: $secondaryFont !important;
+      color: $black;
+      span,
+      b,
+      u,
+      a {
+        font-size: 20px !important;
+        line-height: 1.23;
+        font-family: $secondaryFont !important;
+        color: $black;
+      }
+    }
+
+    h3 {
+      font-size: 20px !important;
+      line-height: 1.09;
+      color: $black;
+      span,
+      b,
+      u,
+      a {
+        font-size: 20px !important;
+        line-height: 1.09;
+        color: $black;
+      }
+    }
+
+    h4 {
+      font-size: 18px !important;
+      line-height: 1.2;
       font-family: $primaryFont !important;
+      color: $black;
+      span,
+      b,
+      u,
+      a {
+        font-size: 18px !important;
+        line-height: 1.2;
+        font-family: $primaryFont !important;
+        color: $black;
+      }
+    }
+
+    h5 {
+      font-size: 16px !important;
+      line-height: 1.2;
+      color: $black;
+      span,
+      b,
+      u,
+      a {
+        font-size: 16px !important;
+        line-height: 1.2;
+        color: $black;
+      }
+    }
+
+    h6 {
+      font-size: 12px !important;
+      line-height: 1.33;
+      color: $black;
+      span,
+      b,
+      u,
+      a {
+        font-size: 12px !important;
+        line-height: 1.33;
+        color: $black;
+      }
+    }
+
+    ul li {
+      list-style-type: none !important;
+      position: relative;
+      padding-left: 30px;
+      &:before {
+        content: "";
+        background-image: url("../icons/icons-navigation-arrow-small.png");
+        @include size(16px);
+        position: absolute;
+        display: block;
+        left: 0px;
+        top: 3px;
+      }
+    }
+
+    ol {
+      li {
+        list-style-type: auto !important;
+        list-style-position: inside;
+      }
+    }
+
+    > span {
+      color: $black !important;
+      font-family: $secondaryFont !important;
       font-size: 16px !important;
       margin-bottom: 0px !important;
     }
 
     a {
-      border-bottom: 1px solid $black;
       @include transition(all 0.3s ease);
-      font-family: $primaryFont !important;
-      color: $black;
+      font-family: $secondaryFont !important;
+      color: $black !important;
     }
 
     blockquote {
       @include flexbox;
       @include flex-direction(column, vertical);
       @include align-items(center);
-      margin-bottom: 100px;
+      margin-bottom: 40px;
       margin-top: 40px;
       position: relative;
 
@@ -180,13 +291,73 @@
         text-align: center;
         max-width: 500px;
         margin-bottom: 0px !important;
+      }
+    }
 
-        &.sub-text {
-          color: $grey3;
-          font-size: 13px !important;
-          font-weight: $weightRegular;
-          font-family: $primaryFont !important;
-        }
+    [style*="center"] {
+      img {
+        left: auto;
+        @include translate(0, 0);
+      }
+    }
+
+    img[style*="left"] {
+      margin: 0 20px 40px 0 !important;
+      max-width: 100%;
+    }
+
+    img[style*="right"] {
+      margin: 0 0 40px 20px !important;
+      max-width: 100%;
+    }
+
+    figure[style*="right"] {
+      margin-right: 0px;
+      margin-left: 20px;
+    }
+
+    figure[style*="right"],
+    figure[style*="left"] {
+      left: auto !important;
+      @include translate(0%, 0);
+      margin-right: 20px;
+    }
+
+    div[style*="text-align:center"],
+    div[style*="text-align: center"] {
+      overflow: hidden;
+    }
+
+    figure {
+      position: relative;
+      @include inline-flex;
+      margin-bottom: 20px !important;
+      figcaption {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: $black;
+        color: $white;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.33;
+        padding: 10px;
+      }
+    }
+
+    &__highlight-sec {
+      background-color: $black;
+      max-width: 300px;
+      float: left;
+      padding: 30px;
+      margin-right: 25px;
+
+      .u-heading__large {
+        color: $white;
+      }
+      ul li {
+        color: $white;
       }
     }
   }
@@ -225,95 +396,12 @@
     overflow: hidden;
   }
 
-  h4,
-  h5 {
-    color: $black !important;
-    font-family: $secondaryFont !important;
-  }
-
-  h1 {
-    font-size: 50px !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 50px !important;
-    }
-  }
-
-  h2 {
-    font-size: 20px !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 20px !important;
-    }
-  }
-
-  h3 {
-    font-size: 20px !important;
-    font-family: $primaryFont !important;
-    font-weight: $weightBold !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 20px !important;
-      font-family: $primaryFont !important;
-      font-weight: $weightBold !important;
-    }
-  }
-
-  h4 {
-    font-size: 18px !important;
-    font-weight: $weightBold !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 18px !important;
-      font-weight: $weightBold !important;
-    }
-  }
-
-  h5 {
-    font-size: 18px !important;
-    font-family: $primaryFont !important;
-    font-weight: $weightBold !important;
-    span,
-    b,
-    u,
-    a {
-      font-size: 18px !important;
-      font-family: $primaryFont !important;
-      font-weight: $weightBold !important;
-    }
-  }
 
   margin-bottom: 20px;
   font-weight: $weightRegular;
   letter-spacing: 0.5px;
   u {
     text-decoration: underline;
-  }
-
-  ul li {
-    list-style-type: none !important;
-    position: relative;
-    &:before {
-      content: "";
-      background-image: url("../icons/icons-navigation-arrow-small.png");
-      @include size(16px);
-      position: absolute;
-      display: block;
-      left: -28px;
-      top: 5px;
-    }
-
-    span {
-      list-style-type: decimal !important;
-    }
   }
 
   &__galleryView {

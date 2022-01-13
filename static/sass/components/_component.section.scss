@@ -11,4 +11,56 @@
     
 }
 
+.page_section {
+    &__title {
+        @include font-size(32);
+        color: $black;
+        font-family: var(--sec-font);
+        font-weight: $weightBold;
+        font-style: italic;
+        line-height: 1.25;
+        margin-bottom: 25px;
+    }
+
+    &__grid {
+        @include flexbox;
+        @include flex-direction(column,vertical);
+    }
+
+    &__first-para {
+        * {
+            display: none;
+        }
+        p {
+            @include font-size(20);
+            color: $black;
+            font-family: var(--sec-font);
+            font-weight: $weightRegular;
+            display: block;
+            font-style: italic;
+            line-height: 1.6;
+        }
+    }
+
+    @include responsive(xs) {
+        @include respond-to(md) {
+        
+            .page_section {
+                &__grid {
+                    @include flex-direction(row,horizontal);
+                }
+                &__first-para {
+                    width: 25%;
+                }
+                &__content {
+                    border-left: 1px solid $grey4;
+                    flex: 1;
+                    margin-left: 20px;
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
+}
+
 /* End section page  style */
