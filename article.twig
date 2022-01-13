@@ -136,6 +136,9 @@ article.additionalInfo.image_crop == 'full' %}
 {% endif %}
 
 
+{% set paragraphs = ArticleContent | split('</p>') %}
+{% set firstPara = paragraphs | first ~ ('</p>') %}
+
 {% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop':
 'thumb', type: 'user'}) %}
 {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate, 'F, Y') %}
@@ -150,6 +153,7 @@ article.additionalInfo.image_crop == 'full' %}
                     <div class="col-12 col-lg-8">
                         <div class="c-article__top__container">
                             <div class="u-generic-socialIcons">
+                                <div class="u-generic-socialIcons__item">Share</div>
                                 <a href="mailto:?subject=Check%20out%20this%20article&body={{article.url}}"
                                     class="u-generic-socialIcons__item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="15" viewbox="0 0 23 15">
@@ -227,9 +231,6 @@ article.additionalInfo.image_crop == 'full' %}
                             <div class="c-article__title">
                                 {{ quotes.smarten(article.title) }}
                             </div>
-                            <div class="c-article__excerpt">
-                                {{article.excerpt}}
-                            </div>
                         </div>
                         <div class="c-article__posted-by">
                             <div class="c-article__posted-by__container">
@@ -298,6 +299,7 @@ article.additionalInfo.image_crop == 'full' %}
                     </div>
 
                     <div class="c-article__main-content">
+                        <h2>{{firstPara | raw}}</h2>
                         <div class="c-article__container">
                             {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
                         </div>

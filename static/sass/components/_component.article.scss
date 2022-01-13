@@ -31,6 +31,15 @@
       overflow: hidden;
       width: 100%;
       margin-top: 60px;
+
+      h2 {
+        font-size: 20px !important;
+        line-height: 1.23;
+        font-family: $secondaryFont !important;
+        color: $black;
+        font-weight: $weightRegular !important;
+        margin-bottom: 20px;
+      }
     }
   }
 
@@ -102,6 +111,9 @@
 
 
   &__container {
+    p:first-child {
+      display: none;
+    }
     p,
     h1,
     h2,
