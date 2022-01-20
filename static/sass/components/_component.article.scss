@@ -111,7 +111,7 @@
 
 
   &__container {
-    p:first-child {
+    > p:first-child {
       display: none;
     }
     p,
