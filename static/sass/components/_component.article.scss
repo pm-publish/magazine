@@ -52,6 +52,21 @@
     font-weight: $weightBold;
     margin-bottom: 10px;
   }
+  &__edit-link {
+    display: block;
+    margin: 20px 0 10px;
+    background-color: var(--main-color);
+    color: $white;
+    font-weight: 400;
+    @include font-size(16);
+    line-height: 1.5;
+    @include border-radius(6px);
+    height: 40px;
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    text-decoration: none;
+  }
 
   &__title {
     @include font-size(50);
