@@ -179,4 +179,18 @@
     }
 }
 
+.c-buttonSet {
+    @include flexbox;
+    @include align-items(center);
+    width: 100%;
+
+    .c-button {
+        width: 50%;
+
+        + .c-button {
+            margin-left: 10px;
+        }
+    }
+}
+
 /* End header style */

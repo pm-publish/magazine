@@ -19,22 +19,20 @@
 
     }
 
-
-
     &__input {
         display:block;
         width:100%;
         padding: 4px 0;
         outline:0;
         border:0;
-        border-bottom: 1px solid $offwhite;
-        @include font-size(13);
+        border-bottom: 1px solid $grey4;
+        @include font-size(16);
         @include transition(all .3s ease-out);
         line-height:28px;
+		height: 48px;
 
         &--bordered {
-            border: 1px solid $offwhite;
-            border-radius:6px;
+            border: 1px solid $grey4;
             padding: 4px 8px;
 		}
 
@@ -60,15 +58,21 @@
 
     }
 
+	&__textarea {
+		border: 1px solid $grey4;
+        padding: 4px 8px;
+		height: 150px;
+		width: 100%;
+	}
+
     &__label {
         width:100%;
-        flex:0 0 100%;
         max-width:100%;
-        color: $greyish;
+        color: $black;
         margin-bottom:7px;
-        @include font-size(14);
+        @include font-size(16);
         line-height:1.5;
-		font-weight:$weightBold;
+		font-weight:$weightRegular;
 		
 		&__popuplink{
 			@include font-size(11);
@@ -189,4 +193,21 @@
 	}
 
 
+}
+
+.c-upload-image {
+	width: 100%;
+	@include flexbox;
+	@include flex-direction(column,vertical);
+	@include align-items(center);
+	@include justify-content(center);
+	height: 56px;
+	border: 1px dotted $black;
+
+	&__label {
+		@include font-size(22);
+		line-height: 1.09;
+		font-weight: $weightLight;
+		color: $black;
+	}
 }
