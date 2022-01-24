@@ -144,8 +144,6 @@ article.additionalInfo.image_crop == 'full' %}
 {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate, 'F, Y') %}
 {% set updateDate = _AppHelper.getDefaultTimezoneDateTime(article.updatedDateTime,'F j, Y') %}
 
-{{_AppHelper.printArray(article.keywords)}}
-
 <main id="main" class="o-body-container o-body-container-md" role="main" data-paywall-type="{{paywallType}}">
     <div class="c-article c-article-xs">
         <div class="c-article__top">
@@ -264,6 +262,9 @@ article.additionalInfo.image_crop == 'full' %}
                             </div>
                         </div>
                     </div>
+                    {% if article.userHasEditArticleAccess is defined and article.userHasEditArticleAccess == 1 %}
+                        <a href="{{article.editUrl}}" target="_blank" class="c-article__edit-link" data-access="{{article.userHasEditArticleAccess}}">Edit article</a>
+                    {% endif %}
                     <div class="">
                         {% if articleImg %}
 
