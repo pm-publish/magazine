@@ -218,15 +218,6 @@ article.additionalInfo.image_crop == 'full' %}
                                 <div class="c-article__category">
                                     {{article.label}}
                                 </div>
-                                {% if article.media|length > 1 %}
-                                <div class="c-article__posted-on">
-                                    <time class="c-article__published">{{article.publishedDate}}</time>
-                                    {% if updated %}
-                                    <time class="c-article__updated">Updated
-                                        {{ updateDate | capitalize }}</time>
-                                    {% endif %}
-                                </div>
-                                {% endif %}
                             </div>
                             <div class="c-article__title">
                                 {{ quotes.smarten(article.title) }}
@@ -298,10 +289,12 @@ article.additionalInfo.image_crop == 'full' %}
                         {% endif %}
                     </div>
 
-                    <div class="c-article__main-content">
-                        <h2>{{firstPara | raw}}</h2>
-                        <div class="c-article__container">
-                            {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
+                    <div class="{% if showPaywall == true %} c-article__main__paywall-container {% endif %}"> 
+                        <div class="c-article__main-content">
+                            <h2>{{firstPara | raw}}</h2>
+                            <div class="c-article__container">
+                                {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -315,7 +308,7 @@ article.additionalInfo.image_crop == 'full' %}
 
             {% if showPaywall == false %}
                 <div class="row">
-                <div class="col-12">
+                    <div class="col-12">
                         <div class="c-cards-container c-cards-container-xs bottom-border">
                             <div class="u-generic-heading u-generic-heading--withBorder">You might also like</div>
                             <div class="row">
@@ -335,5 +328,8 @@ article.additionalInfo.image_crop == 'full' %}
                 </div> 
             {% endif %}
         </div>
+        {% if showPaywall == true %}
+            {{this.render('partials/article/paywall_article_notice.twig', {networkData:networkData, paywallType:paywallType}) | raw}}
+        {% endif %}
     </div>
 </main>

@@ -139,3 +139,17 @@
 }
 
 }
+
+.c-article__gallery {
+    .c-article {
+        &__head {
+            border-bottom: 1px solid $grey4;
+            padding-bottom: 25px;
+            
+            &-top {
+                @include flexbox;
+                @include justify-content(space-between);
+            }
+        }
+    }
+}

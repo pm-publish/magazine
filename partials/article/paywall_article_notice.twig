@@ -5,16 +5,15 @@
             <div class="o-paywalled__head">
                 Subscribe to {{networkData.title}} to read the full story.
             </div>
+            <div class="o-paywalled__period">
+                <a href="{{networkData.defaultBlogUrl}}/subscriptions#subscriptions" class="o-paywalled__text">Click here to view our subscription options. </a>
+            </div>
             <div class="o-paywalled__action">
-                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--rounded c-button--blue c-article__subscribe-button">SUBSCRIBE NOW</a>
+                <a id="articleSigninBtn" href="javascript:;" class="c-button c-button--white">Sign in</a>
+                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--white-bordered">Subscribe</a>
                 {% if trialToggle %}
                     <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--rounded c-button--blue-bordered">Start Free Trial</a>
                 {% endif %}
-                <a id="articleSigninBtn" href="javascript:;" class="c-button c-button--rounded c-button--blue-bordered">SIGN IN</a>
-            </div>
-
-            <div class="o-paywalled__period">
-                <a href="{{networkData.defaultBlogUrl}}/subscriptions#subscriptions" class="o-paywalled__text">Click here to view our subscription options. </a>
             </div>
         </div>
     </div>
