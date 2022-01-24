@@ -51,7 +51,7 @@
 {% set fullStartDate    = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'l, dS F Y') %}
 {% set fullEndDate      = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'l, dS F Y') %}
 {% set startDayName      = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'l, ') %}
-{% set endDate          = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'j M') %}
+{% set endDate          = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'j F') %}
 
 {% set startDay         = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'd') %}
 {% set endDay           = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'd') %}
@@ -93,7 +93,12 @@
         <article class="c-eventcards-view  {{lightbox}} {{figureClass}}">
             <div class="c-eventcards-view__date">
                 <span class="c-eventcards-view__date-value">{{ startDay }}</span>
-                <span class="c-eventcards-view__date-label">{{startFullMonth}}</span>
+                <div class="c-eventcards-view__date-additionalInfo">
+                    <span class="c-eventcards-view__date-label">{{startFullMonth}} {% if event.endDate != "" %} - {% endif %}</span>
+                    {% if event.endDate != "" %}
+                        <span class="c-eventcards-view__date-label">{{endDate}}</span>
+                    {% endif %}
+                </div>
             </div>
             <div class="c-eventcards-view__container">
                 <div class="c-eventcards-view__info">

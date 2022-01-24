@@ -144,6 +144,7 @@ article.additionalInfo.image_crop == 'full' %}
 {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate, 'F, Y') %}
 {% set updateDate = _AppHelper.getDefaultTimezoneDateTime(article.updatedDateTime,'F j, Y') %}
 
+{{_AppHelper.printArray(article.keywords)}}
 
 <main id="main" class="o-body-container o-body-container-md" role="main" data-paywall-type="{{paywallType}}">
     <div class="c-article c-article-xs">

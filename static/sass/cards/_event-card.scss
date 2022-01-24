@@ -12,7 +12,11 @@
             @include flexbox;
             @include align-items(center);
             min-width: 140px;
-
+            &-additionalInfo {
+                margin-left: 10px;
+                @include flexbox;
+                @include flex-direction(column,vertical);
+            }
             &-value {
                 @include size(40px);
                 background-color: $black;
@@ -26,6 +30,7 @@
                 line-height: 1.23;
                 font-style: italic;
             }
+            
 
             &-label {
                 font-weight: $weightBold;
@@ -34,7 +39,6 @@
                 line-height: 1.5;
                 font-style: italic;
                 color: $black;
-                margin-left: 10px;
             }
         }
 
