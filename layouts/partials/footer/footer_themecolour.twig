@@ -123,12 +123,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="c-nav c-nav-3">
-                        <ul class="c-nav__grid">
-                            {{this.render('../_submenu_navigation.twig', {
-								items: footerTopMenu
-							}) | raw }}
-                        </ul>
+                    <div class="c-footer__address__container">
+                        <div class="c-footer__address__heading">Contact</div>
+                        <div class="c-footer__address__content address">
+                            {{addresses.address}}<br />{{addresses.city}}<br />{{addresses.state}}
+                            {{addresses.postcode}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="c-footer__address__container">
+                        <div class="c-footer__address__heading">Email</div>
+                        {% if addresses.email != "" %}
+                        <div class="c-footer__address__content">
+                            <a href="mailto:{{addresses.email}}"
+                                class="c-footer__addresses__content">{{addresses.email}}</a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -141,6 +152,20 @@
                     <div class="col-12 col-md-8 mx-auto">
                         <div class="c-footer__bottom__ack-heading">{{config['footer-text']['title']}}</div>
                         <div class="c-footer__bottom__ack-content">{{config['footer-text']['content']}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-footer__responsive d-block d-md-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="c-footer__bottom__info__nav">
+                            {{this.render('../_submenu_navigation.twig', {
+								items: footerBottomMenu
+							}) | raw }}
+                        </div>
+                        <div class="desginer-info">Designed and powered by <a target="_blank" href="https://publish.pagemasters.com/">Pagemasters Publish</a></div>
                     </div>
                 </div>
             </div>

@@ -99,6 +99,36 @@
   &__responsive {
     border-top: 1px solid rgba($grey3, 0.5);
     padding: 15px 0;
+
+    .c-footer__bottom__info__nav {
+      @include flexbox;
+      @include flex-direction(column,vertical);
+      
+      li {
+        margin-bottom: 12px;
+      }
+      a {
+        color: $grey3;
+        margin-left: 0;
+        @include font-size(16);
+      }
+    }
+
+    .desginer-info {
+      color: #505050;
+      @include font-size(12);
+      margin-top: 12px;
+
+      a {
+        color: #505050;
+        @include font-size(12);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
   &__bottom {
       border-top: 1px solid rgba($grey3, 0.5);
