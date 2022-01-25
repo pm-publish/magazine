@@ -94,8 +94,8 @@
             <div class="c-eventcards-view__date">
                 <span class="c-eventcards-view__date-value">{{ startDay }}</span>
                 <div class="c-eventcards-view__date-additionalInfo">
-                    <span class="c-eventcards-view__date-label">{{startFullMonth}} {% if event.endDate != "" %} - {% endif %}</span>
-                    {% if event.endDate != "" %}
+                    <span class="c-eventcards-view__date-label">{{startFullMonth}} {% if event.endDate != "" and event.endDate != event.startDate %} - {% endif %}</span>
+                    {% if event.endDate != "" and event.endDate != startDate %}
                         <span class="c-eventcards-view__date-label">{{endDate}}</span>
                     {% endif %}
                 </div>
