@@ -103,7 +103,7 @@
             <div class="c-eventcards-view__container">
                 <div class="c-eventcards-view__info">
                     <div class="c-eventcards-view__sec1">
-                        <div class="c-eventcards-view__category">Events</div>
+                        <div class="c-eventcards-view__category">{% if event.label is defined and event.label is not empty %} {{event.label}} {% else %} {{event.title}} {% endif %}</div>
                         <h2  class="c-eventcards-view__heading js-card-heading j-truncate {{figureClass}}">{{ quotes.smarten(event.title) }}</h2>
                     </div>
                 </div>

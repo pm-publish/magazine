@@ -19,9 +19,7 @@
     }
   }
   &__logo {
-    @media #{$tablet, $mobile} {
-      margin-bottom: 30px;
-    }
+    margin: 30px 0;
   }
 
   &__additionalInfo {

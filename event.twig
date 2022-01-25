@@ -9,7 +9,7 @@
 
 {% set eventImage = false %}
 {% if event.media | length > 0 %}
-    {% set eventImage = _Media.getMediaUrl(event.media[0], 750, 420, {'crop': 'fill', 'gravity': 'auto'} ) %}
+    {% set eventImage = _Media.getMediaUrl(event.media[0], 'auto', 420, {'crop': 'fill', 'gravity': 'auto'} ) %}
 {% endif %}
 
 
@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-12 col-md-8">
                     <div class="c-eventdetail__head u-margin-bottom-20">
-                        <a href="{{ networkData.defaultBlogUrl }}/events" class="c-eventdetail__category">Events</a>
+                        <a href="{{ networkData.defaultBlogUrl }}/events" class="c-eventdetail__category">{% if event.label is defined and event.label is not empty %} {{event.label}} {% else %} {{event.title}} {% endif %}</a>
                         <div class="c-eventdetail__title">
                             {{ quotes.smarten(event.title) }}  
                         </div>

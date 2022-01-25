@@ -28,15 +28,9 @@
     &__figure {
         background-color: #f6f5f5;
         height: 420px;
-
-        img {
-            max-width: 100%;
-            margin: auto;
-            display: block;
-            width: auto !important;
-            height: 100%;
-            object-fit: cover;  
-        }
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(center);
     }
     &__main-content {
         margin-top: 40px;

@@ -9,13 +9,7 @@
             height:calc((100vw - 30px) * 0.67);
             margin-bottom: 25px;
         }
-        
-        @media #{$tablet} {
-            height:390px;
-        }
-        @media #{$desktop-up} {
-            height:497px;
-        }
+
         >.article-video{
             max-width: 100%;
         }
@@ -23,30 +17,11 @@
 
     &__img-container {
         background-color: #f6f5f5;
-        @media #{$tablet}{
-            height: 400px;
-        }
-        @media #{$mobile}{
-            height: 275px;
-        }
-    }
-
-
-    &__img-container-article {
         height:100%;
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(center);
     }
-
-
-    &__img {
-        max-width: 100%;
-        margin:auto;
-        display: block;
-        width:auto !important;
-        height:100%;
-        object-fit: cover;
-    }
-
-
 
     &__thumbs {
         max-height:497px;
