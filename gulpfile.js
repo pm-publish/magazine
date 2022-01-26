@@ -81,6 +81,9 @@ gulp.task("sass", function () {
           "./static/sass/components",
           "./static/sass/cards",
           "./static/sass/vendors",
+          "./static/sass/pages/myaccount",
+          "./static/sass/pages/classifieds",
+          "./static/sass/pages/coming_soon",
         ],
       }).on("error", sass.logError)
     )

@@ -74,7 +74,19 @@
 @import "component.cta-newsletter";
 
 //my account page
+@import "my-account";
+@import "component.plan-features";
+@import "component.profile-message";
+@import "component.infobox";
 
+
+//Classifieds
+@import "component.classified-search";
+@import "component.classifieds-form";
+@import "component.classifieds";
+
+//coming soon page
+@import "coming_soon";
 // old
 @import "component.modal-login-form";
 @import "component.modal-password-reset-form";
