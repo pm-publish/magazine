@@ -1,23 +1,27 @@
 'use strict';
 
 import { ArticleFeed, UserFeed, UserCard }  from './articleFeed'
-import { UserProfileController }            from './user-profile'
-import { View, PubSub }                     from './framework'
+import { UserProfileController }            from './myaccount'
+import { View, PubSub, ListMenu, Server, Modal, LightBox } from './framework'
 import { SigninModal }                      from './signinModal'
 import { Card }                             from './card'
 import AdLoader                             from './advertising'
 import * as signip                          from './signup'
 
 window.Acme = window.Acme || {};
+window.Acme.UserProfileController = UserProfileController;
 // window.Acme.UserProfileController = UserProfileController;
 window.Acme.View.UserFeed = UserFeed;
 window.Acme.ArticleFeed = ArticleFeed;
 window.Acme.Usercard = UserCard;
 window.Acme.Card = Card;
-
-
-
-
+window.Acme.Form = Form;
+window.Acme.listMenu = ListMenu;
+window.Acme.lightBox = LightBox;
+window.Acme.modal = Modal;
+window.Acme.server = Server;
+window.Acme.PubSub = PubSub;
+window.Acme.articleFeeds = {};
 const ads = new AdLoader();
 ads.LoadAds();
 
