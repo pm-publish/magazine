@@ -1,5 +1,5 @@
 $blue_sh5: #5748f6;
-$grey3: #f6f5f5;
+$grey5: #f6f5f5;
 
 .account {
 
@@ -66,7 +66,7 @@ $grey3: #f6f5f5;
 
     &__info {
         &-container {
-            background: $grey3;
+            background: $grey5;
             padding: 80px 0 65px;
         }
     }
@@ -138,7 +138,7 @@ $grey3: #f6f5f5;
 
 
 .managed-users {
-    background-color: $grey3;
+    background-color: $grey5;
     margin-bottom: 25px;
     padding: 16px 0;
 
@@ -210,7 +210,7 @@ $grey3: #f6f5f5;
             }
 
             input {
-                background-color: $grey3;
+                background-color: $grey5;
                 padding-left: 50px;
                 flex: 1;
                 height: 48px;
@@ -277,7 +277,7 @@ $grey3: #f6f5f5;
 
     &__row {
         border-bottom: 8px solid white;
-        background-color: $grey3;
+        background-color: $grey5;
 
         &:nth-child(4n-3) {
             background-color: #ececec;
