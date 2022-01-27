@@ -80,6 +80,13 @@ function headerMicroMenuClose() {
     clickElem.classList.remove('active')
 }
 
+$(window).scroll(function () {
+    if ($(this).scrollTop()) {
+      $('#headerScrolling').addClass('header-sticky');
+    } else {
+      $('#headerScrolling').removeClass('header-sticky');
+    }
+});
 
 //sidebar function
 

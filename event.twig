@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="c-eventdetail__info-item">
                                         <span class="c-eventdetail__info-text">{{ event.venue }}</span>
-                                        <span class="c-eventdetail__info-text small">{{ event.address.address1 }}, {{ event.address.suburb }}</span>
+                                        <span class="c-eventdetail__info-text small">{{ event.address.address1 }} {{ event.address.suburb }}</span>
                                     </div>
 
                                         {% set contactDetails = "" %}
@@ -122,6 +122,21 @@
                             </div>
                         </div>
                     </div>
+                    
+                    {% set keywords = event.keywords | split(',') %}
+                    {% if keywords | length > 0 %}
+                        <div class="c-eventdetail__keywords">
+                            <ul>
+                                {% for keyword in keywords %}
+                                    {% if keyword is defined and keyword is not empty %}
+                                        <li>
+                                            <a href="{{_Blog.getUrl()}}/search?s={{keyword}}">{{keyword}}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@
         @include font-size(18);
         line-height: 1.09;
         @include margin-bottom(15);
+        @include margin-top(20);
         font-weight: $weightBold;
 
         @include responsive(xs) {

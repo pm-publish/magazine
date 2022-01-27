@@ -231,6 +231,17 @@
 .c-header {
     margin-bottom: 20px;
 
+    &.header-sticky {
+      .c-header__main {
+        position: fixed;
+        z-index: 999991;
+        top: 0;
+        width: 100%;
+        background-color: $white;
+        @include transition(all 0.3s ease);
+      }
+    }
+
     &__responsive {
       background-color: $black;
       padding: 10px 0;
