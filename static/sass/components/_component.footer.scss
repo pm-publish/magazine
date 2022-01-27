@@ -19,9 +19,7 @@
     }
   }
   &__logo {
-    @media #{$tablet, $mobile} {
-      margin-bottom: 30px;
-    }
+    margin: 30px 0;
   }
 
   &__additionalInfo {
@@ -99,6 +97,36 @@
   &__responsive {
     border-top: 1px solid rgba($grey3, 0.5);
     padding: 15px 0;
+
+    .c-footer__bottom__info__nav {
+      @include flexbox;
+      @include flex-direction(column,vertical);
+      
+      li {
+        margin-bottom: 12px;
+      }
+      a {
+        color: $grey3;
+        margin-left: 0;
+        @include font-size(16);
+      }
+    }
+
+    .desginer-info {
+      color: #505050;
+      @include font-size(12);
+      margin-top: 12px;
+
+      a {
+        color: #505050;
+        @include font-size(12);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
   &__bottom {
       border-top: 1px solid rgba($grey3, 0.5);
@@ -114,19 +142,19 @@
       }
       &__ack-heading {
         font-family: $secondaryFont;
-        @include font-size(12);
+        @include font-size(16);
         line-height: 1.33;
         font-weight: $weightBold;
         color: $black;
         @media #{$mobile} {
-          @include font-size(16);
+          @include font-size(18);
           line-height: 1.5;
         }
       }
   
       &__ack-content {
         color: $grey3;
-        font-family: $secondaryFont;
+        font-family: $primaryFont;
         @include font-size(12);
         line-height: 1.33;
         font-weight: $weightRegular;
@@ -134,7 +162,6 @@
         margin-top: 15px;
   
         @media #{$mobile} {
-          font-style: inherit;
           @include font-size(16);
           line-height: 1.5;
         }

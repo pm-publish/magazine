@@ -26,12 +26,12 @@
         @include responsive(xs) {
             @include font-size(30);
             line-height:1.2;
-            @include margin-bottom(25);
+            @include margin-bottom(15);
         }
         @include responsive(md) {
-            @include font-size(26);
+            @include font-size(38);
             line-height:1.2;
-            @include margin-bottom(25);
+            @include margin-bottom(15);
         }
     }
     
@@ -41,10 +41,11 @@
         line-height:1.54;
         letter-spacing:0;
         font-weight:$weightRegular;
+        font-family:$secondaryFont;
 
         @include responsive(md) {
-            @include font-size(15);
-            line-height:1.54;
+            @include font-size(20);
+            line-height:1.6;
         }
     }
     
@@ -90,15 +91,13 @@
         @include padding-right(0);
         @include flexbox;
         @include align-content(stretch);
-        @include align-items(center);
         @include justify-content(flex-start);
         @include flex-direction(row, horizontal);
         @include margin-bottom(25);
         
         @include responsive(md) {
-            width:calc(100% - 540px);
-            max-width:calc(100% - 540px);
-            @include padding-right(75);
+            width:calc(100% - 200px);
+            max-width:calc(100% - 200px);
         }
     }
     &-right {
@@ -118,29 +117,28 @@
         width:105px;
         @include size(105px);
         max-width:105px;
-        @include border-radius(50%);
         @include flex(0 0 105px);
         @include image_background();
         
         @include responsive(xs) {
-            width:145px;
-            @include size(145px);
-            max-width:145px;
-            @include border-radius(50%);
-            @include flex(0 0 145px);
+            width:160px;
+            height: 151px;
+            max-width:160px;
+            @include flex(0 0 160px);
         }
     }
     &__details {
-        @include padding-left(15);
-        width:calc(100% - 105px);
-        max-width:calc(100% - 105px);
-        @include flex(0 0 calc(100% - 105px));
-        
+        width: 100%;
+        @include flex(0 0 100%);
+        max-width: 100%;
+
         @include responsive(xs) {
-            @include padding-left(45);
-            width:calc(100% - 145px);
-            max-width:calc(100% - 145px);
-            @include flex(0 0 calc(100% - 145px));
+            @include padding-left(20);
+            margin-left: 20px;
+            border-left: 1px solid #c4c4c4;
+            width:calc(100% - 160px);
+            max-width:calc(100% - 160px);
+            @include flex(0 0 calc(100% - 160px));
         }
     }
 }

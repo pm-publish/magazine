@@ -19,125 +19,142 @@
 
 {% set userArticlesArr = [] %}
 
-
 <!-- used to index each article as we loop over throughout the template -->
 {% set articleCount = 0 %}
 {% set dev = _AppHelper.getApplicationEnv() == 'DEV' ? true : false %}
 
 
-
 <main id="main" class="o-body-container o-body-container-md u-margin-top-60" role="main">
-        
     <div class="c-submitevent">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-7 j-article-container">
-                <div class="c-submitevent-container">
-                    <div class="c-page-info">
-                    <div class="c-page-info__title">Submit an event</div>
-                    <div class="c-page-info__discription">
-                        <p>Optio ipidus imillenda perferum quas simoluptur. Nam etus aut laborate ventior am ad qui sam exceped minum quis imperumque parum, 
-                    si cusandam audigni hillaut re nihillo riasit eum neuarum si cusandam audigctat. </p>
+                <div class="col-12 col-md-11 offset-md-1">
+                    <div class="c-page-head c-page-head-xs">
+                        <div class="u-heading__large--d2 u-bg-white">Submit an event</div>
                     </div>
-                </div>
 
-
-
-                <div class="c-event-form">
-                    <div class="">
-                        <form action="#" method="post" autocomplete="off">
-                            <div class="row">
-
-                                {# NAME #}
-                                <div class="col-12 c-form__group u-margin-bottom-15">
-                                    <input id="event-name" class="c-form__input c-form__input--bordered articleExtendedData" name="event-name" placeholder="Name of event*" aria-required="true" type="text">
-                                    <div class="c-form__help-block"></div>
-                                </div>
-
-                                {# START DATE #}
-                                <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
-                                    <input type="text" class="c-form__input c-form__input--bordered articleExtendedData" name="start_date" id="start_date" value="" placeholder="Start date*">
-                                    <div class="c-form__help-block"></div>
-                                </div>
-
-                                {# END DATE #}
-                                <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
-                                    <input type="text" class="c-form__input c-form__input--bordered articleExtendedData" name="end_date" id="end_date" value="" placeholder="End date">
-                                    <div class="c-form__help-block"></div>
-                                </div>
-
-
-                                {# ADDRESS #}
-                                <div class="col-12 c-form__group u-margin-bottom-15">
-                                    <input id="address" class="c-form__input c-form__input--bordered articleExtendedData" name="address" placeholder="Address*" aria-required="true" type="text">
-                                    <div class="c-form__help-block"></div>
-                                </div>
-                                
-
-                                {# SUBURB #}
-                                <div class="col-12 col-md-split col-lg-split c-form__group u-margin-bottom-15">
-                                    <input id="suburb" class="c-form__input c-form__input--bordered " name="suburb" placeholder="Suburb" aria-required="true" type="text">
-                                    <div class="c-form__help-block"></div>
-                                </div>
-
-                                {# STATE #}
-                                <div class="col-12 col-md-split col-lg-split c-form__group u-margin-bottom-15">
-                                    <input id="state" class="c-form__input c-form__input--bordered articleExtendedData" name="state" placeholder="State*" aria-required="true" type="text">
-                                    <div class="c-form__help-block"></div>
-                                </div>
-
-
-                                {# CONTACT #}
-                                <div class="col-12 c-form__group u-margin-bottom-15">
-                                    <input id="contact-name" class="c-form__input c-form__input--bordered articleExtendedData" name="contactname" placeholder="Contact name" aria-required="true" type="text">
-                                    <div class="c-form__help-block"></div>
-                                </div>
-
-                                {# DESCRIPTION #}
-                                <div class="col-12 c-form__group u-margin-bottom-15">
-                                    <textarea id="description"  name="description" class="c-form__input c-form__input--bordered c-event-form_description articleExtendedData" placeholder="Event description*" aria-required="true" type="text"></textarea>
-                                    <div class="c-form__help-block"></div>
-                                </div>
-
-
-                                {# UPLOAD PHOTO #}
-                                <div class="col-12 c-form__group u-margin-bottom-15">
-                                    <div id="uploadFileBtn" data-imgcls="images" data-id="imageArray" class="c-upload-image u-margin-bottom-50">
-                                        <p class="c-upload-image__label" >Upload image </p>
-                                        <p class="c-upload-image__restrictions" >JPEG Maximum 5MB </p>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-3 col-lg-2 c-form__group u-margin-bottom-15">
-                                    <button type="submit" id="" class="c-button c-button--inline c-button--rounded c-button--blue-bordered" name="">Cancel</button>
-                                </div>
-
-                                <div class="col-12 col-md-3 col-lg-2 c-form__group u-margin-bottom-15">
-                                    <button type="submit" id="" class="c-button c-button--inline  c-button--rounded c-button--blue" name="">Submit</button>
-                                </div>
-                                
+                    <div class="row">
+                        <div class="col-12 col-md-7">
+                            <div class="c-page-info__discription">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diorem im dolor sit amet, consectetur adipiscing elit. Suspendisse dictum puru iaculis bit. </p>
                             </div>
-                        </form>
+
+                            <div class="c-event-form">
+                                <div class="">
+                                    <form action="#" method="post" autocomplete="off">
+                                        <div class="row">
+
+                                            {# NAME #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Your name*</label>
+                                                <input id="your-name" class="c-form__input c-form__input--bordered articleExtendedData" name="your-name" placeholder="Your name" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# EMAIL #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Your email*</label>
+                                                <input id="your-email" class="c-form__input c-form__input--bordered articleExtendedData" name="your-email" placeholder="Your email" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# NAME #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Event name*</label>
+                                                <input id="event-name" class="c-form__input c-form__input--bordered articleExtendedData" name="event-name" placeholder="Event name" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# START DATE #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
+                                                <label class="c-form__label">Start time*</label>
+                                                <input id="start_date" class="c-form__input c-form__input--bordered articleExtendedData" name="start_date" placeholder="Start time" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# END DATE #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
+                                                <label class="c-form__label">End time</label>
+                                                <input id="end_date" class="c-form__input c-form__input--bordered articleExtendedData" name="end_date" placeholder="End time" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# CONTACT NAME #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Event contact name</label>
+                                                <input id="contact-name" class="c-form__input c-form__input--bordered articleExtendedData" name="contact-name" placeholder="Event contact name" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# Contact number #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
+                                                <label class="c-form__label">Contact number</label>
+                                                <input id="Contact-number" class="c-form__input c-form__input--bordered articleExtendedData" name="Contact-number" placeholder="Contact number" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# Email address #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
+                                                <label class="c-form__label">Email address</label>
+                                                <input id="email-address" class="c-form__input c-form__input--bordered articleExtendedData" name="email-address" placeholder="Email address" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# Venue name #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Venue name</label>
+                                                <input id="venue-name" class="c-form__input c-form__input--bordered articleExtendedData" name="venue-name" placeholder="Venue name" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# Venue address #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Venue address</label>
+                                                <input id="venue-address" class="c-form__input c-form__input--bordered articleExtendedData" name="venue-address" placeholder="Venue address" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# Website link #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Website link</label>
+                                                <input id="website-link" class="c-form__input c-form__input--bordered articleExtendedData" name="website-link" placeholder="Website link" aria-required="true" type="text">
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# Event Description #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <label class="c-form__label">Event Description</label>
+                                                <textarea id="event-description" class="c-form__textarea articleExtendedData" name="event-description" placeholder="Description"></textarea>
+                                                <div class="c-form__help-block"></div>
+                                            </div>
+
+                                            {# UPLOAD PHOTO #}
+                                            <div class="col-12 c-form__group u-margin-bottom-15">
+                                                <div id="uploadFileBtn" data-imgcls="images" data-id="imageArray" class="c-upload-image u-margin-bottom-50">
+                                                    <p class="c-upload-image__label" >Upload image </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="c-buttonSet">
+                                                    <button type="submit" id="" class="c-button c-button--inline  c-button--black" name="">Submit event</button>
+                                                    <button type="submit" id="" class="c-button c-button--inline c-button--black-bordered" name="">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 offset-md-1">
+                            
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-12 offset-lg-1 col-lg-4">
-            <div class="o-body-container__right-layout j-article-sidebar">
-                {% if config['inventory']['adSpace']['side-fix'][0] is defined %}
-                    <div class="j-adslot" id="{{config['inventory']['adSpace']['side-fix'][0]}}" data-adshape="side-fix"></div>
-                {% endif %}
-            </div>
-        </div>
-
     </div>
-
-    <div class="j-keyword-cont" data-keywords="{{blogData.keywords}}"></div>
-</main><!-- .site-main -->
-
-
-{# {{this.registerJs("Acme.eventMap = new Acme.GoogleMap();")}} #}
+</main>
 
 <script>
     // main script is defered so event listener makes sure

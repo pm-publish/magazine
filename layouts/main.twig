@@ -75,7 +75,7 @@
 
 
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/concat.min.css?v=fa6839a8" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/concat.min.css?v=dce1434f" type="text/css" media="all">
     {% else %}
         <link rel='stylesheet' href='{{networkData.templatePath}}/static/deploy/concat.css' type='text/css' media='all' />
     {% endif %}
@@ -85,7 +85,7 @@
 
 
 
-<!--[if lt IE 9]>
+    <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -109,7 +109,10 @@
         {% set googleAnalyitcsId = networkData.thirdPartyIntegrations['googleAnalytics']['id'] %}
     {% endif %}
 
-
+    <!-- Google AD Code here -->
+    <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+    <meta id="g-ad-id" data-accno="/268436641/">
+    <!-- Google AD Code end -->
 
     {% if googleAnalyitcsId is defined and googleAnalyitcsId is not empty%}
         <!-- Google Analytics u -->
@@ -141,8 +144,7 @@
 
 </head>
 
-
-<body class="body {{ layout }} {{ pageClass }}" data-class="{{ pageClass | split(' ')[0] }}"  data-networkid="{{networkData['id']}}" data-v="27">
+<body class="body {{ layout }} {{ pageClass }} {% if this.params['customClass'] is defined %}{{this.params['customClass'] }} " data-class="{{ pageClass | split(' ')[0] }}"  data-networkid="{{networkData['id']}}" {% endif %} data-v="27">
 
 {{ this.beginBody() }}
     

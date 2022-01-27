@@ -1,5 +1,5 @@
 {% for item in items %}
-<div class="col-12 col-md-6 col-lg-3">
+<div class="col-6 col-md-6 col-lg-3">
     <div class="c-footer__main__container">
         <h3>
             {% if item.label != "" %}
@@ -11,7 +11,7 @@
             {% endif %}
         </h3>
         {% if item.children %}
-        <div class="c-nav c-nav-2 d-none d-md-block">
+        <div class="c-nav c-nav-2">
             <ul class="c-nav__grid">
                 {% for childItem in item.children %}
                     <li>

@@ -1,0 +1,11 @@
+<svg width="105" height="74" viewBox="0 0 105 74" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path d="M60.575 53.416H3.742a2.58 2.58 0 0 1-2.58-2.58V3.742a2.58 2.58 0 0 1 2.58-2.58H77.93a2.58 2.58 0 0 1 2.58 2.58v15.96" stroke="#FEFEFE" stroke-width=".968" stroke-linejoin="round"/>
+        <path stroke="#FEFEFE" stroke-width=".968" d="M74.02 36.21V24.064h28.707v38.385h-25.74"/>
+        <path d="M72.407 36.427V22.773a2.58 2.58 0 0 1 2.58-2.58h26.773a2.58 2.58 0 0 1 2.58 2.58v41.933a2.58 2.58 0 0 1-2.58 2.58H76.665" stroke="#FEFEFE" stroke-width=".968"/>
+        <path d="M63.053 35.998h11.612a2.58 2.58 0 0 1 2.58 2.58v31.934a2.58 2.58 0 0 1-2.58 2.58H63.053a2.58 2.58 0 0 1-2.58-2.58V38.578a2.58 2.58 0 0 1 2.58-2.58z" stroke="#FEFEFE" stroke-width=".968"/>
+        <path d="M88.535 65.673a.968.968 0 1 0 0-1.936.968.968 0 0 0 0 1.936M68.859 71.432a.968.968 0 1 0 0-1.936.968.968 0 0 0 0 1.936" fill="#FEFEFE"/>
+        <path d="M26.805 59.222h28.063" stroke="#FEFEFE" stroke-width=".968" stroke-linecap="round"/>
+        <path d="M1.161 45.308h59.311M49.384 53.094l1.935 6.128M32.288 53.094l-1.935 6.128M60.472 67.715h16.773M60.472 40.901h16.773" stroke="#FEFEFE" stroke-width=".968"/>
+    </g>
+</svg>

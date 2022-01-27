@@ -18,6 +18,15 @@
     font-style: italic;
   }
 
+  .u-heading__large--d2 {
+    @include font-size(50);
+    line-height: 1.16;
+    color: $black;
+    font-family: var(--sec-font);
+    font-weight: $weightBold;
+
+  }
+
   &__link {
     @include font-size(16);
     line-height: 1.5;
@@ -131,6 +140,18 @@
         }
       }
     }
+  }
+}
+
+.c-page-info {
+  &__discription {
+    font-family: $secondaryFont;
+    @include font-size(18);
+    line-height: 1.33;
+    color: $black;
+    font-style: italic;
+    font-weight: $weightRegular;
+    margin-bottom: 30px;
   }
 }
 

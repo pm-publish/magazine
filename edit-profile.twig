@@ -1,22 +1,15 @@
 {{ set(this, 'title', 'Edit Profile') }}
 {% set networkData  = _Network.getNetworkData() %}
-{% set propBlogId   = blogData.additionalInfo['propertylistingsid'] %}
 {% set blogData     = _Blog.getBlog() %}
 {% set config       = _Network.getThemeConfig() %}
 
 <!-- Begin User Profile Page -->
 
-{% set propListingsArr = [] %}
 {% set pwstats = _User.getPaywallStats(true) %}
 {% set plans = _Paywall.getActiveNetworkPaywallPlans() %}
-
-
 {% set userLimit = 10 %}
 {% set user = _User.getUser() %}
 
-{% if user %} 
-    {% set propListingsArr = _User.getUserArticles(user.guid, 0, 10, {'blogs':[propBlogId], 'status': 'published'}) %}
-{% endif %}
 
 
 {% set totalPlanUserCount  = 0 %}
@@ -27,263 +20,179 @@
 
 
 
-
-{% set articleCount = _AppHelper.getApplicationEnv() == 'DEV' ? 0 : 0 %}
-<!-- 3 is job, 4 is property, 5 is event -->
-{% set dev = _AppHelper.getApplicationEnv() == 'DEV' ? false : false %}
-
-<main id="main" class="o-body-container o-body-container-md u-margin-top-60" role="main">
-    <div id="stripekey" class="hidden" >{{_Network.getNetworkData()['stripe_publishable_key']}}</div>
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-12 col-md-8">
-                <div class="c-myAccount c-myAccount-xs">
-                    {{this.render('layouts/partials/messages.twig') | raw}}
+<main>
+    <div id="stripekey" class="u-hide" >{{_Network.getNetworkData()['stripe_publishable_key']}}</div>
+    <div class="account-headerBar">
+        <div class="acme-container">
+            <div class="acme-row">
+                <div class="acme-col-12 mx-auto ">
+                    <p class="account-headerBar__helptext account-headerBar__helptext-xs">Need help with your account? <br class="d-md-none" /><a href="{{networkData.defaultBlogUrl}}/FAQ">Read our FAQs</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-
-                    <h2 class="c-myAccount__head">My Account</h2>
-                    <p class="c-myAccount__helptext">Need help with your account? <br class="d-md-none">Read our <a href="{{networkData.defaultBlogUrl}}/FAQ">FAQ here</a>. </p>
-                    <h4 class="c-myAccount__subhead">My details</h4>
+    <div class="account__info-container">
+        <div class="acme-container">
+            <div class="acme-row">
+                <div class="acme-col-12 acme-col-lg-8 acme-col-xl-7 acme-col-xxl-5 acme-offset-xl-1 acme-offset-xxl-2">
                     
                     
-                    {# ERROR TEXT #}
-                    <div id="error-container" class="c-form__group c-form__group--horizontal has-error" style="display:none">
-                        <label class="c-form__label c-account-form__label" for="first-name"></label>
-                        <p id="account-form__errorText" class="c-account-form__errorText u-margin-bottom-10"></p>
-                    </div>
-
-                    <form id="profile-form" class="c-form" action="#" method="post" autocomplete="off">
-                        <input type="hidden" name="_csrf" value="{{_AppHelper.getCsrfToken()}}" />
-                        <input type="hidden" name="profileImage" id="userProfileImage" value="" />
-
-                        {# FIRST NAME #}
-                        <div class="c-form__group c-form__group--horizontal has-error">
-                            <label class="c-form__label c-account-form__label" for="first-name">First name</label>
-                            <input id="first-name" class="c-form__input c-form__input--bordered c-account-form__input" name="firstname" placeholder="Full Name" aria-required="true" type="text" value="{{user.firstname}}">
-                            <div class="c-form__help-block">Please enter your first name</div>
-                        </div>
-
-                        {# LAST NAME #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="last-name">Last name</label>
-                            <input id="last-name" class="c-form__input c-form__input--bordered c-account-form__input" name="lastname" placeholder="Last Name" aria-required="true" type="text" value="{{user.lastname}}">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-                        {# EMAIL #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="email">Email</label>
-                            <input id="email" class="c-form__input c-form__input--bordered c-account-form__input" name="email" placeholder="email" aria-required="true" type="text" value="{{user.email}}">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-                        {# PASSWORD #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="password">Password</label>
-                            <input id="password" class="c-form__input c-form__input--bordered c-account-form__input" name="password" placeholder="Password" aria-required="true" type="password">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-                        {# PASSWORD VERIFY #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="verifypassword">Verify password</label>
-                            <input id="verifypassword" class="c-form__input c-form__input--bordered c-account-form__input" name="verifypassword" placeholder="Set new password" aria-required="true" type="password">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-
-                        {# ADDRESS1 #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="address1">Street address</label>
-                            <input id="address1" class="c-form__input c-form__input--bordered c-account-form__input" name="address1" placeholder="Street address" aria-required="true" type="text" value="{{user.address1}}">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-                        {# ADDRESS2 #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="address2">Street address 2</label>
-                            <input id="address2" class="c-form__input c-form__input--bordered c-account-form__input" name="address2" placeholder="Street address line 2 (optional)" aria-required="true" type="text" value="{{user.address2}}">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-                        {# CITY #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="city">City / Town</label>
-                            <input id="city" class="c-form__input c-form__input--bordered c-account-form__input" name="city" placeholder="City / Town" aria-required="true" type="text" value="{{user.city}}">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-                        {# POSTCODE #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="postcode">ZIP / Postcode</label>
-                            <input id="postcode" class="c-form__input c-form__input--bordered c-account-form__input" name="postcode" placeholder="Postcode" aria-required="true" type="text" value="{{user.postcode}}">
-                            <div class="c-form__help-block"></div>
-                        </div>
-
-
-                        {# ORGANISATION #}
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-15">
-                            <label class="c-form__label c-account-form__label" for="organisation">Organisation</label>
-                            <input id="organisation" class="c-form__input c-form__input--bordered c-account-form__input" name="abn_business_name"  value="{{user.business_name}}" aria-required="true" type="text">
-                            <div class="c-form__help-block"></div>
-                        </div>
-                        
-
-                        {# EMAIL ALERTS #}
-                        {# <div class="c-form__group u-margin-top-20">
-                            <div class="button-set">
-                                <label>
-                                    <input id="alerts" name="alerts" type="checkbox" class="c-form__checkbox validate[required]"><span><!-- fake radio --></span> Send me daily email alerts
-                                </label>
-                            </div>
-                        </div> #}
-                        
-
-                        {# SUBMIT #}
-                        <div class="form-group no-margin-bottom  u-margin-top-20">
-                            <button type="submit" id="" class="c-button c-button--rounded c-button--blue" name="">Update</button>
-                        </div>
-                    </form>
-
-                    <div class="o-rule"><hr></div>
-
-
-
-                    {% if pwstats.userManager == true %}
-                    <div class="c-myAccount__Subscription">
-                        <h4 class="c-myAccount__subhead">Subscription details</h4>
-                        
-
-                        {% if pwstats['type'] == 'time' %}
-
-                            {# CURRENT PLAN #}
-                            <div class="c-form__group c-form__group--horizontal">
-                                <label class="c-form__label c-account-form__label" for="">Current plan</label>                                                                                                                                                                                                 {# Make plural #}
-                                <div class="c-account-form__static-text">{{pwstats['name']}} at {{pwstats['currency']|replace({"AUD": "$", "NZD": "$", "GBP": "£", "USD": "$", "EUR": "€"})}}{{ pwstats['plan_value']/100}} 
-                                    {% if pwstats['period_count'] == 1 %} 
-                                        per {{pwstats['period']}} 
-                                    {% elseif pwstats['period_count'] > 1 %}
-                                        per {{pwstats['period_count']}} {{pwstats['period']}}s
-                                    {% endif %}
-                                    
-                                    {% if pwstats['status'] == 'cancelled' %}
-                                        <a id="cancelAccount" href="#" class="c-account-form__btn-cancel c-account-form__btn-cancel--restart">Restart Subscription</a>
-                                    {% else %} 
-                                        <a id="cancelAccount" href="#" class="c-account-form__btn-cancel c-account-form__btn-cancel--cancel">Cancel subscription</a>
-                                    {% endif %} 
-
-                                </div>
-                            </div>
-
-
-                            {# STATUS #}
-                            <div class="c-form__group c-form__group--horizontal u-margin-top-15 {% if pwstats['status'] == 'cancelled' %} u-margin-bottom-30 {% endif %}">
-                                <label class="c-form__label c-account-form__label" for="">Status</label>
-
-                                <!-- Use this for Paid -->
-                                <div class="c-account-form__static-text">
-                                    <span class="c-account-form__static-text-{{pwstats['status']}}">{{ pwstats['status'] | capitalize }}</span>
-                                {% if pwstats['status'] == 'cancelled' %}
-                                        <p class="c-account-form__cancel-msg u-mobile-margin-top-10">Your account will be permanently deleted 30 days after the most recent payment date.</p>
-                                {% endif %} 
-                                </div>
-
-                            </div>
-                            
-                            {% if pwstats.userManager == true and totalPlanUserCount > 0 %}
-                                {# USERS #}
-                                <div class="c-form__group c-form__group--horizontal u-margin-top-15{% if pwstats['status'] == 'cancelled' %} u-mobile-margin-top-60{% endif %}">
-                                    <label class="c-form__label c-account-form__label" for="">Users</label>
-                                    <div class="c-account-form__static-text">{{ pwstats['user_count'] }}</div>
-                                </div>
-                            {% endif %}
-
-
-                            {# NEXT PAYMENT #}
-                            {% if pwstats['status'] != 'free' %}
-                                <div class="c-form__group c-form__group--horizontal no-margin-bottom u-margin-top-15">
-                                    <label class="c-form__label c-account-form__label" for="">Next payment</label>
-                                    <div class="c-account-form__static-text">{{ pwstats['expiry_date']}}</div>
-                                </div>
-                            {% endif %} 
-
-
-
-                        {% elseif pwstats['type'] == 'article' %}
-                            <div class="c-form__group c-form__group--horizontal">
-                                <label class="c-form__label c-account-form__label" for="">Current plan</label>
-                                <div class="c-account-form__static-text">
-                                    <span>{{ pwstats['name'] }}</span> 
-                                </div>
-                            </div>
-
-                            <div class="c-form__group c-form__group--horizontal">
-                                <label class="c-form__label c-account-form__label" for="">Articles Remaining</label>
-                                <div class="c-account-form__static-text">
-                                    <span>{{ pwstats['article_count']}}</span>
-                                </div>
-                            </div>
-
-                        {% elseif pwstats['type'] == 'signup' %}
-                            <div class="c-form__group c-form__group--horizontal">
-                                <label class="c-form__label c-account-form__label" for="">Current plan</label>
-                                <div class="c-account-form__static-text">
-                                    <span>{{ pwstats['name'] }}</span> 
-                                </div>
-                            </div>
-
-                        {% endif %} 
-
-
-                    </div>
+                    
                     
 
 
-                    <div class="o-rule"><hr></div>
+
+                {# ---------------------------------- #}
+                {#           USER DETAILS             #}
+                {# ---------------------------------- #}
+                    <div class="infoBox infoBox-xs">
+                        <div class="infoBox__area js-profileViewOnly">
+                            <div class="infoBox__head">
+                                <div class="infoBox__head-label">My account</div>
+                                <a href="javascript:;" class="infoBox__head-link js-cus_acnt__showForm">Edit your details</a>
+                            </div>
+                            <div class="infoBox-dataGrid">
+                                <ul>
+                                    <li class="infoBox-dataGrid-item">
+                                        <span class="infoBox-dataGrid-item--label">First name</span>
+                                        <span class="infoBox-dataGrid-item--value">{{user.firstname}}</span>
+                                    </li>
+                                    <li class="infoBox-dataGrid-item">
+                                        <span class="infoBox-dataGrid-item--label">Last name</span>
+                                        <span class="infoBox-dataGrid-item--value">{{user.lastname}}</span>
+                                    </li>
+                                    <li class="infoBox-dataGrid-item">
+                                        <span class="infoBox-dataGrid-item--label">Email</span>
+                                        <span class="infoBox-dataGrid-item--value">{{user.email}}</span>
+                                    </li>
+                                    <li class="infoBox-dataGrid-item">
+                                        <span class="infoBox-dataGrid-item--label">Password</span>
+                                        <span class="infoBox-dataGrid-item--value">**********</span>
+                                    </li>
+                                    <li class="infoBox-dataGrid-item">
+                                        <span class="infoBox-dataGrid-item--label">Organisation</span>
+                                        <span class="infoBox-dataGrid-item--value">{{user.business_name}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            {# FLASH MESSAGE FOR PROFILE UPDATE #}
+                            {{this.render('layouts/partials/messages.twig') | raw}}
 
 
 
+                            <div class="infoBox-form u-hide ">
+                                <form id="profile-form" class="c-form infoBox-form__container" action="#" method="post" autocomplete="off">
+                                    <input type="hidden" name="_csrf" value="{{_AppHelper.getCsrfToken()}}" />
+                                    <input type="hidden" name="profileImage" id="userProfileImage" value="" />
 
-
-                    <form id="update-card-form" action="/update" method="post">
-                        <div class="">
-                            <label class="c-form__label" for="creditcarddetails">Change your credit card details</label>
-                                <div class="three-column">
-                                    <div id="card-element">
-                                    <!-- a Stripe Element will be inserted here. -->
+                                    {# FIRST NAME #}
+                                    <div class="infoBox-form__group">
+                                        <label class="infoBox-form__label" for="first-name">First name</label>
+                                        <input id="first-name" class="infoBox-form__input" name="firstname" placeholder="Full Name" aria-required="true" type="text" value="{{user.firstname}}">
+                                        <div class="cus_acnt__form__help-block"></div>
                                     </div>
-                                </div>
-                        </div>
-                        
-                        <div class="c-form__group c-form__group--horizontal u-margin-top-10">
-                            <label class="c-form__label c-account-form__label" for="">Payment method</label>
-                            <div class="c-account-form__static-text">credit card/**** **** **** {{ pwstats['card_last_4']}}</div>
-                        </div>
-                        
-                        <div class="c-form__group no-margin-bottom u-margin-top-15">
-                            <button type="submit" id="btnContact" class="c-button c-button--rounded c-button--blue" name="contact-button">Update</button>
-                        </div>
-                    </form>
-                    {% endif %}
 
+                                    {# LAST NAME #}
+                                    <div class="infoBox-form__group">
+                                        <label class="infoBox-form__label" for="last-name">Last name</label>
+                                        <input id="last-name" class="infoBox-form__input" name="lastname" placeholder="Last Name" aria-required="true" type="text" value="{{user.lastname}}">
+                                        <div class="cus_acnt__form__help-block"></div>
+                                    </div>
+
+                                    {# EMAIL #}
+                                    <div class="infoBox-form__group">
+                                        <label class="infoBox-form__label" for="email">Email</label>
+                                        <input id="email" class="infoBox-form__input" name="email" placeholder="email" aria-required="true" type="text" value="{{user.email}}">
+                                        <div class="cus_acnt__form__help-block"></div>
+                                    </div>
+
+                                    {# PASSWORD #}
+                                    <div class="infoBox-form__group">
+                                        <label class="infoBox-form__label" for="password">Password</label>
+                                        <input id="password" class="infoBox-form__input" name="password" placeholder="Password" aria-required="true" type="password">
+                                        <div class="cus_acnt__form__help-block"></div>
+                                    </div>
+
+                                    {# PASSWORD VERIFY #}
+                                    <div class="infoBox-form__group">
+                                        <label class="infoBox-form__label" for="verifypassword">Verify password</label>
+                                        <input id="verifypassword" class="infoBox-form__input" name="verifypassword" placeholder="Set new password" aria-required="true" type="password">
+                                        <div class="cus_acnt__form__help-block"></div>
+                                    </div>
+
+                                    {# ORGANISATION #}
+                                    <div class="infoBox-form__group">
+                                        <label class="infoBox-form__label" for="organisation">Organisation</label>
+                                        <input id="organisation" class="infoBox-form__input" name="abn_business_name"  value="{{user.business_name}}" aria-required="true" type="text">
+                                        <div class="cus_acnt__form__help-block"></div>
+                                    </div>
+                                    
+
+                                    
+
+                                    {# SUBMIT #}
+                                    <div class="infoBox-form__group infoBox-form__btns">
+                                        <button type="submit" id="" class="js-cus_acnt__HideForm account__btn account__btn--solid infoBox-form__button" name="">Save changes</button>
+                                        <a href="javascript:;" id="" class="js-cus_acnt__HideForm account__btn account__btn--bordered infoBox-form__button" name="">Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+
+
+                        {% if pwstats.userManager == true %}
+                        <div class="infoBox__area u-margin-top-40">
+                            <div class="infoBox__head">
+                                <div class="infoBox__head-label">Payment details</div>
+                                <a href="javascript:;" class="infoBox__head-link js-cus_acnt__showForm">Update credit card</a>
+                            </div>
+                            <div class="infoBox-dataGrid">
+                                <ul>
+                                    <li class="infoBox-dataGrid-item">
+                                        <span class="infoBox-dataGrid-item--label">Payment method</span>
+                                        <span class="infoBox-dataGrid-item--value">**** **** **** {{ pwstats['card_last_4']}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="infoBox-form u-hide">
+                                <form id="update-card-form" action="/update" method="post">
+                                    <div class="form__group">
+                                        <label class="form__label c-form__label" for="creditcarddetails">Credit card</label>
+                                        <div class="three-column">
+                                            <div id="card-element">
+                                            <!-- a Stripe Element will be inserted here. -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="card-errors" class="profile-section__card-errors" role="alert"></div>
+
+                                    <div class="infoBox-form__horizontal-group u-margin-top-10">
+                                        <button type="submit" id="" class="js-cus_acnt__HideForm infoBox-form__button account__btn account__btn--solid" name="contact-button">Update details</button>
+                                        <a href="javascript:;" id="" class="js-cus_acnt__HideForm infoBox-form__button account__btn account__btn--bordered" name="">Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
                 </div>
 
 
 
-
-
-
-
-
-                
-
-
+                {# ---------------------------------- #}
+                {#           PLAN DETAILS             #}
+                {# ---------------------------------- #}
                 {% if pwstats.userManager == true %}
-                    <div class="o-rule"><hr></div>
+                    {% set totalPlanUserCount = pwstats['user_count'] %}
 
                     {% set managedUsersObj = _User.getPaywallManagedUsers({"limit": userLimit}) %}
 
@@ -298,150 +207,365 @@
 
 
                     {% set managedUserCount = managedUsers | length %}
+
                     {% if managedUsersObj['totalCount'] is defined %}
                         {% set managedUserCount = managedUsersObj['totalCount'] %}
                     {% endif %}
 
 
-                    {% set remainingUsers = totalPlanUserCount - managedUserCount %}
+                    {% set remainingUsers       = totalPlanUserCount - managedUserCount %}
                     {% set cardSupplied = pwstats['card_last_4'] ? 't' : 'f' %}
 
-                    <h4 class="c-myAccount__subhead">Change plan</h4>
+                    <div class="acme-col-12 acme-col-lg-4 acme-col-xl-3 acme-col-xxl-3">
+                        {% set planPeriod = pwstats.period %}
+                        {% set planPeriodCount = "" %}
 
-                    <div id="currentPlanStats" class="c-plans c-plans-xs"
-                        data-cardsupplied="{{cardSupplied}}"
-                        data-currentUsers="{{managedUserCount}}"
-                        data-currentPeriod="{{pwstats['period']}}"
-                        data-currentCost="{{pwstats['plan_value']}}"
-                        data-currentType="{{pwstats['type']}}"
-                        data-expiry="{{pwstats['expiry_date']}}"
-                        data-currentplanperiodcount="{{pwstats['period_count']}}"
-                        >
-                        {% set break = false %}
+                        {% if pwstats.period_count > 1 %}
+                            {% set planPeriodCount = pwstats.period_count ~ " " %}
+                            {% set planPeriod = pwstats.period ~ 's' %}
+                        {% endif %}
 
-                        {% for plan in plans if not break %}
 
-                            {% set selected = '' %}
+
+
+                        <div class="">
+                            
+                            {% if pwstats['status'] != 'free' %}
+                                <div class="planInfo__top">
+                                    <div class="planInfo__top-img">
+                                        <img src="{{networkData.templatePath}}/static/icons/pay_icon.png" alt="Icon" />
+                                    </div>
+                                    <div class="planInfo__top-content">
+                                        <div class="planInfo__top-content-title">Payment due</div>
+                                        <div class="planInfo__top-content-date">{{ pwstats['expiry_date'] | date('d-m-Y')}}</div>
+                                    </div>
+                                </div>
+
+
+                            {% endif %}
+
+
+                            <div class="planInfo__middle">
+                                
+                                <div class="planInfo">
+                                    <p class="planInfo__plan-title">Your plan</p>
+                                    <p class="planInfo__plan-name">{{pwstats['name']}}</p>
+
+
+                                    {% if pwstats.type == 'signup' %}
+                                        <div class="planInfo__costWrap">
+                                            <span class="planInfo__amount">Free</span>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if pwstats['type'] == 'time' %}
+                                        <div class="planInfo__costWrap">
+                                            <span class="planInfo__amount">{{pwstats['currency']|replace({"AUD": "$", "NZD": "$", "GBP": "£", "USD": "$", "EUR": "€"})}}{{ pwstats['plan_value']/100}}</span>
+                                            <span class="planInfo__month">/{{planPeriodCount}}{{planPeriod}}</span>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="planInfo__status {% if pwstats['status'] == 'cancelled' %} cancelled {% endif %}">
+                                        <p class="planInfo__status-text">Status</p>
+                                        <p class="planInfo__status-value">
+                                            {% if pwstats['status'] != 'free' %}
+                                                {{ pwstats['status'] | capitalize }}
+                                            {% else %}
+                                                Free
+                                            {% endif %}
+                                        </p>
+                                    </div>
+
+
+                                    {% if pwstats.type == 'article' %}
+                                        <div class="planInfo__status">
+                                            <p class="planInfo__status-text">Articles Remaining</p>
+                                            <p class="planInfo__status-value">{{ pwstats['article_count']}}</p>
+                                        </div>
+                                        <p class="planInfo__article-info">To top up, choose an article plan below</p>
+
+                                    {% endif %}
+
+
+                                    {% if totalPlanUserCount | length > 0 %}
+                                        <div class="planInfo__status">
+                                            <p class="planInfo__status-text">My Users</p>
+                                            <p class="planInfo__status-value">{{ managedUserCount }} of {{totalPlanUserCount}}</p>
+                                        </div>
+                                    {% endif %}
+
+
+
+                                </div>
+
+
+
+                                <div class="planInfo__subInfo">
+                                    {% if pwstats['status'] == 'cancelled' %}
+                                        <a href="javascript:;" id='cancelAccount' class="planInfo__subInfo-button account__btn account__btn--solid" name="">Restart subscription</a>
+                                    {% else %}
+                                        <a href="javascript:;" id='cancelAccount' class="planInfo cancel-subBtn">Cancel subscription</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    {# ---------------------------------- #}
+    {#           PLAN MANAGER             #}
+    {# ---------------------------------- #}
+
+    {% if pwstats.userManager == true %}
+    <div class="acme-container u-margin-top-80">
+        <div class="acme-row">
+
+
+            {# ---------------------------------- #}
+            {#           LIST OF PLANS            #}
+            {# ---------------------------------- #}
+            <div class="acme-col-12 acme-col-lg-12 acme-col-xl-10 acme-col-xxl-8 acme-offset-xl-1 acme-offset-xxl-2">
+                <div class="plan-table__user-head">
+                    <div class="plan-table__user-head-label">Choose a plan</div>
+                    <div class="plan-table__user-head-sub-text">You will be asked to confirm before purchasing. </div>
+                </div>
+
+                <div class="plan-table js-tableView" id="currentPlanStats"
+                    data-cardsupplied="{{cardSupplied}}"
+                    data-currentPeriod="{{pwstats['period']}}"
+                    data-currentCost="{{pwstats['plan_value']}}"
+                    data-currentType="{{pwstats['type']}}"
+                    data-expiry="{{pwstats['expiry_date']}}"
+                    data-currentplanperiodcount="{{pwstats['period_count']}}">
+
+                    <table class="plan-table__table" cellspacing="0">
+                        <thead class="plan-table__header">
+                            <tr class="">
+                                <th class="plan-table__header-labels">Plan name</th>
+                                <th class="plan-table__header-labels" colspan="3">Cost</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                        {% for plan in plans %}
+
+                            {% set description = plan.description | split("!*!") %}
+                            {% set data = {} %}
+                            {% if description | length > 1 %}
+                                {% set data = _AppHelper.jsonDecode( description[0] ) %}
+                                {% set description = description[1] %}
+                            {% else %}
+                                {% set description = description[0] %}
+                            {% endif %}
+
+                            {% if data['showplan'] is defined and data['showplan'] == false %}
+                                {% set continue = true %}
+                            {% endif %}
+
                             {% set userCount = plan.user_count %}
                             {% set planCost = plan.plan_value / 100 %}
                             {% if planCost == 19.89 %}
                                 {% set planCost = 19.90 %}
                             {% endif %}
-                            {# {% set log = _AppHelper.log(pwstats) %} #}
-                            {% if plan.guid == pwstats['plan_guid']  and pwstats['type'] != 'article' %}
-                                {% set selected = 'selected' %}
+
+                            {% set planPeriod = plan.period %}
+                            {% set planPeriodCount = "" %}
+
+                            {% if plan.period_count > 1 %}
+                                {% set planPeriodCount = plan.period_count ~ " " %}
+                                {% set planPeriod = plan.period ~ 's' %}
                             {% endif %}
-                            <div class="col-12 col-md-6 col-lg-4 u-margin-bottom-30">
-                                <div class="c-plans__block c-plans__block-xs {% if selected == 'selected' %} selected {% else %}  j-setplan {% endif %}"
-                                    data-planid          = "{{plan.guid}}"
-                                    data-planusercount   = "{{userCount}}"
-                                    data-plancost        = "{{plan.plan_value}}"
-                                    data-planperiod      = "{{plan.period}}"
-                                    data-trialstatus     = "{{plan['trial_status']}}"
-                                    data-planType        = "{{plan.type}}"
-                                    data-planPeriodCount = "{{plan.period_count}}"
-                                >
-                                    <span class="c-plans__name c-plans__name--{{ selected }}">{{plan.plan_name}}</span>
-                                    {% if config['managed users'] is defined and config['managed users'] %}
-                                        <span class="c-plans__usercount c-plans__usercount--{{ selected }}">{{userCount}} users</span>
-                                    {% endif %}
-                                    {% if plan.type != 'signup' %}
-                                        <h3 class="c-plans__price c-plans__price--{{ selected }}">${{planCost}}</h3>
-                                    {% endif %}
-                                    <div class="c-plans__button c-plans__button--{{ selected }}"></div>
-                                </div>
-                            </div>
 
-
-
-                            {# {% set break = true %} #}
-                        {% endfor %}
-
-                    </div>
-                        
-
-
-                    {% if totalPlanUserCount > 0 %}
-                        <div class="c-myAccount__AddUsers u-margin-top-40">
-                            <h4 class="c-myAccount__subhead">My users</h4>
-                            <div class="c-myAccount__user-counts">
-                                <a href="#" id="addManagedUser">+ Add user</a> 
-                                <span>{{managedUserCount}} of {{totalPlanUserCount}} used</span>
-                            </div>
-                        </div>
-
-
-
-
-
-
-                        <div id="createManagedUser"></div>
-                        <a id="createUserErrorMessage"></a>
-
-
-                        <div class="form-group no-margin-bottom">
-                            <div class="c-myAccount__Search">
-
-                            {# {% if totalPlanUserCount > userLimit and managedUserCount >= userLimit %}  #}
-                                <div id="menu-search" class="c-form c-managed-user-search u-margin-bottom-20">
-                                    <form method="get" id="managed-user-search" action="">
-                                        <div style="position:relative">
-                                            <input id="managed-user-search-field" name="s" type="text" placeholder="Find a user" class="c-form__input">
-                                            <button type="submit" class="c-managed-user-search__icon"></button>
-
-                                            {# <input type="search" class="managed-users-search__field" name="s" id="managed-user-search-field" placeholder="Find a user" required="">
-                                            <button class="managed-users-search__button" type="submit" id="user-search-submit">
-                                                Search
-                                            </button> #}
-                                        </div>
-                                    </form>
-                                </div>
-                            {# {% endif %} #}
-
-
-
-                                <div class="c-myAccount__Search__Results">
-                                    <ul id="managedUsers">
-                                        {% for user in managedUsers %}
-                                            <li id="{{user.id}}" class="c-managed-user">
-                                                <p class="c-managed-user__email j-email">{{user.email}}</p>
-                                                <a class="c-managed-user__close j-delete "></a>
-                                                <a class="c-managed-user__edit j-edit"></a>
-                                            </li>
-                                        {% endfor %}
-
-                                        {# <li class="text-center">No users found</li> #}
-                                    </ul>
-                                    
-                                    {% if totalPlanUserCount > userLimit and managedUserScreenCount >= userLimit %} 
-
-                                        {{ this.render('partials/ajaxarticles_new.twig', {
-                                            name            : "user-load",
-                                            label           : "Load more",
-                                            buttonClass     : "c-button c-button--rounded c-button--blue-bordered  u-margin-top-40",
-
-                                        }) | raw }}
-
-                                    {% endif %}
+                            <tr class="plan-table__row j-plan-details {% if plan.guid == pwstats['plan_guid'] %} active {% endif %} view"
+                                data-planid          = "{{plan.guid}}"
+                                data-planusercount   = "{{userCount}}"
+                                data-plancost        = "{{plan.plan_value}}"
+                                data-planperiod      = "{{plan.period}}"
+                                data-trialstatus     = "{{plan['trial_status']}}"
+                                data-planType        = "{{plan.type}}"
+                                data-planPeriodCount = "{{plan.period_count}}">
+                                <td class="plan-table__col">
+                                    <span class="plan-table__title">{{plan.plan_name}}</span>
+                                </td>
+                                {% if plan.type != 'signup' %}                                                            
+                                    <td class="plan-table__col">
+                                        <span class="plan-table__price">
+                                        {{plan.currency|replace({"AUD": "$", "NZD": "$", "GBP": "£", "USD": "$", "EUR": "€"})}}{{planCost|number_format(2, '.', ',')}}
+                                        {% if plan.type != 'article' %}                
+                                            /&nbsp;{{planPeriodCount}}{{planPeriod}}</span>
+                                        {% endif %}
+                                    </td>
+                                    {% else %}
+                                    <td class="plan-table__col">
+                                        <span class="plan-table__price">Free</span>
+                                    </td>
+                                {% endif %}
                                 
-                                    <button class="c-button c-button__right c-button--rounded" type="submit" id="user-search-clear" style="display:none;">
-                                        Clear search
-                                    </button>
+                                <td class="plan-table__col">
+                                    <span class="plan-table__feature js-toggleTableRow">View features</span>
+                                </td>
+                                <td class="plan-table__col">
+                                    {% if plan.guid != pwstats['plan_guid']  or pwstats.type == 'article' %}
+                                        <a href="javascript:;" class="plan-table__purchase j-setplan">Purchase</a>
+                                    {% else %}
+                                        <a href="javascript:;" class="plan-table__purchase">Your Plan</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr class="folded">
+                                <td colspan="4">
+                                    <div class="plan-features">
+                                        <ul class="plan-features__row">
+                                            {% for feature in description | split(";") %}
+                                                <li class="plan-features__item">{{ feature }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
-                                </div>
 
-                            </div>
+
+
+
+
+
+
+
+
+                {# ---------------------------------- #}
+                {#           LIST OF USERS            #}
+                {# ---------------------------------- #}
+
+                {% if pwstats['type'] == 'time' and totalPlanUserCount > 0 %}
+                <div class="acme-row">
+                    <div class="acme-col-12 ">
+                        <div class="plan-table__user-head">
+                            <div class="plan-table__user-head-label">My users</div>
+                            <div class="plan-table__user-head-sub-text">You can add, search and remove users below.</div>
                         </div>
-                        
-                    {% endif %}
-
-
-                {% endif %}
-
-
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="managed-users ">
+        <div class="acme-container">
+            <div class="acme-row">
+                <div class="col-12 acme-offset-xl-1 acme-offset-xxl-2 acme-col-xl-10 acme-col-xxl-8">
+
+                    {% set usersLeft = totalPlanUserCount > 0 ? totalPlanUserCount -1 : totalPlanUserCount %}
+                    <div class="managed-users__addition">
+
+                        {% set addUserClass = "" %}
+                        {% if managedUserCount >= totalPlanUserCount %}
+                            {% set addUserClass = "u-hide" %}
+                        {% endif %}
+
+                        <div class="managed-users__addition-btn  ">
+                            <a id="addManagedUser" href="javascript:;" class="account__btn account__btn--bordered js-addUserButton {{addUserClass}}">Add user</a>
+                            <p id="addUserLabel"  class="managed-users__label u-hide">Add user</a>
+                        </div>
+                        <div class="managed-users__allot-wrap">
+                            <img src="{{networkData.templatePath}}/static/icons/user_icon.png" alt="user" class="img-fluid managed-users__allot-wrap--image" />
+                            <p class="managed-users__allot-wrap--text">Allocated users:</p>
+                            <p class="managed-users__allot-wrap--text strong js-usercount">{{managedUserCount}} of {{totalPlanUserCount}}</p>
+                        </div>
+                    </div>
+                    <div class="managed-users__addSec">
+                        <div id="createManagedUser"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# <a id="createUserErrorMessage"></a> #}
+
+    <div class="acme-container u-margin-bottom-80">
+        <div class="acme-row">
+            <div class="col-12 acme-offset-xl-1 acme-offset-xxl-2 acme-col-xl-10 acme-col-xxl-8">
+
+                {% if totalPlanUserCount > userLimit and managedUserCount >= userLimit %} 
+                <form method="get" id="managed-user-search" class="managed-users__search-form" action="">
+                    <div class="managed-users__search-field">
+                        <span>
+                            <img src="{{networkData.templatePath}}/static/icons/icons-navigation-search.svg" />
+                        </span>
+                        <input id="managed-user-search-field" name="s" type="text" placeholder="Search users" class="account__form__input" required="" />
+                    </div>
+
+                    <button type="submit" class="managed-users__search-btn account__btn account__btn--solid" type="submit" id="user-search-submit">Search</button>
+                    <button type="submit" class="managed-users__search-btn account__btn account__btn--solid u-hide" type="submit" id="user-search-clear">Clear</button>
+                </form>
+
+
+                {# <p class="managed-users__show-user">
+                    {% set resultString = managedUserScreenCount < 2 ? 'user' : 'users' %}
+                    Showing <span id="visible_user_count">{{managedUserScreenCount}}</span> {{resultString}}
+                </p> #}
+                {% endif %}
+
+
+
+                <ul id="mangedUsers" class="user-grid__list">
+                {% if managedUserCount == 0 %}
+                    <li id="nousers" class="no-data">No users found</li>
+                {% else %}
+                    
+                    {% for user in managedUsers %}
+                    <li id="{{user.id}}" class="managed-user__item">
+                        <div>
+                            <p class="managed-user__name">{{user.firstname}} {{user.lastname}}</p>
+                            <p class="managed-user__email">{{user.email}}</p>
+                        </div>
+                        <div style="margin-left:auto">
+                            <a href="javascript:;" class="managed-user__remove j-delete userdetails__button">
+                                <span class="icon fa fa-trash"></span>
+                                <span>Remove</span>
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+
+
+                {% if totalPlanUserCount > userLimit and managedUserScreenCount >= userLimit %} 
+                    {{ this.render('partials/ajaxarticles_new.twig', {
+                        name            : "user-load",
+                        buttonClass     : "managed-users__more",
+                        label           : "Load more"
+                    }) | raw }}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {# if time users #}
+    {% endif %} 
+{# plan manager #}
+{% endif %}
+    
 
 </main>
 
@@ -449,32 +573,27 @@
 
 
 
+
+
 <script>
-    // main script is defered so event listener makes sure
-    // defered script is loaded before this runs
     document.addEventListener("DOMContentLoaded", function(event) {
 
-
-        Acme.userController = new Acme.UserProfileController();
-
-        Acme.userFeed = new Acme.View.articleFeed({
-            container       : 'managedUsers',
-            offset          : 10,
-            limit           : 10,
-            model           : Acme.userController,
-            name            : 'user-load',
-            label           : 'Load more',
-            loadtype        : 'user',
-            card_class      : 'userdetails',
-            cardTemplate    : 'managed_user'
+        var usercard = new Acme.Usercard();
+        Acme.userController = new Acme.UserProfileController({
+            currentUserCount: "{{managedUserCount}}",
+            planUserCount: "{{totalPlanUserCount}}"
         });
 
-
-
-
+        Acme.userFeed = new Acme.View.UserFeed({
+            model: usercard, 
+            limit: "{{userLimit}}",
+            offset: "{{userLimit}}", 
+            loadtype: 'user',
+            failtext: null, 
+            template: 'managed_user',
+            container: $('#mangedUsers'),
+            controller: Acme.userController,
+            card_class: "userdetails",
+        });
     });
 </script>
-
-
-
-<!-- //End User Profile Page -->

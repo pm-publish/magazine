@@ -127,14 +127,12 @@
     {% set featured = article.media[0].type %}
 {% endif %}
 
-
 {% set paragraphs = ArticleContent | split('</p>') %}
 {% set firstPara = paragraphs | first ~ ('</p>') %}
 
 {% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) %}
 {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate, 'F, Y') %}
 {% set updateDate = _AppHelper.getDefaultTimezoneDateTime(article.updatedDateTime,'F j, Y') %}
-
 
 <main id="main" class="o-body-container o-body-container-md" role="main" data-paywall-type="{{paywallType}}">
     <div class="c-article c-article-xs">
@@ -209,15 +207,6 @@
                                 <div class="c-article__category">
                                     {{article.label}}
                                 </div>
-                                {% if article.media|length > 1 %}
-                                <div class="c-article__posted-on">
-                                    <time class="c-article__published">{{article.publishedDate}}</time>
-                                    {% if updated %}
-                                    <time class="c-article__updated">Updated
-                                        {{ updateDate | capitalize }}</time>
-                                    {% endif %}
-                                </div>
-                                {% endif %}
                             </div>
                           
 
@@ -265,12 +254,9 @@
                             </div>
                         </div>
                     </div>
-
                     {% if article.userHasEditArticleAccess is defined and article.userHasEditArticleAccess == 1 %}
                         <a href="{{article.editUrl}}" target="_blank" class="c-article__edit-link" data-access="{{article.userHasEditArticleAccess}}">Edit article</a>
                     {% endif %}
-
-
                     <div class="">
                         {% if articleImg %}
 
@@ -297,12 +283,28 @@
                         {% endif %}
                     </div>
 
-                    <div class="c-article__main-content">
-                        <h2>{{firstPara | raw}}</h2>
-                        <div class="c-article__container">
-                            {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
+                    <div class="{% if showPaywall == true %} c-article__main__paywall-container {% endif %}"> 
+                        <div class="c-article__main-content">
+                            <h2>{{firstPara | raw}}</h2>
+                            <div class="c-article__container">
+                                {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
+                            </div>
                         </div>
                     </div>
+                    {% set keywords = article.keywords | split(',') %}
+                    {% if keywords | length > 0 %}
+                        <div class="c-article__keywords">
+                            <ul>
+                                {% for keyword in keywords %}
+                                    {% if keyword is defined and keyword is not empty %}
+                                        <li>
+                                            <a href="{{_Blog.getUrl()}}/search?s={{keyword}}">{{keyword}}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
                 </div>
                 {% if config['inventory']['adSpace']['side-fix'][0] is defined %}
                     <div class="col-12 col-lg-4">
@@ -314,7 +316,7 @@
 
             {% if showPaywall == false %}
                 <div class="row">
-                <div class="col-12">
+                    <div class="col-12">
                         <div class="c-cards-container c-cards-container-xs bottom-border">
                             <div class="u-generic-heading u-generic-heading--withBorder">You might also like</div>
                             <div class="row">
@@ -334,5 +336,8 @@
                 </div> 
             {% endif %}
         </div>
+        {% if showPaywall == true %}
+            {{this.render('partials/article/paywall_article_notice.twig', {networkData:networkData, paywallType:paywallType}) | raw}}
+        {% endif %}
     </div>
 </main>
