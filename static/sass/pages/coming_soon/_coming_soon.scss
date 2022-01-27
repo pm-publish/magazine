@@ -23,7 +23,7 @@
     margin: 150px 20px 50px;
 
     &-ls {
-      border-bottom: 1px solid $grey3;
+      border-bottom: 1px solid $grey10;
       padding-bottom: 40px;
       margin-bottom: 40px;
     }
@@ -42,8 +42,8 @@
     }
 
     &__input {
-      box-shadow: inset 2px 2px 4px 2px $grey3;
-      background: $grey3;
+      box-shadow: inset 2px 2px 4px 2px $grey10;
+      background: $grey10;
       height: 48px;
       width: 100%;
       outline: none;
@@ -89,7 +89,7 @@
 
           &-ls {
             border-bottom: none;
-            border-right: 1px solid $grey3;
+            border-right: 1px solid $grey10;
             max-width: 380px;
             padding-right: 100px;
             margin-right: 180px;

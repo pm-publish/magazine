@@ -19,7 +19,7 @@
             }
 
             &__item {
-                color: $grey3;
+                color: $grey10;
                 @include font-size(10);
                 line-height: 1.6;
                 font-weight: $weightMedium;
@@ -47,7 +47,7 @@
         &--footer {
             #{$selfNav} {   
                 &__item {
-                    color: $grey3;
+                    color: $grey10;
                     @include font-size(12);
                     line-height: 1.33;
                     font-weight: $weightRegular;
@@ -352,14 +352,14 @@
 
                 li {
                     + li {
-                        border-left: 1px solid $grey3;
+                        border-left: 1px solid $grey10;
                         margin-left: 5px;
                         padding-left: 5px;
                     }
                 }
             }
             .c-nav__item {
-                color: $grey3;
+                color: $grey10;
                 @include font-size(10);
                 line-height: 1;
                 font-weight: $weightMedium;

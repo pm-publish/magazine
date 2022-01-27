@@ -35,7 +35,7 @@
                 @include font-size(14);
                 font-weight: $weightBold;
                 font-style: italic;
-                color: $grey3;
+                color: $grey10;
                 position: relative;
             }
         }
@@ -43,7 +43,7 @@
         &__description{
             @include font-size(16);
             line-height: 1.5;
-            color: $grey3;
+            color: $grey10;
             height: 50px;
             overflow: hidden;
             margin-bottom: 8px;

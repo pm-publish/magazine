@@ -22,7 +22,7 @@
 <!-- used to index each article as we loop over throughout the template -->
 {% set articleCount = 0 %}
 {% set dev = _AppHelper.getApplicationEnv() == 'DEV' ? true : false %}
-
+{% set config = _Network.getThemeConfig() %}
 
 <main id="main" class="o-body-container o-body-container-md u-margin-top-60" role="main">
     <div class="c-submitevent">
@@ -35,9 +35,11 @@
 
                     <div class="row">
                         <div class="col-12 col-md-7">
+                        {% if config['submit-event']['intro-text'] %}
                             <div class="c-page-info__discription">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diorem im dolor sit amet, consectetur adipiscing elit. Suspendisse dictum puru iaculis bit. </p>
+                                <p>{{config['submit-event']['intro-text']}}</p>
                             </div>
+                        {% endif %}
 
                             <div class="c-event-form">
                                 <div class="">

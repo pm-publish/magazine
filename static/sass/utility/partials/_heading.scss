@@ -31,7 +31,7 @@
     @include font-size(16);
     line-height: 1.5;
     font-family: var(--main-font);
-    color: $grey3;
+    color: $grey10;
     @include transition(all 0.3s ease);
 
     &:hover {
@@ -122,7 +122,7 @@
         }
 
         .text {
-          color: $grey3;
+          color: $grey10;
           text-decoration: underline;
           background-color: $white;
           padding: 0 15px;
