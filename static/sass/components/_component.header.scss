@@ -306,6 +306,10 @@
 
       &__logo {
         @include flexbox;
+
+        @media (max-width:767px) {
+          max-width: 180px;
+        }
       }
 
       &__otherInfo {
