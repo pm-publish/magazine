@@ -1,9 +1,9 @@
-
+import { View, Modal } from './framework'
 
 
 
 export const ListingForm = function() {};
-ListingForm.prototype = new Acme._View();
+ListingForm.prototype = new View();
 ListingForm.constructor = ListingForm;
     // ListingForm.prototype.init = function(blogId, layout) 
     // {
@@ -493,7 +493,7 @@ Acme.Confirm = function(template, parent, layouts) {
     this.parent = Acme.modal.prototype;
     this.data = {};
 };
-    Acme.Confirm.prototype = new Acme.modal();
+    Acme.Confirm.prototype = new Modal();
     Acme.Confirm.constructor = Acme.Confirm;
     Acme.Confirm.prototype.errorMsg = function(msg) {
         $('.message').toggleClass('hide');
@@ -536,37 +536,37 @@ Acme.Confirm = function(template, parent, layouts) {
 
     };
 
-var layouts = {
-    "listing"   : 'listingSavedTmpl',
-    "delete"   : 'listingDeleteTmpl',
-};
+// var layouts = {
+//     "listing"   : 'listingSavedTmpl',
+//     "delete"   : 'listingDeleteTmpl',
+// };
 
-Acme.confirmView = new Acme.Confirm('modal', 'signin', layouts);
-    Acme.confirmView.subscriptions = Acme.PubSub.subscribe({
-        'Acme.confirmView.listener' : ['update_state']
-    });
+// Acme.confirmView = new Acme.Confirm('modal', 'signin', layouts);
+//     Acme.confirmView.subscriptions = Acme.PubSub.subscribe({
+//         'Acme.confirmView.listener' : ['update_state']
+//     });
 
-    Acme.confirmView.listeners = 
-    {
-        "confirm" : function(data, topic) {
-            this.render("listing", "Thank you for submitting your event.");
-        },
-        "confirmDelete" : function(data, topic) {
-            this.render("delete", "Warning", { msg: "Are you sure you want to permanently delete this listing?", role:"delete"});
-        },
-        "confirmDeleteImage" : function(data, topic) {
-            this.data = data;
-            this.render("delete", "Warning", 
-                {
-                     msg: "Are you sure you want to delete this image?", 
-                     role:"deleteImage"
-                 }
-            );
-        },
-        "closeConfirm" : function(data, topic) {
-            this.closeWindow();
-        }
-    };
+//     Acme.confirmView.listeners = 
+//     {
+//         "confirm" : function(data, topic) {
+//             this.render("listing", "Thank you for submitting your event.");
+//         },
+//         "confirmDelete" : function(data, topic) {
+//             this.render("delete", "Warning", { msg: "Are you sure you want to permanently delete this listing?", role:"delete"});
+//         },
+//         "confirmDeleteImage" : function(data, topic) {
+//             this.data = data;
+//             this.render("delete", "Warning", 
+//                 {
+//                      msg: "Are you sure you want to delete this image?", 
+//                      role:"deleteImage"
+//                  }
+//             );
+//         },
+//         "closeConfirm" : function(data, topic) {
+//             this.closeWindow();
+//         }
+//     };
 
 
 
