@@ -91,9 +91,10 @@
     {% endif %}
 {% endif %}
 
+
 <main id="main" class="o-body-container o-body-container-md u-margin-top-50" role="main">
-    {# <div id="stripekey" class="d-none">{{networkData['stripe_publishable_key']}}</div> #}
-    <div id="paywallsubscribe" class="u-hide" ></div>
+    <div id="stripekey" class="d-none">{{networkData['stripe_publishable_key']}}</div>
+    <div id="paywallsubscribe" class="u-hide"></div>
 
     <div class="container">
         {% if plan != false %}
@@ -101,19 +102,18 @@
         {# The first payment is due on DD Month 20XX unless cancelled. #}
         {% set val = plan.plan_value / 100 %}
         {% if val == 19.89 %}
-        {% set val = 19.90 %}
+            {% set val = 19.90 %}
         {% endif %}
-        {% set planPrice = plan.currency|replace({"AUD": "$", "NZD": "$", "GBP": "£", "USD": "$", "EUR": "€"}) ~
-        val|number_format(2, '.', ',') %}
+        {% set planPrice = plan.currency|replace({"AUD": "$", "NZD": "$", "GBP": "£", "USD": "$", "EUR": "€"}) ~ val|number_format(2, '.', ',') %}
         {% if plan.type == 'signup' %}
-        {% set planPrice = 'Free' %}
+            {% set planPrice = 'Free' %}
         {% endif %}
 
         {% set frequency = plan.period_count > 1 ? plan.period_count : "" %}
 
         {% set planPeriod = plan.period %}
         {% if plan.period_count > 1 %}
-        {% set planPeriod = plan.period ~ 's' %}
+            {% set planPeriod = plan.period ~ 's' %}
         {% endif %}
 
         {% set frequency = frequency ~ " " ~ planPeriod %}
@@ -134,9 +134,9 @@
                         <div class="col-12 col-md-7 col-lg-8">
                             <div class="c-subscribeWrap-box">
                                 {% if config['subscribe-notice'] is defined %}
-                                {% set link = false %}
+                                    {% set link = false %}
                                 {% if config['subscribe-notice']['link'] is defined %}
-                                {% set link = config['subscribe-notice']['link'] %}
+                                    {% set link = config['subscribe-notice']['link'] %}
                                 {% endif %}
                                 <div class="subscribe-multi-notice">
                                     <img class="subscribe-multi-notice__img"
@@ -161,6 +161,7 @@
                                     <input type="hidden" class="" name="trial" id="trial" value="{{trial}}">
                                     <input type="hidden" class="" name="signup" id="signup" value="{{signup}}">
                                     <input type="hidden" class="" name="paypal" id="paypal" value="{{paypal}}">
+                                    <input type="hidden" class="" name="plantype" id="plantype" value="{{plan['type']}}">
 
 
                                     <div class="form-group form-group-sm has-error u-margin-bottom-15">
@@ -204,14 +205,14 @@
                                     </div>
 
                                     {% for field in subscribeFields %}
-                                    {% set required = field.required ? "true" : "false" %}
-                                    <div class="form-group form-group-sm u-margin-bottom-15">
-                                        <label for="{{field.name}}" class="input__label">{{field.label}}</label>
-                                        <input type="text" class="input__text articleExtendedData j-form-elem"
-                                            name="{{field.name}}" id="{{field.name}}" aria-required="{{required}}"
-                                            value="" placeholder="{{field.name}}">
-                                        <div class="help-block"></div>
-                                    </div>
+                                        {% set required = field.required ? "true" : "false" %}
+                                        <div class="form-group form-group-sm u-margin-bottom-15">
+                                            <label for="{{field.name}}" class="input__label">{{field.label}}</label>
+                                            <input type="text" class="input__text articleExtendedData j-form-elem"
+                                                name="{{field.name}}" id="{{field.name}}" aria-required="{{required}}"
+                                                value="" placeholder="{{field.name}}">
+                                            <div class="help-block"></div>
+                                        </div>
                                     {% endfor %}
 
                                     {# {% if showAddress %}
