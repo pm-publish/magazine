@@ -117,7 +117,7 @@
                 }
 
                 &-trail {
-                    color: $grey5;
+                    color: $grey11;
                     margin-top: 18px;
                     font-style: italic;
                     @include font-size(14);
@@ -318,13 +318,13 @@
         }
 
         &-subText {
-            color: $grey5;
+            color: $grey11;
             font-family: $primaryFont;
             font-weight: $weightRegular;
             @include font-size(18);
             line-height: 1.78;
             a {
-                color: $grey5;
+                color: $grey11;
                 font-family: $primaryFont;
                 font-weight: $weightBold;
             }
@@ -519,7 +519,7 @@
                     line-height: 1.5;
                     font-family: $primaryFont;
                     font-weight: $weightRegular;
-                    color: $grey5;
+                    color: $grey11;
                     margin-bottom: 6px;
 
                     span {
