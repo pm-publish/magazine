@@ -196,9 +196,10 @@
                                         <a href="javascript:;" onclick="headerMicroMenuOpen()" class="loggedin-info__label">
                                             {{user.firstname}} {{user.lastname}}
                                         </a>
-                                        {% else %}
-                                        <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
                                     {% endif %}
+                                {% endif %}
+                                {% if loggedin != true and config['subscriptions']['subscribe-button'] != '' %}
+                                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
                                 {% endif %}
                             </div>
                             {% if paywall %}
