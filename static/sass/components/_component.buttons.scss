@@ -58,6 +58,18 @@
         }
     }
 
+    &--lightBlue {
+        color: $white;
+        border-color: #5748f6;
+        background-color: #5748f6;
+
+        &-bordered {
+            color: #5748f6;
+            border-color: #5748f6;
+            background-color: transparent;
+        }
+    }
+
     &--mainThemeClr {
         color: $white;
         border-color: $mainColor;

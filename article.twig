@@ -307,7 +307,9 @@
                 </div>
                 {% if config['inventory']['adSpace']['side-fix'][0] is defined %}
                     <div class="col-12 col-lg-4">
-                        <div class="j-adslot" id="{{config['inventory']['adSpace']['side-fix'][0]}}" data-adshape="side-fix"></div>
+                        <div class="ads-sticky">
+                            <div class="j-adslot" id="{{config['inventory']['adSpace']['side-fix'][0]}}" data-adshape="side-fix"></div>
+                        </div>
                     </div>
                 {% endif %}
             </div>

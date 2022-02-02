@@ -12,6 +12,7 @@
 }
 
 .page_section {
+    margin-top: 25px;
     &__title {
         @include font-size(32);
         color: $black;
