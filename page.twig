@@ -11,13 +11,14 @@
         <div class="row">
             <div class="col-12 col-md-10 mx-auto">
                 <div class="page_section page_section-xs">
-                    <div class="page_section__title">
-                        {{page.title}}
-                    </div>
-
                     <div class="page_section__grid">
-                        <aside class="page_section__first-para">
-                            {{firstPara | raw}}
+                        <aside class="page_section__left-info">
+                            <div class="page_section__title">
+                                {{page.title}}
+                            </div>
+                            <div class="page_section__first-para">
+                                {{firstPara | raw}}
+                            </div>
                         </aside>
                         <aside class="page_section__content c-article__container">
                             {{page.content | raw}}
@@ -32,11 +33,6 @@
                 </div>
             </div>
             <div class="col-12">
-                <div class="">
-                    {% if config['inventory']['adSpace']['hpage'][0] is defined %}
-                        <div class="j-adslot" id="{{config['inventory']['adSpace']['hpage'][0]}}" data-adshape="hpage"></div>
-                    {% endif %}
-                </div>
                 <div class="j-keyword-cont" data-keywords="{{page.keywords}}"></div>
             </div>
         </div>

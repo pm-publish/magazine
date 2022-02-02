@@ -39,7 +39,9 @@
                                         <a href="{{networkData.defaultBlogUrl}}/user/edit-profile" class="c-button c-button--mainThemeClr">My account</a>
                                     {% else %}
                                         <a id="signinBtn" href="javascript:;" class="c-button c-button--black-bordered d-inline-block d-md-none">Sign in</a>
-                                        <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
+                                        {% if config['subscriptions']['subscribe-button'] != '' %}
+                                            <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
+                                        {% endif %}
                                     {% endif %}
                                 </div>
                 			{% endif %}
@@ -99,7 +101,8 @@
                                 <div class="c-footer__address__container">
                                     {% if loggedin %}
                                         <a href="{{networkData.defaultBlogUrl}}/user/edit-profile" class="c-button c-button--black-bordered">My account</a>
-                                    {% else %}
+                                    {% endif %}
+                                    {% if loggedin != true and config['subscriptions']['subscribe-button'] != '' %}
                                         <a href="javascript:;" class="c-button c-navigation__item subscribe c-button--black-bordered">Subscribe</a>
                                     {% endif %}
                                 </div>
