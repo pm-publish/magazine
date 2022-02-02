@@ -57,8 +57,9 @@
     <link rel="apple-touch-icon" href="{{networkData.templatePath}}/static/icons/apple/{{site}}-mobile-homescreen-72px.png" sizes="72x72" id="apple-icon-md" />
     <link rel="apple-touch-icon" href="{{networkData.templatePath}}/static/icons/apple/{{site}}-mobile-homescreen-144px.png" sizes="144x144" id="apple-icon-lg" /> #}
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://use.typekit.net/ntt1rrl.css">
+    <link rel="stylesheet" href="{{networkData.templatePath}}/static/sass/vendors/datepicker/tempusdominus.css" crossorigin="anonymous">
 
     {% set primaryFont = networkData['styling']['fonts']['primaryFont'] %}
     {% set secFont = networkData['styling']['fonts']['secondaryFont'] %}
@@ -233,6 +234,8 @@
         // main script is defered so event listener makes sure
         // defered script is loaded before this runs
         document.addEventListener("DOMContentLoaded", function(event) {
+            console.log(window);
+            console.log(tempusDominus);
             if (typeof window.Acme === 'undefined') {window.Acme = {};}
             Acme.templatePath = '" ~ networkData.templatePath ~ "';
             new Card();

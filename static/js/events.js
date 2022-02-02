@@ -147,6 +147,7 @@ ListingForm.constructor = ListingForm;
     {
         var validated = this.validate();
         if (!validated) {
+            console.log('not validated');
             this.render();
             return;
         }
@@ -154,6 +155,7 @@ ListingForm.constructor = ListingForm;
         this.data.theme_layout_name = this.layout;
 
         Acme.server.create('/api/article/create', this.data).done(function(r) {
+            console.log(r);
             $('#listingFormClear').click();
             Acme.PubSub.publish('update_state', {'confirm': r});
             Acme.PubSub.publish('update_state', {'userArticles': ''});
@@ -164,6 +166,7 @@ ListingForm.constructor = ListingForm;
     };
     ListingForm.prototype.events = function() 
     {
+        console.log('events on events form');
         var self = this;
         $('input, textarea').on("change", function(e) {
             e.stopPropagation();
@@ -183,37 +186,37 @@ ListingForm.constructor = ListingForm;
                     elem.removeClass("formError");
                 }
             } 
-
+            console.log(data);
         });
 
 
-        $('.uploadFileBtn').uploadFile({
-           onSuccess: function(data, obj){
+        // $('.uploadFileBtn').uploadFile({
+        //    onSuccess: function(data, obj){
 
-                var resultJsonStr = JSON.stringify(data);
+        //         var resultJsonStr = JSON.stringify(data);
 
-                var postdata = {
-                    'blogs' : self.blogId,
-                    'imgData' : resultJsonStr
-                };
+        //         var postdata = {
+        //             'blogs' : self.blogId,
+        //             'imgData' : resultJsonStr
+        //         };
 
-                var outer = $("#uploadFileBtn");
-                var inner = $("#InnerUploadFileBtn");
-                outer.addClass("spinner");
-                inner.hide();
+        //         var outer = $("#uploadFileBtn");
+        //         var inner = $("#InnerUploadFileBtn");
+        //         outer.addClass("spinner");
+        //         inner.hide();
 
-                Acme.server.create('/api/article/save-image', postdata).done(function(r) {
-                    // console.log(r);
-                    // console.log(data);
-                    if (self.saveImage(r, data) ) {
-                        outer.removeClass("spinner");
-                        inner.show();
-                    }
-                }).fail(function(r) {
-                    // console.log(r);
-                });
-            }
-        });
+        //         Acme.server.create('/api/article/save-image', postdata).done(function(r) {
+        //             // console.log(r);
+        //             // console.log(data);
+        //             if (self.saveImage(r, data) ) {
+        //                 outer.removeClass("spinner");
+        //                 inner.show();
+        //             }
+        //         }).fail(function(r) {
+        //             // console.log(r);
+        //         });
+        //     }
+        // });
 
         $('#imageArray').on('click', '.carousel-tray__delete', function(e) {
             var elem = $(e.target);
@@ -229,8 +232,9 @@ ListingForm.constructor = ListingForm;
         $('#listingFormDelete').on('click', function(e) {
             Acme.PubSub.publish('update_state', {'confirmDelete': ""});
         });
-
+        console.log( $('#listingForm'));
         $('#listingForm').submit(function(e) {
+            console.log('submit');
             e.preventDefault();
             self.submit();
         });
@@ -294,6 +298,7 @@ ListingForm.constructor = ListingForm;
 
 export const EventForm = function(blogId) 
 {
+    console.log(blogId);
     this.subscriptions = Acme.PubSub.subscribe({
         'Acme.eventForm.listener' : ['state_changed', 'update_state']
     });
@@ -323,122 +328,136 @@ export const EventForm = function(blogId)
 };
     EventForm.prototype = new ListingForm();
     EventForm.prototype.constructor=Acme.EventForm;
+    EventForm.prototype.formatDate = function(date) {
+        return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() 
+    };
     EventForm.prototype.events2 = function() {
+        const self = this;
 
-        var picker = $('#start_date, #end_date').datetimepicker({
-            keepOpen: false,
-            format: "DD-MM-YYYY h:mm A",
-            useCurrent: false,
-            showClose: true,
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-angle-up",
-                down: "fa fa-angle-down",
-                close: "fa fa-close"
-            },
-            tooltips: {selectTime: ''}
-        }).on('dp.change', function (e) {
-            $(this).datepicker('hide');
-            // picker.toggle();
-            // console.log(e);
-            // e.hide();
-            var data = {};
-            data[e.target.id] = e.date.format('YYYY-MM-DD HH:mm');
-            if(data['start_date'] || data['end_date']) {
-                if(data['start_date'] && e.date.hour() == 9 && e.date.minute() == 0) {
-                        $('#end_date').data("DateTimePicker").minDate(e.date.hour(16).minute(59));
-                    } else if (data['start_date']) {
-                         $('#end_date').data("DateTimePicker").minDate(e.date);
-                    }
-                Acme.PubSub.publish("update_state", data);
+        const startDateElem = document.getElementById('start_date');
+        const endDateElem = document.getElementById('end_date');
+        const pickerStart = new tempusDominus.TempusDominus(startDateElem, {
+            display: {
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-angle-up",
+                    down: "fa fa-angle-down",
+                    next: "fa fa-angle-right",
+                    previous: "fa fa-angle-left"
+                }
             }
         });
-
-        var EventPostGoogleMap = function () {
-            var marker, geocoder;
-            var elem = $('#addressMap');
-            var latitude = elem.data('latitude');
-            var longitude = elem.data('longitude');
-            var map;
-            
-            //google.maps.event.addDomListener(window, 'load', initMap);
-            function initMap() {
-                var mapLat;
-                var mapLong;
-                if (latitude !== '' && longitude !== '') {
-                    mapLat = latitude;
-                    mapLong = longitude;
-
-                    geocoder = new google.maps.Geocoder();
-                    var params = {
-                        zoom: 10,
-                        center: {lat: mapLat, lng: mapLong}
-                    };
-                    map = new google.maps.Map(document.getElementById('addressMap'), params);
-
-                    //set current marker
-                    updateMarker = new google.maps.Marker({
-                        position: new google.maps.LatLng(latitude, longitude),
-                        map: map
-                    });
-                } 
-                else {
-                    //navigator.geolocation.getCurrentPosition(function (position) {});
-                    geocoder = new google.maps.Geocoder();
-                    map = new google.maps.Map(document.getElementById('addressMap'), {
-                        zoom: 1,
-                        center: {lat: 43.197167, lng: 56.425781}
-                    });
-                    
+        const pickerEnd = new tempusDominus.TempusDominus(endDateElem, {
+            display: {
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-angle-up",
+                    down: "fa fa-angle-down",
+                    next: "fa fa-angle-right",
+                    previous: "fa fa-angle-left"
                 }
-                
-                pointLocation(geocoder, map, marker);
             }
-            
-            initMap();
-        };
-
-        var pointLocation = function (geocoder, map, marker) {
-            $('#address1').on('change', function(e){
-                mapLocation($(this));
-
+        });
+        startDateElem.addEventListener(tempusDominus.Namespace.events.change, (e) => {
+            self.data.start_date = self.formatDate(e.detail.date);
+            pickerEnd.updateOptions({
+                restrictions: {
+                    minDate: e.detail.date
+                }
             });
+        });
+        endDateElem .addEventListener(tempusDominus.Namespace.events.change, (e) => {
+            self.data.end_date = self.formatDate(e.detail.date);
+        });
+
+
+
+        // var EventPostGoogleMap = function () {
+        //     var marker, geocoder;
+        //     var elem = $('#addressMap');
+        //     var latitude = elem.data('latitude');
+        //     var longitude = elem.data('longitude');
+        //     var map;
             
-            function mapLocation(elem) {
-                var address = elem.val();
+        //     //google.maps.event.addDomListener(window, 'load', initMap);
+        //     function initMap() {
+        //         var mapLat;
+        //         var mapLong;
+        //         if (latitude !== '' && longitude !== '') {
+        //             mapLat = latitude;
+        //             mapLong = longitude;
 
-                geocoder.geocode({address: address}, function (results, status) {
+        //             geocoder = new google.maps.Geocoder();
+        //             var params = {
+        //                 zoom: 10,
+        //                 center: {lat: mapLat, lng: mapLong}
+        //             };
+        //             map = new google.maps.Map(document.getElementById('addressMap'), params);
+
+        //             //set current marker
+        //             updateMarker = new google.maps.Marker({
+        //                 position: new google.maps.LatLng(latitude, longitude),
+        //                 map: map
+        //             });
+        //         } 
+        //         else {
+        //             //navigator.geolocation.getCurrentPosition(function (position) {});
+        //             geocoder = new google.maps.Geocoder();
+        //             map = new google.maps.Map(document.getElementById('addressMap'), {
+        //                 zoom: 1,
+        //                 center: {lat: 43.197167, lng: 56.425781}
+        //             });
                     
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        map.setCenter(results[0].geometry.location);
-                        map.setZoom(10);
+        //         }
+                
+        //         pointLocation(geocoder, map, marker);
+        //     }
+            
+        //     initMap();
+        // };
 
-                        //clear the previous marker
-                        if (marker) {
-                            marker.setMap(null);
-                        }
-                        marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
+        // var pointLocation = function (geocoder, map, marker) {
+        //     $('#address1').on('change', function(e){
+        //         mapLocation($(this));
+
+        //     });
+            
+        //     function mapLocation(elem) {
+        //         var address = elem.val();
+
+        //         geocoder.geocode({address: address}, function (results, status) {
+                    
+        //             if (status === google.maps.GeocoderStatus.OK) {
+        //                 map.setCenter(results[0].geometry.location);
+        //                 map.setZoom(10);
+
+        //                 //clear the previous marker
+        //                 if (marker) {
+        //                     marker.setMap(null);
+        //                 }
+        //                 marker = new google.maps.Marker({
+        //                     map: map,
+        //                     position: results[0].geometry.location
+        //                 });
                         
-                        // Set Lat and Long
-                        var latitude = results[0].geometry.location.lat();
-                        var longitude = results[0].geometry.location.lng();
-                        var data = {
-                            "location" : {
-                                "latitude": latitude,
-                                "longitude": longitude
-                            }
-                        };
-                        Acme.PubSub.publish("update_state", data);
-                    } 
-                });
-            } 
-        };
+        //                 // Set Lat and Long
+        //                 var latitude = results[0].geometry.location.lat();
+        //                 var longitude = results[0].geometry.location.lng();
+        //                 var data = {
+        //                     "location" : {
+        //                         "latitude": latitude,
+        //                         "longitude": longitude
+        //                     }
+        //                 };
+        //                 Acme.PubSub.publish("update_state", data);
+        //             } 
+        //         });
+        //     } 
+        // };
 
-        EventPostGoogleMap();
+        // EventPostGoogleMap();
     }
 
 export const GoogleMap = function() {

@@ -3,13 +3,15 @@
 {% set networkData = _Network.getNetworkData() %}
 {% set blogData    = _Blog.getBlog() %}
 {% set eventBlogId  = blogData.additionalInfo['publishto'] %}
-
 {% set limit = 10 %}
 
 {% set user = false %}
 
 {{this.registerJsFile("https://maps.googleapis.com/maps/api/js?key=AIzaSyCRILYoQMiSjf_1Q_DhL199ha5w410AOLU")}}
 
+<!-- Tempus Dominus JavaScript -->
+{# <script src="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@v6-alpha14/dist/js/tempus-dominus.js" crossorigin="anonymous"></script> #}
+<!-- Tempus Dominus Styles -->
 
 {% set userScript = "" %}
 {% if not _User.isGuest %} 
@@ -43,27 +45,27 @@
 
                             <div class="c-event-form">
                                 <div class="">
-                                    <form action="#" method="post" autocomplete="off">
+                                    <form id="listingForm" action="#" method="post" autocomplete="off">
                                         <div class="row">
 
                                             {# NAME #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Your name*</label>
-                                                <input id="your-name" class="c-form__input c-form__input--bordered articleExtendedData" name="your-name" placeholder="Your name" aria-required="true" type="text">
+                                                <input id="name" class="c-form__input c-form__input--bordered articleExtendedData" name="name" placeholder="Your name" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# EMAIL #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Your email*</label>
-                                                <input id="your-email" class="c-form__input c-form__input--bordered articleExtendedData" name="your-email" placeholder="Your email" aria-required="true" type="text">
+                                                <input id="email" class="c-form__input c-form__input--bordered articleExtendedData" name="email" placeholder="Your email" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# NAME #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Event name*</label>
-                                                <input id="event-name" class="c-form__input c-form__input--bordered articleExtendedData" name="event-name" placeholder="Event name" aria-required="true" type="text">
+                                                <input id="title" class="c-form__input c-form__input--bordered articleExtendedData" name="title" placeholder="Event name" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
@@ -84,49 +86,49 @@
                                             {# CONTACT NAME #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Event contact name</label>
-                                                <input id="contact-name" class="c-form__input c-form__input--bordered articleExtendedData" name="contact-name" placeholder="Event contact name" aria-required="true" type="text">
+                                                <input id="contact_name" class="c-form__input c-form__input--bordered articleExtendedData" name="contact_name" placeholder="Event contact name" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# Contact number #}
                                             <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
                                                 <label class="c-form__label">Contact number</label>
-                                                <input id="Contact-number" class="c-form__input c-form__input--bordered articleExtendedData" name="Contact-number" placeholder="Contact number" aria-required="true" type="text">
+                                                <input id="contact_number" class="c-form__input c-form__input--bordered articleExtendedData" name="contact_number" placeholder="Contact number" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# Email address #}
                                             <div class="col-12 c-form__group u-margin-bottom-15 col-md-split col-lg-split">
                                                 <label class="c-form__label">Email address</label>
-                                                <input id="email-address" class="c-form__input c-form__input--bordered articleExtendedData" name="email-address" placeholder="Email address" aria-required="true" type="text">
+                                                <input id="contact_email" class="c-form__input c-form__input--bordered articleExtendedData" name="contact_email" placeholder="Email address" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# Venue name #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Venue name</label>
-                                                <input id="venue-name" class="c-form__input c-form__input--bordered articleExtendedData" name="venue-name" placeholder="Venue name" aria-required="true" type="text">
+                                                <input id="venue" class="c-form__input c-form__input--bordered articleExtendedData" name="venue" placeholder="Venue name" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# Venue address #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Venue address</label>
-                                                <input id="venue-address" class="c-form__input c-form__input--bordered articleExtendedData" name="venue-address" placeholder="Venue address" aria-required="true" type="text">
+                                                <input id="address1" class="c-form__input c-form__input--bordered articleExtendedData" name="address1" placeholder="Venue address" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# Website link #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Website link</label>
-                                                <input id="website-link" class="c-form__input c-form__input--bordered articleExtendedData" name="website-link" placeholder="Website link" aria-required="true" type="text">
+                                                <input id="website_url" class="c-form__input c-form__input--bordered articleExtendedData" name="website_url" placeholder="Website link" aria-required="true" type="text">
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
                                             {# Event Description #}
                                             <div class="col-12 c-form__group u-margin-bottom-15">
                                                 <label class="c-form__label">Event Description</label>
-                                                <textarea id="event-description" class="c-form__textarea articleExtendedData" name="event-description" placeholder="Description"></textarea>
+                                                <textarea id="content" class="c-form__textarea articleExtendedData" name="content" placeholder="Description"></textarea>
                                                 <div class="c-form__help-block"></div>
                                             </div>
 
@@ -163,6 +165,7 @@
     // defered script is loaded before this runs
     document.addEventListener("DOMContentLoaded", function(event) {
         Acme.cards = new Card();
+        console.log('dom content loaded');
         Acme.eventForm = new Acme.EventForm([{{eventBlogId}}]);
        {{userScript | raw}}
     });
