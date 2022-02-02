@@ -49,7 +49,7 @@
                 &__grid {
                     @include flex-direction(row,horizontal);
                 }
-                &__first-para {
+                &__left-info {
                     width: 25%;
                 }
                 &__content {
