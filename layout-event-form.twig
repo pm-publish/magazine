@@ -1,5 +1,13 @@
 {{ set(this, 'title', _Blog.getBlogTitle()) }}
 
+
+{% if _User.isGuest() %}
+    {% set redir = _Page.setHttpRedirects(
+        { '|^/.*|': networkData.defaultBlogUrl ~ '/subscriptions', }, false) 
+    %} 
+{% endif %}
+
+
 {% set networkData = _Network.getNetworkData() %}
 {% set blogData    = _Blog.getBlog() %}
 {% set eventBlogId  = blogData.additionalInfo['publishto'] %}
