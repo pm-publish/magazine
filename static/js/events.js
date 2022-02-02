@@ -147,7 +147,6 @@ ListingForm.constructor = ListingForm;
     {
         var validated = this.validate();
         if (!validated) {
-            console.log('not validated');
             this.render();
             return;
         }
@@ -155,7 +154,6 @@ ListingForm.constructor = ListingForm;
         this.data.theme_layout_name = this.layout;
 
         Acme.server.create('/api/article/create', this.data).done(function(r) {
-            console.log(r);
             $('#listingFormClear').click();
             Acme.PubSub.publish('update_state', {'confirm': r});
             Acme.PubSub.publish('update_state', {'userArticles': ''});
@@ -166,7 +164,6 @@ ListingForm.constructor = ListingForm;
     };
     ListingForm.prototype.events = function() 
     {
-        console.log('events on events form');
         var self = this;
         $('input, textarea').on("change", function(e) {
             e.stopPropagation();
@@ -186,7 +183,6 @@ ListingForm.constructor = ListingForm;
                     elem.removeClass("formError");
                 }
             } 
-            console.log(data);
         });
 
 
@@ -232,9 +228,7 @@ ListingForm.constructor = ListingForm;
         $('#listingFormDelete').on('click', function(e) {
             Acme.PubSub.publish('update_state', {'confirmDelete': ""});
         });
-        console.log( $('#listingForm'));
         $('#listingForm').submit(function(e) {
-            console.log('submit');
             e.preventDefault();
             self.submit();
         });
@@ -298,7 +292,6 @@ ListingForm.constructor = ListingForm;
 
 export const EventForm = function(blogId) 
 {
-    console.log(blogId);
     this.subscriptions = Acme.PubSub.subscribe({
         'Acme.eventForm.listener' : ['state_changed', 'update_state']
     });
@@ -483,7 +476,6 @@ export const GoogleMap = function() {
 				zoom: 14,
 				center: {lat: mapLat, lng: mapLong}
 			};
-			console.log(params);
 			this.map = new google.maps.Map(document.getElementById('addressMap'), params);
 
 			//set current marker

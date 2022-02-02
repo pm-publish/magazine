@@ -234,9 +234,7 @@
         // main script is defered so event listener makes sure
         // defered script is loaded before this runs
         document.addEventListener("DOMContentLoaded", function(event) {
-            console.log(window);
-            console.log(tempusDominus);
-            if (typeof window.Acme === 'undefined') {window.Acme = {};}
+           if (typeof window.Acme === 'undefined') {window.Acme = {};}
             Acme.templatePath = '" ~ networkData.templatePath ~ "';
             new Card();
         });

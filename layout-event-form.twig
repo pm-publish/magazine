@@ -172,7 +172,6 @@
     // defered script is loaded before this runs
     document.addEventListener("DOMContentLoaded", function(event) {
         Acme.cards = new Card();
-        console.log('dom content loaded');
         Acme.eventForm = new Acme.EventForm([{{eventBlogId}}]);
        {{userScript | raw}}
     });
