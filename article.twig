@@ -285,7 +285,6 @@
 
                     <div class="{% if showPaywall == true %} c-article__main__paywall-container {% endif %}"> 
                         <div class="c-article__main-content">
-                            <h2>{{firstPara | raw}}</h2>
                             <div class="c-article__container">
                                 {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
                             </div>
