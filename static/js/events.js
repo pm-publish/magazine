@@ -214,6 +214,7 @@ ListingForm.constructor = ListingForm;
         //     }
         // });
 
+        
         $('#imageArray').on('click', '.carousel-tray__delete', function(e) {
             var elem = $(e.target);
             var mediaId = elem.data('id');
