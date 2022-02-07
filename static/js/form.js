@@ -57,7 +57,6 @@ export const Form = function(validators, rules) {
             var field = $('#'+this.errorFields[field]);
 
             if (!field.length) {
-                // console.log('#'+ this.id + ' input[name="'+this.errorFields[field] + '"');
                 field = $('#'+ this.id + ' input[name="'+this.errorFields[field] + '"');
             }
             field.addClass('formError');
@@ -68,13 +67,11 @@ export const Form = function(validators, rules) {
         this.addInlineErrors();
     };
     Form.prototype.validate = function( /* Array */ checkFields)  {
-        // console.log(checkFields);
         // checkFields is used to validate a single field, 
         // otherwise itereate through all compulsory fields
 
         // intersect used to clear the field we want to check 
         // from errorFields.  if still an error it will add again.
-
         function intersect(a, b) {
             var t;
             if (b.length > a.length) t = b, b = a, a = t; // indexOf to loop over shorter
@@ -85,7 +82,6 @@ export const Form = function(validators, rules) {
 
         var validated = true, fields = [];
         if (checkFields && this.validateFields) {
-
             var fields = intersect(this.validateFields, checkFields);
             for (var j=0; j<fields.length;j++) {
                 var fieldName = fields[j].split('.').reverse()[0];
@@ -95,12 +91,10 @@ export const Form = function(validators, rules) {
             }
         } else {
             var fields = this.validateFields || [];
-
             this.errorFields = []; // reset and re-calcuate all fields
         }
         for (var i=0;i<fields.length; i++) {
             var key = fields[i];
-            // console.log(key);
             var keySplit = key.split('.');
             var scope = this.data;
             for(var j=0; j<keySplit.length; j++) {
@@ -115,18 +109,14 @@ export const Form = function(validators, rules) {
                 }
                 scope = scope[keySplit[j]];
             }
-            // console.log('doing the validate');
             // DO THE VALIDATE!!!
             var fieldValidators = this.validateRules[key];
             if (fieldValidators.length > 0) {
 
                 var fieldname = fields[i].split('.').reverse()[0];
-                // console.log(fieldname);
                 for (var k=0; k<fieldValidators.length; k++) {
-                    // console.log(scope);
                     if ( !this.validators[ fieldValidators[k] ](scope) ) {
                         this.errorFields.push(fieldname); 
-                        // console.log(this.errorFields);
                         validated = false;
                         break;
                     }
@@ -138,20 +128,13 @@ export const Form = function(validators, rules) {
 
     Form.prototype.events = function( /* Array */ checkFields)  {
         var self = this;
-        // console.log('running events from parent');
-        // console.log(this.id);
-        // console.log($("#"+this.id));
-        // console.log('#'+this.id +' input, #'+this.id +' textarea');
         $('#'+this.id +' input, #'+this.id +' textarea').on("change", function(e) {
-        // $('input, textarea').on("change", '#'+this.id, function(e) {
-
             e.stopPropagation();
             e.preventDefault();
             var data = {};
             var elem = $(e.target);
             var elemid = elem.attr('name');
             var inputType = elem.attr('type');
-
             if (inputType == 'text' || inputType == 'email' || inputType == 'password') {
                 data[elemid] = elem.val();
 
@@ -161,14 +144,14 @@ export const Form = function(validators, rules) {
             }
 
             self.updateData(data);
-
-            var validated = self.validate([elemid]);
+            self.validate([elemid]);
             self.render();
         });
 
         var form = document.getElementById(this.id);
         if (form != null) {
             form.addEventListener('submit', function(event) {
+                event.preventDefault();
                 self.submit(event);
             });
         }

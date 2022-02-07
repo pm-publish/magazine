@@ -1,0 +1,54 @@
+/* Begin page head style */
+.event-thanks{
+    background:$grey;
+    padding: 100px 0;
+
+    &__container {
+        @include flexbox();
+        @include flex-direction(column, vertical);
+        align-items:center;
+
+    }
+
+    &__title {
+        color:black;
+    }
+
+    &__text {
+        line-height:1em;
+    }
+
+    &__buttons {
+        @include flexbox();
+    }
+
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        padding: 0 20px;
+        min-height: 48px;
+        font-size: 16px;
+        font-weight: $weightBold;
+        line-height: 1.5;
+        text-decoration: none;
+        cursor:pointer;
+
+        &--solid {
+            background-color: $blue_sh1;
+            color: $white;
+        }
+
+        &--bordered {
+            border: 1px solid $blue_sh1;
+            color: $blue_sh1;
+        }
+
+        &--grow {
+            flex-grow:1;
+        }
+    }
+
+}
