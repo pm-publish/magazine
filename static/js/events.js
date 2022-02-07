@@ -126,14 +126,18 @@ ListingForm.constructor = ListingForm;
     };
     ListingForm.prototype.clear = function(images) 
     {
-        if (this.menus) {
-            var menus = Object.keys(this.menus);
-            for(var i=0;i<menus.length;i++) {
-                this.menus[menus[i]].reset();
-            }
-        }
+        console.log('clearing the form');
+        // if (this.menus) {
+        //     var menus = Object.keys(this.menus);
+        //     for(var i=0;i<menus.length;i++) {
+        //         this.menus[menus[i]].reset();
+        //     }
+        // }
         $('#imageArray').empty();
         this.clearErrorHightlights();
+        const errorElem = document.getElementById('formError');
+        errorElem.innerText = '';
+
         this.data = {
             'id': 0,
             'blogs': this.blogId,
@@ -142,6 +146,7 @@ ListingForm.constructor = ListingForm;
     };
     ListingForm.prototype.submit = function()
     {
+        var self = this;
         var validated = this.validate();
         if (!validated) {
             this.render();
@@ -155,22 +160,37 @@ ListingForm.constructor = ListingForm;
 
         Acme.server.create('/api/article/create', this.data).done(function(r) {
             spinner.closeWindow();
-            const page_container = document.getElementById('event-container');
-            
-            const temp = Handlebars.compile(Templates.eventThankYou);
-            page_container.innerHTML = temp({
-                home_link: _appJsConfig.appHostName,
-                events_link: _appJsConfig.appHostName + "/events"
-            });
+            // console.log(r);
+            if (r.success === 1) {
+                const page_container = document.getElementById('event-container');
+                
+                const temp = Handlebars.compile(Templates.eventThankYou);
+                page_container.innerHTML = temp({
+                    home_link: _appJsConfig.appHostName,
+                    events_link: _appJsConfig.appHostName + "/events"
+                });
+                return;
+            }
+            self.showError(r.error);
 
         }).fail(function(r) {
+            // console.log(r);
             spinner.closeWindow();
-
-            console.log(r);
+            self.showError(r.responseJSON.error);
         });
     };
 
+    ListingForm.prototype.showError = function(error) {
+        let errors = [];
+        for (let key in error) {
+            for (let i = 0; i< error[key].length; i++) {
+                errors.push(error[key][i]);
+            }
+        }
 
+        const errorElem = document.getElementById('formError');
+        errorElem.innerText = errors.join(', ');
+    }
 
 
 
@@ -201,6 +221,20 @@ export const EventForm = function(id, blogId)
         'media_ids': '',
         'type': 'event'
     };
+
+
+
+    // We prefill the form with the logged in users name so we'll
+    // add it to the data so form errors don't get triggered on those fields
+    const emailElem = document.getElementById('contact_email');
+    const nameElem = document.getElementById('contact_name');
+    if (emailElem.value !== "") {
+        this.data.contact_email = emailElem.value;
+    }
+    if (nameElem.value !== "") {
+        this.data.contact_name = nameElem.value;
+    }
+
 
     this.events();
     this.events2();
@@ -249,7 +283,6 @@ export const EventForm = function(id, blogId)
                 });
                 const valid = self.validate(['start_date']);
                 self.render();
-                console.log(valid);
             }
         });
         endDateElem .addEventListener(tempusDominus.Namespace.events.change, (e) => {
@@ -279,13 +312,14 @@ export const EventForm = function(id, blogId)
                         'multiple' : true
                     };
 
+                    const imageTrayElem = document.getElementById('imageArray');
+                    imageTrayElem.classList.add('spinner', 'carousel-tray--active');
 
                     Server.create('/api/article/save-image', postdata).done(function(r) {
                         console.log(r);
                         if (r.success === 1) {
                             if (self.saveImage(r, resultJson) ) {
-                                // outer.removeClass("spinner");
-                                // inner.show();
+                                imageTrayElem.classList.remove('spinner', 'carousel-tray--active');
                             }
                         }
                     }).fail(function(r) {

@@ -120,7 +120,12 @@
             @include justify-content(flex-start);
         }
     }
-    
+   
+    &__error {
+        font-weight:bold;
+        color:$error;
+    }
+
     &__checkbox {
 
         &[type="radio"], &[type="checkbox"] {
