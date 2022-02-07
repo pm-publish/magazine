@@ -46,7 +46,7 @@ ListingForm.constructor = ListingForm;
         }
         this.data.media_ids = mediaids.join(',');
         this.data.media_id = mediaids[0];
-        this.renderImageThumbs(data);
+        this.renderImageThumbs(media);
         return true;
     };
     ListingForm.prototype.deleteImage = function(data) 
@@ -75,9 +75,8 @@ ListingForm.constructor = ListingForm;
         var imageArray = $('#imageArray');
         var html = "";
         var temp = Handlebars.compile(Templates.carousel_item); 
-        console.log(images);
         for (var i=0;i<images.length;i++) {
-            const imagePath = images[i].url || images[i].path;
+            const imagePath = images[i].thumb_url;
             const params = {
                 "imagePath": imagePath, 
                 'imageid' : images[i].media_id,
@@ -282,7 +281,7 @@ export const EventForm = function(id, blogId)
 
 
                     Server.create('/api/article/save-image', postdata).done(function(r) {
-                        // console.log(r);
+                        console.log(r);
                         if (r.success === 1) {
                             if (self.saveImage(r, resultJson) ) {
                                 // outer.removeClass("spinner");
