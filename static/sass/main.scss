@@ -32,6 +32,7 @@
 @import "component.login-form";
 @import "component.forgot-form";
 @import "component.reset-password";
+@import "component.swap-modal";
 @import "component.checkbox";
 
 @import "component.error";
@@ -43,9 +44,10 @@
 @import "component.author";
 
 // Events
-@import "component.eventform";
+// @import "component.eventform";
 @import "component.events";
 @import "component.event";
+@import "component.event-thanks";
 
 //header
 @import "component.header";
@@ -72,6 +74,8 @@
 @import "component.section-panel";
 @import "component.form-pulldown";
 @import "component.cta-newsletter";
+@import "component.carousel-tray";
+
 
 //my account page
 @import "my-account";

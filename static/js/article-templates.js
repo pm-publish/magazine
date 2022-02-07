@@ -415,6 +415,40 @@ modalVideo:
     </video> \
 </div>',
 
+
+carousel_item:
+    '<li class="carousel-tray__item {{swap}}"> \
+        <span data-id="{{imageid}}" class="carousel-tray__delete"></span> \
+        <img class="carousel-tray__img" src="{{imagePath}}" /> \
+    </li>',
+
+listingSavedTmpl :  '<p>Thank you, your listing will be published in the next 24 hours</p><div><form><button class="_btn _btn--red">Okay</button></form></div>',
+listingDeleteTmpl :  
+        '<p>{{msg}}</p> \
+        <div> \
+            <form> \
+                <button class="_btn _btn--red" data-role="{{role}}">DELETE</button> \
+                <button class="_btn _btn--gray">CANCEL</button> \
+            </form> \
+        </div>',
+
+eventThankYou: 
+    '<div class="event-thanks"> \
+        <div class="container"> \
+            <div class="row"> \
+                <div class="col-12 event-thanks__container"> \
+                    <h1 class="event-thanks__title">Thanks for submitting an event!</h1> \
+                    <p class="event-thanks__text"></p> \
+                    <div class="event-thanks__buttons u-margin-top-40"> \
+                        <a href="{{events_link}}" class="event-thanks__button event-thanks__button--solid">Event listings</a> \
+                        <a href="{{home_link}}" class="event-thanks__button event-thanks__button--bordered">Home</a> \
+                    </div> \
+                </div> \
+            </div> \
+        </div> \
+    </div>',
+
+
 registerPopup: 
 '<div id="register-popup" class="register-popup"> \
     <div class="container"> \
