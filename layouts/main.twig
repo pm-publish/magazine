@@ -8,7 +8,6 @@
 {% set config        = _Network.getThemeConfig() %}
 
 
-
 {% set showPaywall = false %}
 {% set paywallOn = blogData['showPaywall'] %}
 {% set paywallType = blogData['paywallType'] %}
@@ -18,14 +17,13 @@
 
 
 {% if not _User.isAdminUser() and paywallOn == 1 %}
-    
-        {% set showPaywall = true %}
-        {% set redir = _Page.setHttpRedirects(
-            {
-                '|^/.*|': networkData.defaultBlogUrl ~ '/subscriptions',
-                
-            }, false) 
-        %} 
+    {% set showPaywall = true %}
+    {% set redir = _Page.setHttpRedirects(
+        {
+            '|^/.*|': networkData.defaultBlogUrl ~ '/subscriptions',
+            
+        }, false) 
+    %} 
 {% endif %}
 
 
