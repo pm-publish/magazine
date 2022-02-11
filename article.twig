@@ -7,10 +7,6 @@
 {% set blogInfo = _Blog.getBlog() %}
 {% set config = _Network.getThemeConfig() %}
 
-{% set themeColor = "#4A90E2" %}
-{% if networkData['styling']['colours']['headingColor'] is defined %}
-    {% set themeColor = networkData['styling']['colours']['headingColor'] %}
-{% endif %}
 
 {% set relatedArticles = [] %}
 {% set articleBlog = article.blog.title | lower %}

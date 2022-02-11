@@ -22,10 +22,6 @@
 {% set date = date() %}
 {% set events = _Event.getEvents({"limit": 4, "showOnGoingOnly": 1}) %}
 
-{% set themeColor   = "#4A90E2" %}
-{% if networkData['styling']['colours']['headingColor'] is defined %}
-    {% set themeColor = networkData['styling']['colours']['headingColor'] %}
-{% endif %}
 
 <div class="o-body-container o-body-container-md c-eventdetail">
     <div class="c-eventdetail__topBar">

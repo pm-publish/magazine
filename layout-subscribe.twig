@@ -83,7 +83,7 @@
     {% set subscribeFields = config['forms']['subscribe']['fields'] %}
 {% endif %}
 
-{% set subscribeText = 'Subscribe now to ' ~ networkData.title %}
+{% set subscribeText = 'Subscribe to ' ~ networkData.title %}
 
 {% if config['subscriptions'] is defined %}
     {% if config['subscriptions']['subscribe'] is defined and config['subscriptions']['subscribe'] != "" %}
@@ -119,20 +119,20 @@
         {% set frequency = frequency ~ " " ~ planPeriod %}
         <div class="row">
             <div class="col-12 col-md-10 mx-auto">
-                <div class="c-subscribeWrap c-subscribeWrap-xs">
-                    <div class="c-subscribeWrap__headContainer">
+                <div class="c-subscribe-form c-subscribe-form-xs">
+                    <div class="c-subscribe-form__headContainer">
                         {% if trial %}
-                            <h2 class="c-subscribeWrap--heading">Start your {{trialPeriod}}-day free trial now</h2>
-                            <div class="c-subscribeWrap--text">
+                            <h2 class="c-subscribe-form__heading">Start your {{trialPeriod}}-day free trial now</h2>
+                            <div class="c-subscribe-form__text">
                                 The free trial requires registration with a valid credit card.
                             </div>
                         {% else %}
-                            <h2 class="c-subscribeWrap--heading">{{subscribeText}}</h2>
+                            <h2 class="c-subscribe-form__heading">{{subscribeText}}</h2>
                         {% endif %}
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-7 col-lg-8">
-                            <div class="c-subscribeWrap-box">
+                            <div class="c-subscribe-form-box">
                                 {% if config['subscribe-notice'] is defined %}
                                     {% set link = false %}
                                 {% if config['subscribe-notice']['link'] is defined %}
@@ -151,7 +151,7 @@
                                 {% endif %}
 
 
-                                <h4 class="c-subscribeWrap__subhead">Your details</h4>
+                                <h4 class="c-subscribe-form__subhead">Your details</h4>
 
                                 <form id="subscribeform" class="generic-form  " action="#"
                                     method="post" autocomplete="off" data-planprice="{{planPrice}}"
@@ -165,41 +165,40 @@
 
 
                                     <div class="form-group form-group-sm has-error u-margin-bottom-15">
-                                        <label for="email" class="input__label">Email address</label>
-                                        <input id="email" class="input__text" name="email" placeholder="Email address"
+                                        <label for="email" class="c-subscribe-form__input-label">Email address</label>
+                                        <input id="email" class="c-subscribe-form__input" name="email" placeholder="Email address"
                                             aria-required="true" type="email" />
                                         <input id="email-confirm" class="input__text u-hide" name="email-confirm" placeholder="email-confirm" aria-required="true" type="email">
                                         <div class="help-block"></div>
                                     </div>
 
                                     <div class="form-group form-group-sm u-margin-bottom-15">
-                                        <label for="firstname" class="input__label">First Name</label>
-                                        <input id="firstname" class="input__text" name="firstname" placeholder="First name"
+                                        <label for="firstname" class="c-subscribe-form__input-label">First Name</label>
+                                        <input id="firstname" class="c-subscribe-form__input" name="firstname" placeholder="First name"
                                             aria-required="true" type="text" />
                                         <div class="help-block"></div>
                                     </div>
 
                                     <div class="form-group form-group-sm u-margin-bottom-15">
-                                        <label for="lastname" class="input__label">Last Name</label>
-                                        <input id="lastname" class="input__text" name="lastname" placeholder="Last name"
+                                        <label for="lastname" class="c-subscribe-form__input-label">Last Name</label>
+                                        <input id="lastname" class="c-subscribe-form__input" name="lastname" placeholder="Last name"
                                             aria-required="true" type="text" />
                                         <div class="help-block"></div>
                                     </div>
 
                                     <div class="form-group form-group-sm u-margin-bottom-15">
-                                        <label for="password" class="input__label"
-                                            title="Passwords must be at least six characters and include upper case, lower case and digit.">
-                                            Password <span>(must be at least six characters and include upper case,
-                                                lower case and digit.)</span>
+                                        <label for="password" class="c-subscribe-form__input-label"
+                                            title="Passwords must be at least six characters.">
+                                            Password <span>(must be at least six characters)</span>
                                         </label>
-                                        <input id="password" class="input__text" name="password" placeholder="******"
+                                        <input id="password" class="c-subscribe-form__input" name="password" placeholder="******"
                                             aria-required="true" type="password" value="" />
                                         <div class="help-block"></div>
                                     </div>
 
                                     <div class="form-group form-group-sm u-margin-bottom-15">
-                                        <label for="verifypassword" class="input__label">Password verify</label>
-                                        <input id="verifypassword" class="input__text" name="verifypassword"
+                                        <label for="verifypassword" class="c-subscribe-form__input-label">Password verify</label>
+                                        <input id="verifypassword" class="c-subscribe-form__input" name="verifypassword"
                                             placeholder="******" aria-required="true" type="password" />
                                         <div class="help-block"></div>
                                     </div>
@@ -207,8 +206,8 @@
                                     {% for field in subscribeFields %}
                                         {% set required = field.required ? "true" : "false" %}
                                         <div class="form-group form-group-sm u-margin-bottom-15">
-                                            <label for="{{field.name}}" class="input__label">{{field.label}}</label>
-                                            <input type="text" class="input__text articleExtendedData j-form-elem"
+                                            <label for="{{field.name}}" class="c-subscribe-form__input-label">{{field.label}}</label>
+                                            <input type="text" class="c-subscribe-form__input articleExtendedData j-form-elem"
                                                 name="{{field.name}}" id="{{field.name}}" aria-required="{{required}}"
                                                 value="" placeholder="{{field.name}}">
                                             <div class="help-block"></div>
@@ -295,9 +294,9 @@
 
 
 
-                                    <div class="c-subscribeWrap__subscription" style="margin-top:30px;">
+                                    <div class="c-subscribe-form__subscription" style="margin-top:30px;">
                                         {% if signup == false %}
-                                            <h4 class="c-subscribeWrap__subhead">Payment details</h4>
+                                            <h4 class="c-subscribe-form__subhead">Payment details</h4>
                                         {% endif %}
                                         <div class="form-group fullwidth">
 
@@ -349,17 +348,17 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-5 col-lg-4">
-                            <div class="c-subscribeWrap-sidebar">
+                            <div class="c-subscribe-form-sidebar">
                                 {% set uc = plan.user_count %}
 
                                 <div class="c-orderSummary">
                                     <div class="c-orderSummary__info">
                                         <p class="c-orderSummary__name">{{plan.plan_name}}</p>
-                                        <picture class="c-subscribeWrap__Device">
+                                        <picture class="subscribe-form__Device">
                                             {% if blogScreen %}
                                                 <img src="{{screenImg}}" srcset="{{screenImgMedium}} 1x, {{screenImg}} 2x" class="img-fluid">
                                             {% else %}
-                                                <img src="{{networkData.templatePath}}/static/icons/laptop_3.png?ver=3" srcset="{{networkData.templatePath}}/static/icons/laptop_3.png?ver=3 1x, {{networkData.templatePath}}/static/icons/laptop_3@2x.png?ver=3 2x, {{networkData.templatePath}}/static/icons/laptop_3@3x.png?ver=3 3x" class="img-fluid">
+                                                <img src="{{networkData.templatePath}}/static/icons/laptop.svg?ver=3" class="img-fluid">
                                             {% endif %}
                                         </picture>
 
