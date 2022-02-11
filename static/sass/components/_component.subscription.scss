@@ -552,14 +552,4 @@
         display: inline-block;
     }
 
-    #{$selfSubscribe} {
-        &__Device {
-            display: block;
-            text-align: center;
-    
-            img {
-                max-width: 120px;
-            }
-        }
-    }
 }
