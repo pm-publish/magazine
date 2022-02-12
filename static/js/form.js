@@ -157,9 +157,11 @@ export const Form = function(validators, rules) {
         }
 
         const clearButton = document.getElementById('listingFormClear');
-        clearButton.addEventListener('click', () => {
-            self.clear()
-        });
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                self.clear()
+            });
+        }
     }
 
 
