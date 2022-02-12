@@ -99,13 +99,10 @@
                 }
             });
         }
-        var cardController = new Card();
-
-
 
 
         var params = {
-            model           : cardController,
+            model           : Acme.Card,
             container       : 'loadmore_section_{{sectionNumber}}',
             offset          : 0,
             limit           : {{ limit }},
@@ -119,7 +116,7 @@
             cardType        : "{{cardTypes}}",
             lightbox        : "{{contentType}}"
         };
-
-        Acme.articleFeeds["loadmore_section_{{sectionNumber}}"] = new Acme.View.articleFeed(params);
+        console.log(params);
+        Acme.articleFeeds["loadmore_section_{{sectionNumber}}"] = new Acme.ArticleFeed(params);
     });
 </script>

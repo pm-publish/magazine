@@ -106,7 +106,32 @@
         }
     }
 
+    &--blue {
+        background-color: $mainColor;
+        border-color: $mainColor;
+        background-color: $mainColor;
+        border-color: $mainColor;
+        color: $white;
 
+        &:hover {
+            background-color: $mainColor;
+            border-color: $mainColor;
+            background-color: lightness( $mainColor, 0.82);
+            border-color: lightness( $mainColor, 0.82);
+            color: $white;
+        }
+
+        &-bordered {
+            border-color:  $mainColor;
+            color: $mainColor;
+
+            &:hover {
+                color: $white;
+                background-color: lightness( $mainColor, 0.82);
+                border-color: lightness( $mainColor, 0.82);
+            }
+        }
+    }
 
     &--red {
         color: $white;

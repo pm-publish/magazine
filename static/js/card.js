@@ -10,6 +10,7 @@ import { faces }                            from "@cloudinary/base/qualifiers/fo
 import { focusOn }                          from "@cloudinary/base/qualifiers/gravity";
 
 
+
 export const Card = function(attrs = {}) {
     this.data = attrs;
     this.events();
@@ -29,13 +30,13 @@ Card.prototype.render = function(options = {})
         card['cardClass'] += " draft"; 
     }
 
+    
 
 
     card['url'] = this.data.url;
     card['editUrl'] = this.data.editUrl;
-    
-    card['cardType'] = this.data.type || "";
-    card['lightbox'] = this.data.lightbox || "";
+    card['cardType'] = options.type || "";
+    card['lightbox'] = options.lightbox || "";
     card['position'] = this.data.position;
 
     card['isPinned'] =  this.data.isPinned;
@@ -58,7 +59,11 @@ Card.prototype.render = function(options = {})
         var width = this.featuredMedia.width;
         var height = this.featuredMedia.height;
     }
-
+    var showArticleContent = '';
+    if (typeof options.content != "undefined" && options.content === "full") {
+        showArticleContent = true;
+    }
+ 
     if (this.imageOptions) {
         width = this.imageOptions.width || width;
         height = this.imageOptions.height || height;
@@ -88,6 +93,8 @@ Card.prototype.render = function(options = {})
     card['label'] = this.data.label;
     card['excerpt'] = this.data.excerpt;
     card['title'] = this.data.title;
+    card['hasContent'] = showArticleContent;
+    card['content'] = this.data.content;
     card['author'] = this.data.createdBy.displayName;
     card['date'] = this.data.createdDate;
     card['titleString'] = "";
@@ -456,7 +463,6 @@ Card.prototype.dragndrop = function() {
             if(data.success) {
                 General_ShowNotification({message: "Articles swapped successfully"});
             }
-
             $(".j-truncate").dotdotdot();
             self.events();
 

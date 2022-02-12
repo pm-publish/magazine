@@ -157,7 +157,7 @@ ListingForm.constructor = ListingForm;
 
         const spinner = new Modal('modal', 'swap-modal', { "spinner" : 'spinnerTmpl' } );                
         spinner.render("spinner", "");
-
+        console.log(this.data);
         Acme.server.create('/api/article/create', this.data).done(function(r) {
             spinner.closeWindow();
             // console.log(r);
@@ -274,8 +274,10 @@ export const EventForm = function(id, blogId)
             }
         });
         startDateElem.addEventListener(tempusDominus.Namespace.events.change, (e) => {
+            console.log(e);
             if (typeof e.detail.date !== 'undefined') {
                 self.data.start_date = self.formatDate(e.detail.date);
+                console.log(self.data.start_date);
                 pickerEnd.updateOptions({
                     restrictions: {
                         minDate: e.detail.date

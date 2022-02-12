@@ -171,6 +171,7 @@ ArticleFeed.prototype = new Feed();
 ArticleFeed.constructor = ArticleFeed;
 ArticleFeed.prototype.render = function(data) 
 {
+    console.log(this.cardModal);
 
     var self = this;
     var articles = [];
