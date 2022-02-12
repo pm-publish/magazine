@@ -6,25 +6,34 @@
         {% set thankyou = config['thank-you-page'] %}
 {% endif %}
 
-<main class="site-main">
-        <div class="c-thanks">
-                <div class="container">
-                        <div class="row">
-                                <div class="col-12">
-                                        <div class="c-thanks__main">
-                                                {% if thankyou['headingText'] is defined and thankyou['headingText'] != '' %}
-                                                        <h2 class="c-thanks__main-heading">{{thankyou['headingText']}}</h2>
-                                                {% else %}
-                                                        <h2 class="c-thanks__main-heading">Thanks for submitting an event!</h2>
-                                                {% endif %}
-
-                                                {% if thankyou['descriptionText'] is defined and thankyou['descriptionText'] != '' %}
-                                                        <p class="c-thanks__main-desTest">{{thankyou['descriptionText']}}</p>
-                                                {% endif %}
-
-                                                <div class="buttons-container">
-                                                        <a href="/event-calendar" class="c-button c-button--lightBlue">Event listings</a>
-                                                        <a href="/" class="c-button c-button--lightBlue-bordered">Home</a>
+<main id="main" class="site-main c-thankyouPage c-thankyouPage-xs" role="main">
+        <div class="container">
+                <div class="row">
+                        <div class="col-10 col-md-8 mx-auto">
+                                <div class="row">
+                                        <div class="col-12 col-md-5 d-flex">
+                                                <img src="{{networkData.templatePath}}/static/images/laptop_dark.svg" class="img-fluid" alt="image" />
+                                        </div>
+                                        <div class="col-12 col-md-6 offset-md-1">
+                                                <div class="c-thankyouPage__content">
+                                                        {% if thankyou['maintext'] is defined and thankyou['maintext'] != '' %}
+                                                                <h2 class="c-thankyouPage__content-heading">{{thankyou['maintext']}}</h2>
+                                                        {% else %}
+                                                                <h2 class="c-thankyouPage__content-heading">Thank you for <br class="d-none d-md-block">subscribing.</h2>
+                                                        {% endif %}
+                                                        <p class="c-thankyouPage__content-subText">Visit <a href="{{networkData.defaultBlogUrl}}/user/edit-profile"><b>My Account</b></a> page to manage your subscription.</p>
+                                                
+                                                        {% set buttonUrl = networkData.defaultBlogUrl %}
+                                                        {% set buttonText = 'Start Reading' %}
+                                                        {% if thankyou['button']['url'] is defined and thankyou['button']['url'] != '' %}
+                                                                {% set buttonUrl = thankyou['button']['url'] %}
+                                                        {% endif %}
+                                                        {% if thankyou['button']['text'] is defined and thankyou['button']['text'] != '' %}
+                                                                {% set buttonText = thankyou['button']['text'] %}
+                                                        {% endif %}                                                                                                
+                                                        <div class="o-media-hero_button-set">
+                                                                <a class="c-button c-button--lightBlue c-button--radius mt-5 px-4" href="{{buttonUrl}}">{{buttonText}}</a>
+                                                        </div>
                                                 </div>
                                         </div>
                                 </div>

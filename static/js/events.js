@@ -146,6 +146,17 @@ ListingForm.constructor = ListingForm;
     };
     ListingForm.prototype.submit = function()
     {
+        const page_container = document.getElementById('event-container');
+                
+        const temp = Handlebars.compile(Templates.eventThankYou);
+        page_container.innerHTML = temp({
+            home_link: _appJsConfig.appHostName,
+            events_link: _appJsConfig.appHostName + "/events"
+        });
+        window.scrollTo(0,0);
+        return;
+
+
         var self = this;
         var validated = this.validate();
         if (!validated) {
@@ -277,7 +288,6 @@ export const EventForm = function(id, blogId)
             console.log(e);
             if (typeof e.detail.date !== 'undefined') {
                 self.data.start_date = self.formatDate(e.detail.date);
-                console.log(self.data.start_date);
                 pickerEnd.updateOptions({
                     restrictions: {
                         minDate: e.detail.date

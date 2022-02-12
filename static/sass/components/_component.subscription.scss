@@ -318,15 +318,16 @@
         }
 
         &-subText {
-            color: $grey11;
+            color: $grey10;
             font-family: $primaryFont;
             font-weight: $weightRegular;
             @include font-size(18);
             line-height: 1.78;
             a {
-                color: $grey11;
+                color: $grey10;
                 font-family: $primaryFont;
                 font-weight: $weightBold;
+                text-decoration:underline;
             }
         }
     }

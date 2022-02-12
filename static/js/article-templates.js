@@ -432,15 +432,16 @@ listingDeleteTmpl :
         </div>',
 
 eventThankYou: 
-    '<div class="event-thanks"> \
+    '<div class="c-thanks"> \
         <div class="container"> \
             <div class="row"> \
-                <div class="col-12 event-thanks__container"> \
-                    <h1 class="event-thanks__title">Thanks for submitting an event!</h1> \
-                    <p class="event-thanks__text"></p> \
-                    <div class="event-thanks__buttons u-margin-top-40"> \
-                        <a href="{{events_link}}" class="event-thanks__button event-thanks__button--solid">Event listings</a> \
-                        <a href="{{home_link}}" class="event-thanks__button event-thanks__button--bordered">Home</a> \
+                <div class="col-12"> \
+                    <div class="c-thanks__main"> \
+                    <h2 class="c-thanks__main-heading">Thanks for submitting an event!</h2> \
+                    \
+                    <div class="buttons-container"> \
+                        <a href="{{events_link}}" class="c-button c-button--lightBlue">Event listings</a> \
+                        <a href="{{home_link}}/" class="c-button c-button--lightBlue-bordered">Home</a> \
                     </div> \
                 </div> \
             </div> \
