@@ -154,7 +154,6 @@ ListingForm.constructor = ListingForm;
             events_link: _appJsConfig.appHostName + "/events"
         });
         window.scrollTo(0,0);
-        return;
 
 
         var self = this;
@@ -168,7 +167,6 @@ ListingForm.constructor = ListingForm;
 
         const spinner = new Modal('modal', 'swap-modal', { "spinner" : 'spinnerTmpl' } );                
         spinner.render("spinner", "");
-        console.log(this.data);
         Acme.server.create('/api/article/create', this.data).done(function(r) {
             spinner.closeWindow();
             // console.log(r);
