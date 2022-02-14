@@ -18,10 +18,6 @@
 {% set logoWidth = 650 %}
 {% set logoHeight = 144 %}
 
-{% if networkData.logoMedia | length > 0 %}
-{% set logo = _Media.getMediaUrl(networkData.secondaryLogoMedia, logoWidth, logoHeight, {'crop': 'fit'} )%}
-{% endif %}
-
 {% if config['footer-logo'] is defined %}
     {% if config['footer-logo']['width'] is defined %}
         {% set logoWidth = config['footer-logo']['width'] %}
@@ -41,6 +37,9 @@
     {% endif %}
 {% endif %}
 
+{% if networkData.logoMedia | length > 0 %}
+    {% set logo = _Media.getMediaUrl(networkData.secondaryLogoMedia, logoWidth, logoHeight, {'crop': 'fit'} )%}
+{% endif %}
 
 <footer class="c-footer c-footer-xs c-footer--themecolour mt-5">
     <div class="c-footer__top">
