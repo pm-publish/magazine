@@ -250,10 +250,18 @@
                             </div>
                         </div>
                     </div>
+
+
+                    
                     {% if article.userHasEditArticleAccess is defined and article.userHasEditArticleAccess == 1 %}
                         <a href="{{article.editUrl}}" target="_blank" class="c-article__edit-link" data-access="{{article.userHasEditArticleAccess}}">Edit article</a>
                     {% endif %}
+
+
+
+
                     <div class="">
+
                         {% if articleImg %}
 
                         <div class="gallery-container relative">
