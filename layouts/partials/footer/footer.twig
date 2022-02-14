@@ -1,7 +1,7 @@
 {% set link = _Blog.getHomeBlogSettings() %}
 {% set logo = networkData.templatePath~'/static/images/logo.svg'%}
 {% if networkData.logoMedia | length > 0 %}
-{% set logo = _Media.getMediaUrl(networkData.secondaryLogoMedia, 650, 144, {'crop': 'fit'} )%}
+    {% set logo = _Media.getMediaUrl(networkData.secondaryLogoMedia, 650, 144, {'crop': 'fit'} )%}
 {% endif %}
 {% set footerMenu = _Menu.get({'menuType': 'header', 'menuGroupName': 'footer'}) %}
 {% set footerBottomMenu = _Menu.get({'menuType': 'header', 'menuGroupName': 'footer-bottom'}) %}
@@ -9,18 +9,18 @@
 {% set paywall = true %}
 
 {% if config['paywall'] is defined and config['paywall'] == false %}
-{% set paywall = false %}
+    {% set paywall = false %}
 {% endif %}
 
 {% set loggedin = _User.isGuest() ? false : true %}
 {% set user = loggedin ? _User.getUser() : null %}
 
-{% set addressCol= 'col-lg-4' %}
-{% set additionalInfo= 'justify-content-end' %}
+{% set addressCol = 'col-lg-4' %}
+{% set additionalInfo = 'justify-content-end' %}
 {% if paywall %}
 	{% if loggedin != '1' %}
-		{% set addressCol= 'col-lg-3' %}
-		{% set additionalInfo= '' %}
+		{% set addressCol = 'col-lg-3' %}
+		{% set additionalInfo = '' %}
 	{% endif %}
 {% endif %}
 
