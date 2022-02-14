@@ -87,12 +87,12 @@
 
         {% set storySplit = ArticleContent | split('<p>') %}
 
-        {% if storySplit[(adPos['position'] * 2) - 1] %}
+        {% if storySplit[(adPos['position'] + 2) - 1] %}
             {% if adPos['slot'] is defined %}
                 {% set inarticleslot = adPos['slot'] %}
-                {% set ArticleContent = '<p>' %}
+                {% set ArticleContent = '' %}
                 {% for para in storySplit %}
-                    {% set ArticleContent = ArticleContent ~ '<p>' ~ para %}
+                    {% set ArticleContent = ArticleContent ~ para ~ '</p>' %}
                     {% if loop.index == adPos['position'] %}
                         {% set ArticleContent = ArticleContent ~ '
                             <div class="u-margin-top-30 u-margin-bottom-30 '~ adPos['class'] ~'">
@@ -101,8 +101,7 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-
-        {% endif %}
+        {% endif %}  
     {% endif %}
 
     {# Only grab these if article is not paywalled #}
