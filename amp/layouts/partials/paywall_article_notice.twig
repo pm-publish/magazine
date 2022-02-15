@@ -5,16 +5,15 @@
             <div class="o-paywalled__head">
                 Subscribe to {{networkData.title}} to read the full story.
             </div>
-            <div class="o-paywalled__action">
-                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--rounded c-button--blue c-article__subscribe-button">SUBSCRIBE NOW</a>
-                {% if trialToggle %}
-                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--rounded c-button--blue-bordered">Start Free Trial</a>
-                {% endif %}
-                <a id="articleSigninBtn" href="{{networkData.defaultBlogUrl}}/login?url={{articleUrl}}" class="c-button c-button--rounded c-button--blue-bordered">SIGN IN</a>
-            </div>
-
             <div class="o-paywalled__period">
-                <a href="{{networkData.defaultBlogUrl}}/subscriptions#subscriptions" class="o-paywalled__text">Click here to view our subscription options. </a>
+                <a href="{{networkData.defaultBlogUrl}}/subscriptions#subscriptions" class="o-paywalled__text">Click here</a> to view our subscription options.
+            </div>
+            <div class="o-paywalled__action">
+                {% if trialToggle %}
+                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--white">Start Free Trial</a>
+                {% endif %}
+                <a id="articleSigninBtn" href="{{networkData.defaultBlogUrl}}/login?url={{articleUrl}}" class="c-button c-button--white">SIGN IN</a>
+                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--white c-button--white-bordered c-article__subscribe-button">SUBSCRIBE NOW</a>
             </div>
         </div>
     </div>
@@ -45,7 +44,7 @@
                 To access premium content, upgrade your subscription
             </div>
             <div class="o-paywalled__action">
-                <a href="{{networkData.defaultBlogUrl}}/user/edit-profile?plans=true#plans" class="c-button c-button--rounded c-button--blue c-article__subscribe-button">UPGRADE</a>
+                <a href="{{networkData.defaultBlogUrl}}/user/edit-profile?plans=true#plans" class="c-button c-button--white c-article__subscribe-button">UPGRADE</a>
             </div>
 
             <div class="o-paywalled__period">
@@ -63,11 +62,11 @@
                 To keep reading, sign up for a free account.
             </div>
             <div class="o-paywalled__action">
-                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--rounded c-button--blue c-article__subscribe-button">SUBSCRIBE NOW</a>
                 {% if trialToggle %}
-                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--rounded c-button--blue-bordered">Start Free Trial</a>
+                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--white">Start Free Trial</a>
                 {% endif %}
-                <a id="articleSigninBtn" href="{{networkData.defaultBlogUrl}}/login?url={{articleUrl}}" class="c-button c-button--rounded c-button--blue-bordered">SIGN IN</a>
+                <a id="articleSigninBtn" href="{{networkData.defaultBlogUrl}}/login?url={{articleUrl}}" class="c-button c-button--white">SIGN IN</a>
+                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--white c-button--white-bordered c-article__subscribe-button">SUBSCRIBE NOW</a>
             </div>
 
             <div class="o-paywalled__period">
