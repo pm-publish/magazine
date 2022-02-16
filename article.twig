@@ -85,7 +85,7 @@
     {% if config['inventory']['articleAd'] is defined %}
         {% set adPos = config['inventory']['articleAd'] %}
 
-        {% set storySplit = ArticleContent | split('<p>') %}
+        {% set storySplit = ArticleContent | split('</p>') %}
 
         {% if storySplit[(adPos['position'] + 2) - 1] %}
             {% if adPos['slot'] is defined %}
