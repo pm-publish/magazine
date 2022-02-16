@@ -1,4 +1,5 @@
 {% set message = "PROFILE UPDATED SUCCESFULLY" %}
+{% set networkData = _Network.getNetworkData() %}
 {% set config = _Network.getThemeConfig() %}
 {% set themeColor = "#4A90E2" %}
 {% if networkData['styling']['colours']['primaryColor'] is defined %}
