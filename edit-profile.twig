@@ -423,7 +423,7 @@
                                     <span class="plan-table__feature js-toggleTableRow">View features</span>
                                 </td>
                                 <td class="plan-table__col">
-                                    {% if plan.guid != pwstats['plan_guid']  or pwstats.type == 'article' %}
+                                    {% if plan.guid != pwstats['plan_guid'] %}
                                         <a href="javascript:;" class="plan-table__purchase j-setplan">Purchase</a>
                                     {% else %}
                                         <a href="javascript:;" class="plan-table__purchase">Your Plan</a>
