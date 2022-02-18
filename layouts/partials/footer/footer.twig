@@ -8,7 +8,7 @@
 
 {% set paywall = true %}
 
-{% if config['paywall'] is defined and config['paywall'] == false %}
+{% if config['paywall'] is defined and config['paywall']['active'] is defined and config['paywall']['active'] == false %}   
     {% set paywall = false %}
 {% endif %}
 

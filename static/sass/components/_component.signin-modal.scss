@@ -14,7 +14,8 @@
     padding: 0 50px 60px 50px;
     text-align: center;
     @media #{$media-ipadSmall} {
-        width: auto;
+        width: 90%;
+        padding: 0 20px 60px 20px;
     }
 }
 

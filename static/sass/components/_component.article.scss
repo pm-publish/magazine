@@ -578,6 +578,10 @@
         @include font-size(20);
         line-height: 1.2;
         color: $grey4;
+
+        a {
+          text-decoration: underline;
+        }
       }
 
       &__action {

@@ -33,7 +33,7 @@
 
 {% set paywall = true %}
 
-{% if config['paywall'] is defined and config['paywall'] == false %}
+{% if config['paywall'] is defined and config['paywall']['active'] is defined and config['paywall']['active'] == false %}
     {% set paywall = false %}
 {% endif %}
 
@@ -47,6 +47,10 @@
 {% endif %}
 {% set theDate = _AppHelper.getCurrentTimestampBasedOnTimezone() %}
 {% set date = _AppHelper.getDefaultTimezoneDateTime(theDate, dateFormat) %}
+
+
+<div id="pp-banner" class="d-print-none u-desktop-margin-bottom-20 u-desktop-padding-bottom-10 "></div>
+
 
 <header class="c-header" id="headerScrolling">
     <div class="c-header__top d-none d-md-block">
@@ -199,7 +203,7 @@
                                     {% endif %}
                                 {% endif %}
                                 {% if loggedin != true and config['subscriptions']['subscribe-button'] != '' %}
-                                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
+                                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--sitePrimaryClr">Subscribe</a>
                                 {% endif %}
                             </div>
                             {% if paywall %}
@@ -269,8 +273,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="c-header__res-btn__content">
-                                <a id="signinBtn" href="javascript:;" class="c-button c-button--black-bordered d-inline-block d-md-none">Sign in</a>
-                                <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--mainThemeClr">Subscribe</a>
+                                {% if loggedin != true %}
+                                    <a id="signinBtn" href="javascript:;" class="c-button c-button--black-bordered d-inline-block d-md-none">Sign in</a>
+                                {% endif %}
+                                {% if loggedin != true and config['subscriptions']['subscribe-button'] != '' %}
+                                    <a href="{{networkData.defaultBlogUrl}}/subscriptions" class="c-button c-button--sitePrimaryClr">Subscribe</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

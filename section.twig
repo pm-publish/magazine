@@ -135,9 +135,9 @@
                 </div>
                 <div class="col-12 col-lg-6">
 
-                    {% if config['inventory']['adSpace']['banner'][2] is defined %}
+                    {% if config['inventory']['adSpace']['mrec'][0] is defined %}
                         <div class="adBlocker adBlocker--d3 d-none d-xl-block mb-4">
-                            <div class="j-adslot" id="{{config['inventory']['adSpace']['mrec'][1]}}" data-adshape="banner"></div>
+                            <div class="j-adslot" id="{{config['inventory']['adSpace']['mrec'][0]}}" data-adshape="banner"></div>
                         </div>
                     {% endif %}
 
@@ -187,9 +187,9 @@
         {% endif %}
     </section>
 
-    {% if config['inventory']['adSpace']['banner'][2] is defined %}
+    {% if config['inventory']['adSpace']['banner'][1] is defined %}
         <div class="my-5 overflow-hidden">
-            <div class="j-adslot" id="{{config['inventory']['adSpace']['banner'][2]}}" data-adshape="banner"></div>
+            <div class="j-adslot" id="{{config['inventory']['adSpace']['banner'][1]}}" data-adshape="banner"></div>
         </div>
     {% endif %}
     

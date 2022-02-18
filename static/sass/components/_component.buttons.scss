@@ -58,6 +58,12 @@
         }
     }
 
+    &--sitePrimaryClr {
+        color: $white;
+        border-color: var(--sec-color);
+        background-color: var(--sec-color);
+    }
+
     &--lightBlue {
         color: $white;
         border-color: #5748f6;
