@@ -56,13 +56,13 @@
         }
 
         &--solid {
-            background-color: $blue_sh5;
+            background-color: var(--sec-color);
             color: $white;
         }
 
         &--bordered {
-            border: 1px solid $blue_sh5;
-            color: $blue_sh5;
+            border: 1px solid var(--sec-color);
+            color: var(--sec-color);
         }
 
         &--grow {
@@ -445,7 +445,7 @@
     }
 
     .active {
-        background-color: hsla(var(--sec-color-h), var(--sec-color-s), var(--sec-color-l), 0.9) !important;
+        background-color: hsla(var(--sec-color-h), var(--sec-color-s), var(--sec-color-l), 0.2) !important;
         .cus_acnt__plan-table--feature {
             color: var(--sec-color) !important;
         }
@@ -940,13 +940,13 @@
         }
 
         &--solid {
-            background-color: $blue_sh5;
+            background-color: var(--sec-color);
             color: $white;
         }
 
         &--bordered {
-            border: 1px solid $blue_sh5;
-            color: $blue_sh5;
+            border: 1px solid var(--sec-color);
+            color: var(--sec-color);
         }
 
         &--grow {
@@ -1308,7 +1308,7 @@
         cursor: pointer;
 
         &:hover {
-            color: $blue_sh5;
+            color: var(--sec-color);
         }
     }
 
@@ -1329,7 +1329,7 @@
     }
 
     .active {
-        background-color: hsla(var(--sec-color-h), var(--sec-color-s), var(--sec-color-l), 0.9) !important;
+        background-color: hsla(var(--sec-color-h), var(--sec-color-s), var(--sec-color-l), 0.2) !important;
         .cus_acnt__plan-table--feature {
             color: var(--sec-color) !important;
         }
@@ -1824,13 +1824,13 @@
         }
 
         &--solid {
-            background-color: $blue_sh5;
+            background-color: var(--sec-color);
             color: $white;
         }
 
         &--bordered {
-            border: 1px solid $blue_sh5;
-            color: $blue_sh5;
+            border: 1px solid var(--sec-color);
+            color: var(--sec-color);
         }
 
         &--grow {
@@ -2192,7 +2192,7 @@
         cursor: pointer;
 
         &:hover {
-            color: $blue_sh5;
+            color: var(--sec-color);
         }
     }
 
@@ -2213,7 +2213,7 @@
     }
 
     .active {
-        background-color: hsla(var(--sec-color-h), var(--sec-color-s), var(--sec-color-l), 0.9) !important;
+        background-color: hsla(var(--sec-color-h), var(--sec-color-s), var(--sec-color-l), 0.2) !important;
         .cus_acnt__plan-table--feature {
             color: var(--sec-color) !important;
         }
