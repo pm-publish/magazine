@@ -7,8 +7,8 @@
 {% set addresses = defaultBlog.contact %}
 {% set paywall = true %}
 
-{% if config['paywall'] is defined and config['paywall'] == false %}
-{% set paywall = false %}
+{% if config['paywall'] is defined and config['paywall']['active'] is defined and config['paywall']['active'] == false %}
+    {% set paywall = false %}
 {% endif %}
 
 {% set loggedin = _User.isGuest() ? false : true %}
