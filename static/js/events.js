@@ -146,15 +146,6 @@ ListingForm.constructor = ListingForm;
     };
     ListingForm.prototype.submit = function()
     {
-        const page_container = document.getElementById('event-container');
-                
-        const temp = Handlebars.compile(Templates.eventThankYou);
-        page_container.innerHTML = temp({
-            home_link: _appJsConfig.appHostName,
-            events_link: _appJsConfig.appHostName + "/events"
-        });
-        window.scrollTo(0,0);
-
 
         var self = this;
         var validated = this.validate();
@@ -178,6 +169,7 @@ ListingForm.constructor = ListingForm;
                     home_link: _appJsConfig.appHostName,
                     events_link: _appJsConfig.appHostName + "/events"
                 });
+                window.scrollTo(0,0);
                 return;
             }
             self.showError(r.error);

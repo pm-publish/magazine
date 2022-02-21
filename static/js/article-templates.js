@@ -440,8 +440,8 @@ eventThankYou:
                     <h2 class="c-thanks__main-heading">Thanks for submitting an event!</h2> \
                     \
                     <div class="buttons-container"> \
-                        <a href="{{events_link}}" class="c-button c-button--lightBlue">Event listings</a> \
-                        <a href="{{home_link}}/" class="c-button c-button--lightBlue-bordered">Home</a> \
+                        <a href="{{events_link}}" class="c-button c-button--sitePrimaryClr">Event listings</a> \
+                        <a href="{{home_link}}/" class="c-button c-button--sitePrimaryClr-bordered">Home</a> \
                     </div> \
                 </div> \
             </div> \
