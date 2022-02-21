@@ -107,12 +107,14 @@
                                             {% endif %}
                                         {% endif %}
 
-
                                         {% if contactDetails != "" %}
                                             <div class="c-eventdetail__info-item">
                                                 <span class="c-eventdetail__info-text" >Contact {{event.contactName}}</span>
                                                 <span class="c-eventdetail__info-text small" >{{event.contactNumber}}</span>
                                                 <span class="c-eventdetail__info-text small" >{{event.contactEmail}}</span>
+                                                {% if event.websiteUrl != "" %}
+                                                    <a href="{{event.websiteUrl}}" target="_blank" class="c-eventdetail__info-text small" ><strong>{{event.websiteUrl}}</strong></a>
+                                                {% endif %}
                                             </div>
                                         {% endif %}
                                 </div>
