@@ -8,10 +8,12 @@
 {% set site        = networkData.title | lower | split(" ")[0]%}
 
 {% set eventImage = false %}
-{% if event.media | length > 0 %}
-    {% set eventImage = _Media.getMediaUrl(event.media[0], 'auto', 420, {'crop': 'fill', 'gravity': 'auto'} ) %}
-{% endif %}
+{#{% if event.media | length > 0 %}
+    {% set eventImage = _Media.getMediaUrl(event.media, 'auto', 420, {'crop': 'fill', 'gravity': 'auto'} ) %}
+{% endif %}#}
 
+
+{{_AppHelper.printArray(eventImage)}}
 
 {% set startDate = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'j F Y') %}
 {% set endDate = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'j F Y') %}
@@ -64,11 +66,16 @@
                             {{ quotes.smarten(event.title) }}  
                         </div>
                     </div>
-                    {% if eventImage %} 
-                        <div class="c-eventdetail__media">
-                            <figure class="c-eventdetail__figure"> 
-                                <img src="{{eventImage}}" class="img-fluid" alt="Article Info">
-                            </figure>
+                    {% if event.media | length > 0 %}
+                        <div id="owl-gallery-image" class="owl-carousel owl-pub-theme owl-carousel__base">
+                            {% for image in event.media %}
+                                {% set eventImage = _Media.getMediaUrl(image, 'auto', 420, {'crop': 'fill', 'gravity': 'auto'} ) %}
+                                    <div class="c-eventdetail__media">
+                                        <figure class="c-eventdetail__figure"> 
+                                            <img src="{{eventImage}}" class="img-fluid" alt="Article Info">
+                                        </figure>
+                                    </div>                            
+                            {% endfor %}
                         </div>
                     {% endif %}
 
