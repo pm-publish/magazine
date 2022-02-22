@@ -167,6 +167,7 @@ ListingForm.constructor = ListingForm;
                 
                 const temp = Handlebars.compile(Templates.eventThankYou);
                 page_container.innerHTML = temp({
+                    thankYouText: self.thankYouText,
                     home_link: _appJsConfig.appHostName,
                     events_link: _appJsConfig.appHostName + "/events"
                 });
