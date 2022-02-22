@@ -180,6 +180,7 @@
     document.addEventListener("DOMContentLoaded", function(event) {
         Acme.cards = new Card();
         Acme.eventForm = new Acme.EventForm('listingForm', [{{eventBlogId}}]);
+        Acme.eventForm.thankYouText = "{{config['submit-event']['thankyou-text']}}";
        {{userScript | raw}}
     });
 </script>
