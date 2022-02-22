@@ -153,7 +153,7 @@ ListingForm.constructor = ListingForm;
             this.render();
             return;
         }
-        console.log(self);
+        console.log(self, self.thankYouText);
         this.data.theme_layout_name = this.layout;
 
         const spinner = new Modal('modal', 'swap-modal', { "spinner" : 'spinnerTmpl' } );                
@@ -165,8 +165,9 @@ ListingForm.constructor = ListingForm;
                 const page_container = document.getElementById('event-container');
                 
                 const temp = Handlebars.compile(Templates.eventThankYou);
+                console.log(self, self.thankYouText);
                 page_container.innerHTML = temp({
-                    thankYouText: this.thankYouText,
+                    thankYouText: self.thankYouText,
                     home_link: _appJsConfig.appHostName,
                     events_link: _appJsConfig.appHostName + "/events"
                 });
