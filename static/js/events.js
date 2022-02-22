@@ -153,19 +153,17 @@ ListingForm.constructor = ListingForm;
             this.render();
             return;
         }
-        console.log(self, self.thankYouText);
         this.data.theme_layout_name = this.layout;
 
         const spinner = new Modal('modal', 'swap-modal', { "spinner" : 'spinnerTmpl' } );                
         spinner.render("spinner", "");
         Acme.server.create('/api/article/create', this.data).done(function(r) {
             spinner.closeWindow();
-            console.log(r);
+            //console.log(r);
             if (r.success === 1) {
                 const page_container = document.getElementById('event-container');
                 
                 const temp = Handlebars.compile(Templates.eventThankYou);
-                console.log(self, self.thankYouText);
                 page_container.innerHTML = temp({
                     thankYouText: self.thankYouText,
                     home_link: _appJsConfig.appHostName,
@@ -177,7 +175,7 @@ ListingForm.constructor = ListingForm;
             self.showError(r.error);
 
         }).fail(function(r) {
-            console.log(r);
+            //console.log(r);
             spinner.closeWindow();
             self.showError(r.responseJSON.error);
         });
