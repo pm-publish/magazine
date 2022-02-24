@@ -278,16 +278,13 @@ export const EventForm = function(id, blogId)
         });
         startDateElem.addEventListener("keypress", (e) => {
             e.preventDefault();
-        console.log('kp');
         });
         endDateElem.addEventListener("keypress", (e) => {
             e.preventDefault();
-        console.log('kp');
         });
 
         startDateElem.addEventListener(tempusDominus.Namespace.events.change, (e) => {
 
-            console.log(e);
             if (typeof e.detail.date !== 'undefined') {
                 self.data.start_date = self.formatDate(e.detail.date);
                 pickerEnd.updateOptions({
