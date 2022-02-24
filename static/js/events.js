@@ -278,9 +278,11 @@ export const EventForm = function(id, blogId)
         });
         startDateElem.addEventListener("keypress", (e) => {
             e.preventDefault();
+        console.log('kp');
         });
         endDateElem.addEventListener("keypress", (e) => {
             e.preventDefault();
+        console.log('kp');
         });
 
         startDateElem.addEventListener(tempusDominus.Namespace.events.change, (e) => {
