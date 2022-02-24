@@ -62,6 +62,11 @@
         color: $white;
         border-color: var(--sec-color);
         background-color: var(--sec-color);
+
+        &-bordered {
+            border-color: var(--sec-color);
+            color: var(--sec-color);
+          }
     }
 
     &--lightBlue {

@@ -69,11 +69,15 @@
                     {% if event.media | length > 0 %}
                         <div id="owl-gallery-image" class="owl-carousel owl-pub-theme owl-carousel__base">
                             {% for image in event.media %}
-                                {% set eventImage = _Media.getMediaUrl(image, 'auto', 420, {'crop': 'fill', 'gravity': 'auto'} ) %}
-                                    <div class="c-eventdetail__media">
-                                        <figure class="c-eventdetail__figure"> 
-                                            <img src="{{eventImage}}" class="img-fluid" alt="Article Info">
-                                        </figure>
+                                {% set eventImageSmall = _Media.getMediaUrl(image, 'auto', 420, {'crop': 'fill', 'gravity': 'auto'} ) %}
+                                {% set eventImageMedium = _Media.getMediaUrl(image, 'auto', 500, {'crop': 'fill', 'gravity': 'auto'} ) %}
+                                {% set eventImage = _Media.getMediaUrl(image, 'auto', 500, {'crop': 'fill', 'gravity': 'auto'} ) %}
+                                    <div class="c-eventdetail__figure">
+                                        <picture>
+                                            <source media="(max-width: 728px) and (min-width: 501px)" srcset="{{eventImageMedium}}">
+                                            <source media="(max-width: 295px)" srcset="{{eventImageSmall}}">
+                                            <img class="article-gallery__img" src="{{eventImage}}">
+                                        </picture>
                                     </div>                            
                             {% endfor %}
                         </div>
