@@ -276,20 +276,29 @@ export const EventForm = function(id, blogId)
                 }
             }
         });
+        startDateElem.addEventListener("keypress", (e) => {
+            e.preventDefault();
+        });
+        endDateElem.addEventListener("keypress", (e) => {
+            e.preventDefault();
+        });
+
         startDateElem.addEventListener(tempusDominus.Namespace.events.change, (e) => {
+
             console.log(e);
             if (typeof e.detail.date !== 'undefined') {
                 self.data.start_date = self.formatDate(e.detail.date);
                 pickerEnd.updateOptions({
+                    defaultDate: e.detail.date,
                     restrictions: {
-                        minDate: e.detail.date
+                        minDate: e.detail.date,
                     }
                 });
                 const valid = self.validate(['start_date']);
                 self.render();
             }
         });
-        endDateElem .addEventListener(tempusDominus.Namespace.events.change, (e) => {
+        endDateElem.addEventListener(tempusDominus.Namespace.events.change, (e) => {
             if (typeof e.detail.date !== 'undefined') {
                 self.data.end_date = self.formatDate(e.detail.date);
             }
