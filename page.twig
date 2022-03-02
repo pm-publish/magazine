@@ -21,7 +21,10 @@
                             </div>
                         </aside>
                         <aside class="page_section__content c-article__container">
-                            {{page.content | raw}}
+                            {% for content in paragraphs | slice (1, page.content | length) %}
+                                {{content | raw}}
+                            {% endfor %}
+                            
                         </aside>
                     </div>
                     {% if config['forms'][this.title] is defined %}
