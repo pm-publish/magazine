@@ -38,7 +38,8 @@
 {% endif %}
 
 {% set imgSizes = {
-    "mobile"  : imageSizes is defined and imageSizes.mobile is defined  ? imageSizes.mobile  : {width:375, height:500},
+    "mobile"  : imageSizes is defined and imageSizes.mobile is defined  ? imageSizes.mobile  : {width:imgWidth, height:imgHeight},
+    "mobileLrg" : imageSizes is defined and imageSizes.mobileLarge is defined  ? imageSizes.mobileLarge  : {width:306, height:185},
     "tablet"  : imageSizes is defined and imageSizes.tablet is defined  ? imageSizes.tablet  : {width:500, height:768},
     "desktop" : imageSizes is defined and imageSizes.desktop is defined ? imageSizes.desktop : {width:imgWidth, height:imgHeight},
 } %}
@@ -120,6 +121,7 @@
 
     {% set imageSource = imageSource == 'article' ? article.featuredMedia : article.createdBy['media'] %}
     {% set imageSmall     = _Media.getMediaUrl(imageSource,imgSizes.mobile.width, imgSizes.mobile.height,  imageparams ) %}
+    {% set imageMobileLarge = _Media.getMediaUrl(imageSource,imgSizes.mobileLrg.width, imgSizes.mobileLrg.height,   imageparams ) %}
     {% set imageMedium    = _Media.getMediaUrl(imageSource,imgSizes.tablet.width, imgSizes.tablet.height,  imageparams ) %}
     {% set imageLarge     = _Media.getMediaUrl(imageSource,imgSizes.desktop.width,imgSizes.desktop.height, imageparams ) %}
 
