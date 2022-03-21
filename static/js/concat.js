@@ -114,7 +114,7 @@ function headerMicroMenuClose() {
 }
 
 $(window).scroll(function () {
-    if ($(this).scrollTop()) {
+    if ($(this).scrollTop() > 120) {
       $('#headerScrolling').addClass('header-sticky');
     } else {
       $('#headerScrolling').removeClass('header-sticky');
