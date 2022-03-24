@@ -178,29 +178,34 @@
                                 </div>
                             </div>
                         </div>
+
                         {% if articleImg %} 
 
-                            <div class="gallery-container relative u-margin-bottom-50">
-                                {% set galleryStyle = 'article' %}
-                                {% if article.media|length > 1 %}
-                                    {% set galleryStyle = 'gallery' %}
-                                {% endif %}
+                                <div class="gallery-container relative u-margin-bottom-50">
+
+                                    {% if article.media|length > 0 %}
+                                        {% set imageFeature = featured == 'image' ? true : false %}
+                                        {{this.render('partials/gallery.twig', {
+                                            media: article.media,
+                                            default: imageFeature,
+                                            watermark: watermark,
+                                            type: 'article',
+                                            galleryStyle: galleryStyle,
+                                            showPaywall: showPaywall
+                                        }) | raw}}
+                                    {% endif %}
 
 
-                                {% if article.media|length > 0 %}
-                                    {% set imageFeature = featured == 'image' ? true : false %}
-                                    {{this.render('partials/gallery.twig', {
-                                        media: article.media,
-                                        default: imageFeature,
-                                        watermark: watermark,
-                                        galleryStyle: galleryStyle,
-                                        showPaywall: showPaywall
-                                    }) | raw}}
-                                {% endif %}
+                                </div>
+                                <div id="owl-thumbs" class="owl-thumbs article-gallery__thumbs article-gallery__thumbs-horizontal" data-slider-id="1">
+                                    {% for thumb in article.media %}
+                                        {% set articleImg = _Media.getMediaUrl(thumb,152, 95, {'crop': 'fill', 'gravity':'faces'} ) %}
+                                        <img id="owl-{{loop.index}}" src="{{articleImg}}" class="owl-thumb-item">
+                                    {% endfor %}
+                                </div>
 
-                            </div> 
 
-                        {% endif %}
+                            {% endif %}
                     </div>
                 </div>
             </div>
@@ -360,11 +365,3 @@
     {% endif %}
     <div class="j-keyword-cont" data-keywords="{{theKeywords}}"></div>
 </main>
-
-<script>
-    // main script is defered so event listener makes sure
-    // defered script is loaded before this runs
-    document.addEventListener("DOMContentLoaded", function(event) {
-        Acme.articleController = Acme.ArticleController();
-    });
-</script>
