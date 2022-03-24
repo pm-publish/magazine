@@ -293,6 +293,29 @@
                                 {% endif %}
                             </p>
 
+                            <div class="c-article__features u-margin-bottom-30">
+                                {% if article.additionalInfo.bedroom_count %}
+                                    <div class="c-article__feature">
+                                        <span class="c-article__feature-icon c-article__feature-icon--fill">{{ this.render('partials/icons.twig', {icon: 'bed'} ) | raw }}</span>
+                                        <span class="c-article__feature-item c-article__feature-item--count">{{article.additionalInfo.bedroom_count}}</span>
+                                    </div>
+                                {% endif %}
+                                
+                                {% if article.additionalInfo.bathroom_count %}
+                                    <div class="c-article__feature">
+                                        <span class="c-article__feature-icon c-article__feature-icon--fill">{{ this.render('partials/icons.twig', {icon: 'bathtub'} ) | raw }}</span>
+                                        <span class="c-article__feature-item c-article__feature-item--count">{{article.additionalInfo.bathroom_count}}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if article.additionalInfo.car_count %}
+                                    <div class="c-article__feature">
+                                        <span class="c-article__feature-icon c-article__feature-icon--fill">{{ this.render('partials/icons.twig', {icon: 'car'} ) | raw }}</span>
+                                        <span class="c-article__feature-item c-article__feature-item--count">{{article.additionalInfo.car_count}}</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+
                             <div class="c-article__container">
                                 {{ ArticleContent | _resizeImages({'width': 600}) | raw }}
                             </div>
@@ -315,85 +338,76 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="c-propertyarticle-agent u-mobile-margin-top-50 u-margin-top-80">
-                                        <div class="c-propertyarticle-agent__imagebar u-margin-bottom-30">
-                                            <div class="c-propertyarticle-agent__image">
-                                                {% if article.additionalInfo.contactimage %}  
-                                                    <img src="{{article.additionalInfo.contactimage}}">
-                                                {% else %}
-                                                    {{ this.render('partials/icons.twig', {icon: 'agent'} ) | raw }}
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        {% if article.additionalInfo.contactname %}  
-                                            <p class="c-propertyarticle-agent__name">{{article.additionalInfo.contactname}}</p>
-                                        {% endif %}
-                                        {% if article.additionalInfo.contactcompany %}  
-                                            <p class="c-propertyarticle-agent__agency">{{article.additionalInfo.contactcompany}}</p>
-                                        {% endif %}
-                                        {% if article.additionalInfo.contactphone %}  
-                                            <p class="c-propertyarticle-agent__phone u-margin-top-15">{{article.additionalInfo.contactphone}}</p>
-                                        {% endif %}
-                                        {% if article.additionalInfo.contactemail %}  
-                                            <a href="mailto:{{article.additionalInfo.contactemail}}">
-                                                <span class="c-propertyarticle-agent__emailbutton u-margin-top-20">
-                                                    <div class="c-propertyarticle-agent__emailicon">
-                                                        {{ this.render('partials/icons.twig', {icon: 'email'} ) | raw }}
-                                                    </div>
-                                                    GET IN TOUCH
-                                                </span>
-                                            </a>
-                                        {% endif %}
+                        <div class="c-propertyarticle-agent__imagebar u-margin-bottom-30">
+                            <div class="c-propertyarticle-agent__image">
+                                {% if article.additionalInfo.contactimage %}  
+                                    <img src="{{article.additionalInfo.contactimage}}">
+                                {% else %}
+                                    {{ this.render('partials/icons.twig', {icon: 'agent'} ) | raw }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if article.additionalInfo.contactname %}  
+                            <p class="c-propertyarticle-agent__name">{{article.additionalInfo.contactname}}</p>
+                        {% endif %}
+                        {% if article.additionalInfo.contactcompany %}  
+                            <p class="c-propertyarticle-agent__agency">{{article.additionalInfo.contactcompany}}</p>
+                        {% endif %}
+                        {% if article.additionalInfo.contactphone %}  
+                            <p class="c-propertyarticle-agent__phone u-margin-top-15">{{article.additionalInfo.contactphone}}</p>
+                        {% endif %}
+                        {% if article.additionalInfo.contactemail %}  
+                            <a href="mailto:{{article.additionalInfo.contactemail}}" class="c-propertyarticle-agent__emailbutton">Contact agent</a>
+                        {% endif %}
 
-                                    </div>
-                                    <hr class="divide">
-                                    <div class="c-propertyarticle-inspection">
-                                        <h4 class="c-propertyarticle-inspection__title">Inspection</h4>
-                                        {% if article.additionalInfo.inspection_date is defined and "now"|date() < article.additionalInfo.inspection_date|date() %}
+                    </div>
+                                    
+                    <div class="c-propertyarticle-inspection">
+                        <h4 class="c-propertyarticle-inspection__title">Inspection</h4>
+                        {% if article.additionalInfo.inspection_date is defined and "now"|date() < article.additionalInfo.inspection_date|date() %}
 
-                                            <span class="c-propertyarticle-inspection__dateandtime">
-                                                <div class="c-propertyarticle-inspection__calicon">
-                                                    {{ this.render('partials/icons.twig', {icon: 'calendar'} ) | raw }}
-                                                </div>
-                                                {{ _AppHelper.getDefaultTimezoneDateTime(article.additionalInfo.inspection_date, "l, F j, g:i a")}}
-                                            </span>
-                                        {% else %}
-                                            <p class="c-propertyarticle-inspection__text">Please contact the Agent for inspection times.</p>
-                                        {% endif %}
-                                    </div>
-                                    <hr class="divide"> 
-                                    <div class="c-propertyarticle-links">
-                                        {% if article.additionalInfo.link_1_text !='' and article.additionalInfo.link_1_url !='' %} 
-                                            <a href="{{article.additionalInfo.link_1_url}}" target="_blank">
-                                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_1_text}}</p>
-                                            </a>
-                                        {% endif %}
-                                        {% if article.additionalInfo.link_2_text !='' and article.additionalInfo.link_2_url !='' %}
-                                            <a href="{{article.additionalInfo.link_2_url}}" target="_blank">
-                                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_2_text}}</p>
-                                            </a>
-                                        {% endif %}
-                                        {% if article.additionalInfo.link_3_text !='' and article.additionalInfo.link_3_url !='' %}
-                                            <a href="{{article.additionalInfo.link_3_url}}" target="_blank">
-                                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_3_text}}</p>
-                                            </a>
-                                        {% endif %}
-                                        {% if article.additionalInfo.link_4_text !='' and article.additionalInfo.link_4_url !='' %}
-                                            <a href="{{article.additionalInfo.link_4_url}}" target="_blank">
-                                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_4_text}}</p>
-                                            </a>
-                                        {% endif %}
-                                    </div>
-                                    {% if article.additionalInfo.features !='' %} 
-                                        {% set features = article.additionalInfo.features | split(',') %}
-                                        <hr class="divide"> 
-                                        <div class="c-propertyarticle-features">
-                                            <h4 class="c-propertyarticle-features__title">Property features</h4>
-                                            {% for feature in features %}
-                                                <p class="c-propertyarticle-features__feature">{{feature}}</p>
-                                            {% endfor %}
-                                        </div>
+                            <span class="c-propertyarticle-inspection__dateandtime">
+                                <div class="c-propertyarticle-inspection__calicon">
+                                    {{ this.render('partials/icons.twig', {icon: 'calendar'} ) | raw }}
+                                </div>
+                                {{ _AppHelper.getDefaultTimezoneDateTime(article.additionalInfo.inspection_date, "l, F j, g:i a")}}
+                            </span>
+                        {% else %}
+                            <p class="c-propertyarticle-inspection__text">Please contact the Agent for inspection times.</p>
+                        {% endif %}
+                    </div>
+                    {% if article.additionalInfo.features !='' %} 
+                        {% set features = article.additionalInfo.features | split(',') %}
+                        <div class="c-propertyarticle-features">
+                            <h4 class="c-propertyarticle-features__title">Property features</h4>
+                            {% for feature in features %}
+                                <p class="c-propertyarticle-features__feature">{{feature}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
 
-                                    {% endif %}
+                    <div class="c-propertyarticle-links">
+                        {% if article.additionalInfo.link_1_text !='' and article.additionalInfo.link_1_url !='' %} 
+                            <a href="{{article.additionalInfo.link_1_url}}" target="_blank">
+                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_1_text}}</p>
+                            </a>
+                        {% endif %}
+                        {% if article.additionalInfo.link_2_text !='' and article.additionalInfo.link_2_url !='' %}
+                            <a href="{{article.additionalInfo.link_2_url}}" target="_blank">
+                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_2_text}}</p>
+                            </a>
+                        {% endif %}
+                        {% if article.additionalInfo.link_3_text !='' and article.additionalInfo.link_3_url !='' %}
+                            <a href="{{article.additionalInfo.link_3_url}}" target="_blank">
+                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_3_text}}</p>
+                            </a>
+                        {% endif %}
+                        {% if article.additionalInfo.link_4_text !='' and article.additionalInfo.link_4_url !='' %}
+                            <a href="{{article.additionalInfo.link_4_url}}" target="_blank">
+                                <p class="c-propertyarticle-links__link">{{article.additionalInfo.link_4_text}}</p>
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
