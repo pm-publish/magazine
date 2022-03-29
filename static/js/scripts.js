@@ -6,6 +6,100 @@ document.addEventListener("DOMContentLoaded", function(event) {
         effect : "fadeIn"
     });
 
+    window.Acme.scrollThumbs = function(elem) {
+        if (elem.length === 0) {
+            return;
+        }
+        var elem = $(elem);
+        var elemWidth = elem.width();
+        var container = elem.parent();
+        var containerWidth = container.width();
+        var scrollAmount = container.scrollLeft();
+        var containerView = [scrollAmount, containerWidth + scrollAmount];
+
+        var middle = (containerView[1] - containerView[0]) / 2 ;
+        var middle = scrollAmount + middle;
+        var elempos = elem[0].offsetLeft + elemWidth/2;
+
+        if ( elempos > middle ) {
+            var scroll = true;
+            var scrollpos = scrollAmount + (elempos - middle);
+        } else if ( elem[0].offsetLeft < middle ) {
+            var scroll = true;
+            var scrollpos = scrollAmount - (middle - elempos);
+        }
+
+        if (scroll) {
+            container.animate({
+                scrollLeft : scrollpos
+            });
+        }
+    }
+
+
+    window.Acme.scrollThumbsVertical = function(elem) {
+        console.log('clicked');
+        if (elem.length === 0) {
+            return;
+        }
+        var elem = $(elem);
+        var elemHeight = elem.height();
+        var container = elem.parent();
+        var containerHeight = container.height();
+        var scrollAmount = container.scrollTop();
+        var containerView = [scrollAmount, containerHeight + scrollAmount];
+
+        var middle = (containerView[1] - containerView[0]) / 2 ;
+        var middle = scrollAmount + middle;
+
+        var elempos = elem[0].offsetTop + elemHeight/2;
+
+        if ( elempos > middle ) {
+            var scroll = true;
+            var scrollpos = scrollAmount + (elempos - middle);
+        } else if ( elem[0].offsetLeft < middle ) {
+            var scroll = true;
+            var scrollpos = scrollAmount - (middle - elempos);
+        }
+
+        if (scroll) {
+            container.animate({
+                scrollTop : scrollpos
+            });
+        }
+    }
+
+    window.Acme.scrollThumbsHorizontal = function(elem) {
+
+        if (elem.length === 0) {
+            return;
+        }
+        var elem = $(elem);
+        var elemWidth = elem.width();
+        var container = elem.parent();
+        var containerWidth = container.width();
+        var scrollAmount = container.scrollLeft();
+        var containerView = [scrollAmount, containerWidth + scrollAmount];
+
+        var middle = (containerView[1] - containerView[0]) / 2 ;
+        var middle = scrollAmount + middle;
+        var elempos = elem[0].offsetLeft + elemWidth/2;
+
+        if ( elempos > middle ) {
+            var scroll = true;
+            var scrollpos = scrollAmount + (elempos - middle);
+        } else if ( elem[0].offsetLeft < middle ) {
+            var scroll = true;
+            var scrollpos = scrollAmount - (middle - elempos);
+        }
+
+        if (scroll) {
+            container.animate({
+                scrollLeft : scrollpos
+            });
+        }
+    }
+
 
     var cardHolder = '';
     clearTimeout(cardHolder);
@@ -15,7 +109,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     }), 750);
 
+
     $("#owl-gallery-image").owlCarousel({
+        items: 1,
+        dots: false,
+        nav: true,
+        navText: [
+            "",
+            ""
+        ]
+    });   
+
+    
+
+    //this is used for the gallery template
+    $("#owl-gallery-article").owlCarousel({
         items: 1,
         thumbs: true,
         thumbsPrerendered: true,
@@ -24,13 +132,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         pagination: true,
         dots: false,
         nav: true,
-        onInitialized: counter,
-        onTranslated: counter,
         navText: [
             "",
             ""
         ]
-    });
+    });  
 
     function counter(event) {
         var element = event.target;
@@ -81,7 +187,7 @@ function headerMicroMenuClose() {
 }
 
 $(window).scroll(function () {
-    if ($(this).scrollTop()) {
+    if ($(this).scrollTop() > 120) {
       $('#headerScrolling').addClass('header-sticky');
     } else {
       $('#headerScrolling').removeClass('header-sticky');

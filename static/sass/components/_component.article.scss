@@ -1,5 +1,39 @@
 .c-article {
   //top bar
+  &__price {
+    font-family: $primaryFont;
+    font-weight: $weightBold;
+    @include font-size(24);
+    color: $black;
+  }
+
+  &__address {
+    font-family: $primaryFont;
+    font-weight: $weightRegular;
+    @include font-size(18);
+    color: $grey10;
+    margin-bottom: 25px;
+  }
+
+  &__features {
+    @include flexbox;
+
+    .c-article__feature {
+      @include flexbox;
+      @include align-items(center);
+      margin-right: 16px;
+
+      &-icon {
+        margin-right: 8px;
+
+        &--fill {
+          svg *{
+            fill: var(--sec-color) !important;
+          }
+        }
+      }
+    }
+  }
 
   &__edit-link {
     margin-bottom: 15px;
