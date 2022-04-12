@@ -73,7 +73,8 @@ export default class AdLoader {
 
                 const item = data[k];
                 const keys = item.keywords.split(',');
-                const adElem = document.getElementById(keys[0]);
+                // const adElem = document.getElementById(keys[0]);
+                const adElem = $("#"+keys[0]);
 
                 if (item.media.path){
                     const html ='<div id="advertisment__' + keys[0] + '" class="advertisment advertisment__' + keys[0] + ' advertisment__' + keys[1] + '"> \
@@ -82,13 +83,15 @@ export default class AdLoader {
                                     </a> \
                                 </div>';
 
-                    adElem.innerHTML = html;
+                    // adElem.innerHTML = html;
+                    adElem.html(html);
                     return;
                 }
                 
                 if (item.description) {
                     const html ='<div id="advertisment__' + keys[0] + '" class="advertisment advertisment__' + keys[0] + ' advertisment__' + keys[1] + '">' + item.description + '</div>';
-                    adElem.innerHTML = html;
+                    // adElem.innerHTML = html;
+                    adElem.html(html);
                 }
 
                 try {
