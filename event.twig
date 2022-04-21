@@ -116,9 +116,12 @@
                                                 <span class="c-eventdetail__info-text" >Contact {{event.contactName}}</span>
                                                 <span class="c-eventdetail__info-text small" >{{event.contactNumber}}</span>
                                                 <span class="c-eventdetail__info-text small" >{{event.contactEmail}}</span>
-                                                {% if event.websiteUrl != "" %}
-                                                    <a href="{{event.websiteUrl}}" target="_blank" class="c-eventdetail__info-text small" >{{event.websiteUrl}}</a>
-                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+
+                                        {% if event.websiteUrl != "" %}
+                                            <div class="c-eventdetail__info-item">
+                                                <a href="{{event.websiteUrl}}" target="_blank" class="c-eventdetail__info-text small" >{{event.websiteUrl}}</a>
                                             </div>
                                         {% endif %}
                                 </div>
