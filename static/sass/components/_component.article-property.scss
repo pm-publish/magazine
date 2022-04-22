@@ -71,7 +71,7 @@
     &-features {
         margin: 40px 30px 0;;
         padding: 36px 32px;
-        background-color: $grey11;
+        background-color: $white;
         border: 1px solid $darkergrey;
 
         &__title {
@@ -135,6 +135,12 @@
             + a {
                 border-top: 1px solid $white;
             }
+        }
+    }
+
+    &__map {
+        iframe {
+            width: 100%;
         }
     }
 }

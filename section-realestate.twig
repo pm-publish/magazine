@@ -33,7 +33,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="c-page-head c-page-head--withBorder c-page-head-xs">
+                    <div class="c-page-head c-page-head--withBorder c-page-head-xs mt-4">
                         <div class="u-heading__large u-heading__large-xs u-pr--6">{{blogData.title}}</div>
                     </div>
                 </div>
@@ -65,9 +65,9 @@
                             </div>
                         {% endfor %}
 
-                        {% if config['inventory']['adSpace']['banner'][2] is defined %}
+                        {% if config['inventory']['adSpace']['mrec'][1] is defined %}
                             <div class="adBlocker">
-                                <div class="j-adslot" id="{{config['inventory']['adSpace']['banner'][2]}}" data-adshape="banner"></div>
+                                <div class="j-adslot" id="{{config['inventory']['adSpace']['mrec'][1]}}" data-adshape="banner"></div>
                             </div>
                         {% endif %}
                     </div>
