@@ -93,10 +93,12 @@
         <article class="c-eventcards-view  {{lightbox}} {{figureClass}}">
             <div class="d-none">{{eventMonth}}</div>
             <div class="d-none">{{startMonthFull}}</div>
+            <div class="d-none">{{startFullMonth}}</div>
+            <div class="d-none">{{startFullMonth}}</div>
             <div class="c-eventcards-view__date">
                 <span class="c-eventcards-view__date-value">{{ startDay }}</span>
                 <div class="c-eventcards-view__date-additionalInfo">
-                    <span class="c-eventcards-view__date-label">{{startFullMonth}} {% if endDate != "" and endDate != startDate %} - {% endif %}</span>
+                    <span class="c-eventcards-view__date-label">{{startMonthFull}} {% if endDate != "" and endDate != startDate %} - {% endif %}</span>
                     {% if endDate != "" and endDate != startDate %}
                         <span class="c-eventcards-view__date-label">{{endDate}}</span>
                     {% endif %}
