@@ -41,6 +41,13 @@
             height: 40px;
             @include border-radius(6px);
         }
+
+        &__image {
+            img {
+                @include size(80px);
+                @include border-radius(50%);
+            }
+        }
     }
 
     &-inspection {
