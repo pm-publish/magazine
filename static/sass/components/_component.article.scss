@@ -394,6 +394,7 @@
       @include transition(all 0.3s ease);
       font-family: $secondaryFont !important;
       color: $black !important;
+      text-decoration: underline;
     }
 
     blockquote {
@@ -458,9 +459,10 @@
     figure {
       position: relative;
       @include inline-flex;
+      @include flex-direction(column,vertical);
       margin-bottom: 20px !important;
       figcaption {
-        position: absolute;
+        position: relative;
         left: 0;
         bottom: 0;
         width: 100%;

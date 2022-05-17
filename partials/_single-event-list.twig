@@ -29,7 +29,7 @@
 {% set startDayname  = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'd') %}
 {% set startDay      = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'd') %}
 {% set startMonth    = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'M') %}
-{% set startFullMonth= _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'F') %}
+{% set startFullMonth= _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'F') %} 
 {% set startTime     = _AppHelper.getDateTimeBasedOnTimezone(event.startDate, 'g:ia') %}
 {% set eventTitle    = quotes.smarten(titleTruncateLength is defined ? event.title | truncate(titleTruncateLength) : event.title)  %}
 {% set figureClass   = event.media['type'] == 'video' ? 'video' : '' %}
@@ -63,11 +63,12 @@
 {% set fullEndTime      = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'g:ia M j') %}
 
 {% set eventMonth       = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'F') %}
-{% set startMonthFull       = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'F') %}
+{% set startMonthFull   = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'F') %}
 {% set endMonthFull       = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'F') %}
 
 {% set startMonth       = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'M') %}
 {% set endMonth         = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'M') %}
+
 
 {% set fullStartTime    = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'g:ia M j') %}
 {% set fullEndTime      = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'g:ia M j') %}
@@ -94,7 +95,7 @@
             <div class="c-eventcards-view__date">
                 <span class="c-eventcards-view__date-value">{{ startDay }}</span>
                 <div class="c-eventcards-view__date-additionalInfo">
-                    <span class="c-eventcards-view__date-label">{{startFullMonth}} {% if endDate != "" and endDate != startDate %} - {% endif %}</span>
+                    <span class="c-eventcards-view__date-label">{{event.startDate | date('F')}} {% if endDate != "" and endDate != startDate %} - {% endif %}</span>
                     {% if endDate != "" and endDate != startDate %}
                         <span class="c-eventcards-view__date-label">{{endDate}}</span>
                     {% endif %}

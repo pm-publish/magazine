@@ -161,7 +161,7 @@
         &__heading {
             @include font-size(22);
             line-height: 1.09;
-            height: 75px;
+            height: 82px;
         }
     }
 }
@@ -186,6 +186,10 @@
                 &__additional-info {
                     @include flex-direction(row,horizontal);
                     @include align-items(center);
+
+                    &__price {
+                        font-weight: $weightBold;
+                    }
                 }
             }
         }

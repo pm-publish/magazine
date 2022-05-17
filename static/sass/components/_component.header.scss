@@ -234,11 +234,17 @@
     &.header-sticky {
       .c-header__main {
         position: fixed;
-        z-index: 999000;
+        z-index: 99998;
         top: 0;
         width: 100%;
         background-color: $white;
         @include transition(all 0.3s ease);
+      }
+
+      .c-header__main__logo {
+        img{
+          max-height: 60px;
+        }
       }
     }
 
@@ -422,7 +428,7 @@
     max-width: 470px;
     background-color: #2c2c2c;
     height: 100%;
-    z-index: 990000;
+    z-index: 99999;
     @include box-shadow(3px 2px 13px 0 rgba(0, 0, 0, 0.15));
     -webkit-transform: translate3d(100%, 0, 0);
     -moz-transition: translate3d(100%, 0, 0);

@@ -33,7 +33,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="c-page-head c-page-head--withBorder c-page-head-xs">
+                    <div class="c-page-head c-page-head--withBorder c-page-head-xs mt-4">
                         <div class="u-heading__large u-heading__large-xs u-pr--6">{{blogData.title}}</div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     {{this.render('partials/_single-article.twig', {
                         article: articles[articleCount], 
                         position: (articleCount+1),
-                        imageSize: {width: 600, height: 300},
+                        imageSize: {width: 746, height: 497},
                         template: 'property',
                         containerClass: "card-property-mobile card-property-tablet card-property-desktop card-property-highlighter"
                     }) | raw}}
@@ -57,7 +57,7 @@
                                 {{this.render('partials/_single-article.twig', {
                                     article: articles[articleCount], 
                                     position: (articleCount+1),
-                                    imageSize: {width: 255, height: 186},
+                                    imageSize: {width: 306, height: 186},
                                     template: 'property',
                                     containerClass: "card-property-mobile card-property-tablet card-property-desktop"
                                 }) | raw}}
@@ -65,9 +65,9 @@
                             </div>
                         {% endfor %}
 
-                        {% if config['inventory']['adSpace']['banner'][2] is defined %}
+                        {% if config['inventory']['adSpace']['mrec'][1] is defined %}
                             <div class="adBlocker">
-                                <div class="j-adslot" id="{{config['inventory']['adSpace']['banner'][2]}}" data-adshape="banner"></div>
+                                <div class="j-adslot" id="{{config['inventory']['adSpace']['mrec'][1]}}" data-adshape="banner"></div>
                             </div>
                         {% endif %}
                     </div>
@@ -83,7 +83,7 @@
                     {{this.render('partials/_single-article.twig', {
                         article: articles[articleCount], 
                         position: (articleCount+1),
-                        imageSize: {width: 255, height: 186},
+                        imageSize: {width: 306, height: 186},
                         template: 'property',
                         containerClass: "card-property-mobile card-property-tablet card-property-desktop"
                     }) | raw}}

@@ -206,6 +206,7 @@ html,
 body {
     @include size($viewportSize);
     min-height: 100% !important;
+    overflow: initial !important;
 }
 
 

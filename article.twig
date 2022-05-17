@@ -316,7 +316,7 @@
                             </div>
                         </div>
                     </div>
-                    {% set keywords = article.keywords | split(',') %}
+                    {# {% set keywords = article.keywords | split(',') %}
                     {% if keywords | length > 0 %}
                         <div class="c-article__keywords">
                             <ul>
@@ -329,7 +329,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                    {% endif %}
+                    {% endif %} #}
                 </div>
                 {% if config['inventory']['adSpace']['side-fix'][0] is defined %}
                     <div class="col-12 col-lg-4">
@@ -367,4 +367,8 @@
             {{this.render('partials/article/paywall_article_notice.twig', {networkData:networkData, paywallType:paywallType}) | raw}}
         {% endif %}
     </div>
+
+
+    <div id="ad-keywords" class="j-keyword-cont" data-keywords="{{article.keywords}}"></div>
+
 </main>
