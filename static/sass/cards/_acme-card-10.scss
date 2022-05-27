@@ -97,6 +97,9 @@
 
         &__author {
             display:none;
+            &-name {
+                display:none;
+            }
             // order: 2;
             // margin-bottom: 20px;
         }
