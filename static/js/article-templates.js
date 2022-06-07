@@ -279,15 +279,17 @@ edit_user:
 </div>',
 
 managed_user: 
-'<div class="u-float-left"> \
-    <p class="userdetails__name"> \
-        <span class="j-firstname">{{firstname}}</span> \
-        <span class="j-lastname">{{lastname}}</span> \
-    </p> \
-    <p class="j-username userdetails__username">{{username}}</p> \
+'<div> \
+    <p class="managed-user__name">{{firstname}} {{lastname}}</p>\
+    <p class="j-username managed-user__email">{{username}}</p> \
 </div>\
-<a class="j-delete userdetails__button userdetails__button--delete u-float-right"></a> \
-<a class="j-edit userdetails__button userdetails__button--edit u-float-right"></a>',
+<div style="margin-left:auto">\
+    <a class="j-delete userdetails__button managed-user__remove">\
+        <span class="icon fa fa-trash"></span>\
+        <span>Remove</span>\
+    </a> \
+    <a class="j-edit userdetails__button userdetails__button--edit u-float-right d-none"></a>\
+</div>',
 
 
 managed_user: 

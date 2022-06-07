@@ -11,4 +11,14 @@
     }
 }
 
+#search-load,
+.u-loadmore-button {
+    @include font-size(16);
+    font-weight: $weightBold;
+    color: var(--sec-color);
+    @include inline-flex;
+    text-decoration: none;
+    padding-bottom: 2px;
+}
+
 /* End page head style */
