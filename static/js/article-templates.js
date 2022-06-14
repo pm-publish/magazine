@@ -65,7 +65,7 @@ const cardTemplateTop =
         data-article-text="{{title}}" \
         title="{{titleString}}"> \
     \
-        <article class="{{cardType}}c-cards-view">';
+        <article class="{{cardType}}c-cards-view {{lightbox}}">';
 
 const cardTemplateBottom = 
         '</article>'+
@@ -513,7 +513,7 @@ systemCardTemplate:
             <div class="{{cardType}}c-cards-view__category category">{{label}}</div>\
             <h2 class="{{cardType}}c-cards-view__heading j-truncate">{{{ title }}}</h2>\
             <p class="{{cardType}}c-cards-view__description j-truncate">{{{ excerpt }}}</p>\
-            <div class="{{cardType}}c-cards-view__author-name author">\
+            <div class="{{cardType}}c-cards-view__author">\
                 <img src="{{profileImg}}" class="img-circle">\
                 <p>{{ author }}</p>\
             </div>\
