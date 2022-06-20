@@ -513,6 +513,9 @@ systemCardTemplate:
             <div class="{{cardType}}c-cards-view__category category">{{label}}</div>\
             <h2 class="{{cardType}}c-cards-view__heading j-truncate">{{{ title }}}</h2>\
             <p class="{{cardType}}c-cards-view__description j-truncate">{{{ excerpt }}}</p>\
+            {{#if hasContent}}\
+                <div class="{{cardType}}c-cards-view__articleContent">{{{ content }}}</div>\
+            {{/if}}\
             <div class="{{cardType}}c-cards-view__author">\
                 <img src="{{profileImg}}" class="img-circle">\
                 <p>{{ author }}</p>\
