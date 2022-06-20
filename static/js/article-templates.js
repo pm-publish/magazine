@@ -65,7 +65,7 @@ const cardTemplateTop =
         data-article-text="{{title}}" \
         title="{{titleString}}"> \
     \
-        <article class="{{cardType}}c-cards-view">';
+        <article class="{{cardType}}c-cards-view {{lightbox}}">';
 
 const cardTemplateBottom = 
         '</article>'+
@@ -279,28 +279,32 @@ edit_user:
 </div>',
 
 managed_user: 
-'<div class="u-float-left"> \
-    <p class="userdetails__name"> \
-        <span class="j-firstname">{{firstname}}</span> \
-        <span class="j-lastname">{{lastname}}</span> \
-    </p> \
-    <p class="j-username userdetails__username">{{username}}</p> \
+'<div> \
+    <p class="managed-user__name">{{firstname}} {{lastname}}</p>\
+    <p class="j-username managed-user__email">{{username}}</p> \
 </div>\
-<a class="j-delete userdetails__button userdetails__button--delete u-float-right"></a> \
-<a class="j-edit userdetails__button userdetails__button--edit u-float-right"></a>',
+<div style="margin-left:auto">\
+    <a class="j-delete userdetails__button managed-user__remove">\
+        <span class="icon fa fa-trash"></span>\
+        <span>Remove</span>\
+    </a> \
+    <a class="j-edit userdetails__button userdetails__button--edit u-float-right d-none"></a>\
+</div>',
 
 
 managed_user: 
-'<li id="{{id}}" class="userdetails {{cardClass}}"> \
-    <div class="u-float-left"> \
-        <p class="userdetails__name"> \
-            <span class="j-firstname">{{firstname}}</span> \
-            <span class="j-lastname">{{lastname}}</span> \
-        </p> \
+'<li id="{{id}}" class="{{cardClass}}"> \
+    <div> \
+        <p class="managed-user__name">{{firstname}} {{lastname}}</p>\
+        <p class="j-username managed-user__email">{{username}}</p> \
     </div>\
-    <a class="j-delete userdetails__button userdetails__button--delete u-float-right"></a> \
-    <a class="j-edit userdetails__button userdetails__button--edit u-float-right"></a> \
-    <p class="j-email  userdetails__email u-float-right">{{email}}</p> \
+    <div style="margin-left:auto">\
+        <a class="j-delete userdetails__button managed-user__remove">\
+            <span class="icon fa fa-trash"></span>\
+            <span>Remove</span>\
+        </a> \
+        <a class="j-edit userdetails__button userdetails__button--edit u-float-right d-none"></a>\
+    </div>\
 </li>',
 
 
@@ -509,7 +513,7 @@ systemCardTemplate:
             <div class="{{cardType}}c-cards-view__category category">{{label}}</div>\
             <h2 class="{{cardType}}c-cards-view__heading j-truncate">{{{ title }}}</h2>\
             <p class="{{cardType}}c-cards-view__description j-truncate">{{{ excerpt }}}</p>\
-            <div class="{{cardType}}c-cards-view__author-name author">\
+            <div class="{{cardType}}c-cards-view__author">\
                 <img src="{{profileImg}}" class="img-circle">\
                 <p>{{ author }}</p>\
             </div>\

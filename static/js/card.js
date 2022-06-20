@@ -69,6 +69,8 @@ Card.prototype.render = function(options = {})
         height = this.imageOptions.height || height;
     }
     
+    
+    
     card['draggable'] = "false";
 
 
@@ -84,7 +86,16 @@ Card.prototype.render = function(options = {})
     // https://cloudinary.com/documentation/javascript2_image_transformations
     const articleImg = cld.image(articleImage.id);
     // const profileImg = cld.image(profileImage.id);
-    articleImg.resize( fill().width(width).height(height).gravity( focusOn( faces() ) ) );
+
+    let transformation = fill().gravity( focusOn( faces() ) );
+    if (width > 0) {
+        transformation = transformation.width(width);
+    }
+    if (height > 0) {
+        transformation = transformation.height(height);
+    }
+
+    articleImg.resize( transformation );
     // profileImg.resize( thumbnail().width(34).height(34).gravity( focusOn( faces() ) ) );
 
     // card['profileImg'] = profileImg.toURL();

@@ -248,7 +248,8 @@
 
 
     &__more {
-        @include font-size(13);
+        @include font-size(16);
+        color: var(--sec-color);
         text-align: center;
         display: block;
         text-decoration: underline;
