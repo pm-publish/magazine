@@ -43,7 +43,7 @@
                     <div class="col-12">
                         <div class="row">
                             {% for i in 0..49 if events[eventCount] %}
-                                {% set eventMonth = events[eventCount].startDate | date('F') %}
+                                {% set eventMonth = events[eventCount].endDate | date('F') %}
                                 {% if monthDivider != eventMonth %}
                                     <div class="col-12">
                                         <p class="c-events__head c-events__head-xs">{{ eventMonth }}</p>
