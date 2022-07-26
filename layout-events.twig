@@ -5,9 +5,8 @@
 
 {% set limit = 50 %}
 {% set date = date() %}
-{% set events = _Event.getEvents({"limit": limit, "start_date": date() | date("Y-m-d")}) %}
+{% set events = _Event.getEvents({"limit": limit, "upcomingDate": date() | date("Y-m-d") }) %}
 {% set config       = _Network.getThemeConfig() %}
-
 {% set firstCount = events | length %}
 
 

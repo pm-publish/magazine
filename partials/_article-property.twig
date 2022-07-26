@@ -21,11 +21,15 @@
 
 {% endif %}
 
-{% set listingType = 'For Sale' %}
-{% if params.additionalInfo.listing_type != 'buy' %}
-    {% set listingType = 'For Rent' %}
-{% endif %}
+{% set listingType = params.category %}
 
+{% if params.additionalInfo.listing_type != '' %}
+    {% if params.additionalInfo.listing_type == 'buy' %}
+        {% set listingType = 'For Sale' %}
+    {% else %}
+        {% set listingType = 'For Rent' %}
+    {% endif %}
+{% endif %}
 
 
 <div class="c-cards-view__container">
