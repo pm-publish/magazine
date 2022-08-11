@@ -328,7 +328,7 @@
                                 {% for keyword in keywords %}
                                     {% if keyword is defined and keyword is not empty %}
                                         <li>
-                                            <a href="{{_Blog.getUrl()}}/search?s={{keyword}}">{{keyword}}</a>
+                                            <a href="{{_Blog.getUrlUrlByParams()}}/search?s={{keyword}}">{{keyword}}</a>
                                         </li>
                                     {% endif %}
                                 {% endfor %}
