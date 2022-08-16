@@ -10,6 +10,18 @@
   padding-bottom: 10px;
   text-align: center;
 
+  &.vertical {
+    @include flex-direction(column,vertical);
+
+    .sub-heading {
+        @include font-size(18);
+        line-height: 32px;
+        margin-top: 15px;
+        max-width: 500px;
+        text-align: center;
+    }
+  }
+
   .u-heading__large {
     @include font-size(32);
     line-height: 1.25;
@@ -186,3 +198,17 @@
   top: 0;
 }
 /* Begin utility view style */
+
+.auth_wrapper {
+  .c-page-head {
+      border-bottom: none;
+      margin: 0 0 20px 0;
+
+      .u-heading__large--d2 {
+          @include font-size(28);
+          font-weight: $weightBold;
+          color: $black;
+          width: 100%;
+      }
+  }
+}
