@@ -517,8 +517,7 @@ systemCardTemplate:
                 <div class="{{cardType}}c-cards-view__articleContent">{{{ content }}}</div>\
             {{/if}}\
             <div class="{{cardType}}c-cards-view__author">\
-                <img src="{{profileImg}}" class="img-circle">\
-                <p>{{ author }}</p>\
+                <div class="{{cardType}}c-cards-view__author-name">{{ author }}</div>\
             </div>\
         </div>' + 
     cardTemplateBottom,
