@@ -86,7 +86,35 @@ const cardTemplateBottom =
     '</a>'+
 '</div>';
 
+const classifiedLightBoxTop = 
+'<div class="{{cardClass}} {{containerClass}} walla walla"> \
+    <div class="card swap {{articleStatus}}  {{hasMediaClass}}" \
+        data-id="{{articleId}}" \
+        data-social="0" \
+        data-article-image="{{{imageUrl}}}" \
+        data-article-text="{{title}}" \
+        title="{{titleString}}"> \
+    \
+        <article class="{{cardType}}c-cards-view {{lightbox}}">';
 
+const classifiedLightBoxBottom = 
+'</article>'+
+
+    '{{#if userHasBlogAccess}}'+
+        '<div class="btn_overlay articleMenu">'+
+            '<button title="Hide" data-guid="{{guid}}" class="btnhide social-tooltip HideBlogArticle" type="button" data-social="0">'+
+                '<i class="fa fa-eye-slash"></i><span class="hide">Hide</span>'+
+            '</button>'+
+            '<button onclick="window.location=\'{{{editUrl}}}\'; return false;" title="Edit" class="btnhide social-tooltip" type="button">'+
+                '<i class="fa fa-edit"></i><span class="hide">Edit</span>'+
+            '</button>'+
+            '<button data-position="{{position}}" data-social="0" data-id="{{articleId}}" title="{{pinTitle}}" class="btnhide social-tooltip PinArticleBtn {{# ifCond isPinned "==" 1}} selected {{/ifCond}} " type="button" data-status="{{isPinned}}">'+
+                '<i class="fa fa-thumb-tack"></i><span class="hide">{{pinText}}</span>'+   
+            '</button>'+
+        '</div>'+
+    "{{/if}}"+
+    '</div>'+
+    '</div>';
 
 
 export const Templates = {
@@ -517,11 +545,34 @@ systemCardTemplate:
                 <div class="{{cardType}}c-cards-view__articleContent">{{{ content }}}</div>\
             {{/if}}\
             <div class="{{cardType}}c-cards-view__author">\
+                <div class="{{cardType}}c-cards-view__author-name">{{ author }}</div>\
+            </div>\
+        </div>' + 
+    cardTemplateBottom,
+
+classifiedLightBox: 
+    classifiedLightBoxTop + 
+        '{{#if hasMedia}}\
+            <figure class="{{cardType}}c-cards-view__media">\
+                <img draggable="false" class="img-responsive {{imgClass}}" data-original="{{imageUrl}}" src="{{imageUrl}}" {{imgBackgroundStyle}}">\
+            </figure>\
+        {{/if}} \
+        \
+        <div class="{{cardType}}c-cards-view__container content">\
+            <div class="{{cardType}}c-cards-view__category category">{{label}}</div>\
+            <h2 class="{{cardType}}c-cards-view__heading j-truncate">{{{ title }}}</h2>\
+            <p class="{{cardType}}c-cards-view__description j-truncate">{{{ excerpt }}}</p>\
+            {{#if hasContent}}\
+                <div class="{{cardType}}c-cards-view__articleContent">{{{ content }}}</div>\
+            {{/if}}\
+            <div class="{{cardType}}c-cards-view__author">\
                 <img src="{{profileImg}}" class="img-circle">\
                 <p>{{ author }}</p>\
             </div>\
         </div>' + 
-    cardTemplateBottom,
+    classifiedLightBoxBottom,
+
+
 
     feature_card: 
     cardTemplateTop + 

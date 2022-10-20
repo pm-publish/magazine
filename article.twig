@@ -300,7 +300,7 @@
                         {% if article.media|length > 1 %}
                             <div id="owl-thumbs" class="owl-thumbs article-gallery__thumbs article-gallery__thumbs-horizontal" data-slider-id="1">
                                 {% for thumb in article.media %}
-                                    {% set articleImg = _Media.getMediaUrl(thumb,152, 95, {'crop': 'fill', 'gravity':'faces'} ) %}
+                                    {% set articleImg = _Media.getMediaUrl(thumb,173, 108, {'crop': 'fill', 'gravity':'faces'} ) %}
                                     <img id="owl-{{loop.index}}" src="{{articleImg}}" class="owl-thumb-item">
                                 {% endfor %}
                             </div>

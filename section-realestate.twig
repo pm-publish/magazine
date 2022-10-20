@@ -26,10 +26,15 @@
     {% set ctaURL = cta.button['url'] %}
 {% endif %}
 
+{% set topSpace = 'mt-0' %}
 
-<main id="main" class="site-main" role="main" data-article-limit="{{limit}}" data-article-count="{{articles | length}}">
+{% if config['inventory']['adSpace']['banner'][0] is defined and (config['inventory']['Under header'] is defined and config['inventory']['Under header'] == 1  ) %}
+    {% set topSpace = 'mt-5' %}
+{% endif %}
+
+<main id="main" class="site-main {{topSpace}}" role="main" data-article-limit="{{limit}}" data-article-count="{{articles | length}}">
     
-    <div class="c-section__real-estate mb-5  mt-0">
+    <div class="c-section__real-estate mb-5 mt-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
