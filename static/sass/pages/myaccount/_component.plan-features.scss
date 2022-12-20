@@ -20,9 +20,22 @@
         color: black;
         font-family: $primaryFont;
         font-weight: $weightRegular;
+
+        .icon {
+          position: absolute;
+          display: block;
+          width:22px;
+          height:22px;
+          left: 0;
+          top: 0;
+
+          svg, svg path, svg path * {
+            fill: $grey4;
+          }
+        }
         
 
-        &:before {
+        /* &:before {
           content: "";
           background-image: url('../icons/plan-tick.svg');
           background-repeat: no-repeat;
@@ -33,7 +46,7 @@
           height:22px;
           left: 0;
           top: 0;
-        }
+        } */
     }
 
     @media screen and (max-width: 567px) {
