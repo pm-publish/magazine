@@ -34,7 +34,6 @@ export default class AdLoader {
             return;
         }
     
-        var allAdsKeywords = [];
         for (let i=0;i<this.adslots.length;i++) {
             const elem = this.adslots[i];
             if (!elem.id) continue;
@@ -58,61 +57,50 @@ export default class AdLoader {
             
             
             const keysString = keysArray.join(',');
-            allAdsKeywords.push(keysString)
-            
-        } 
-        
-        if(allAdsKeywords.length > 0) {
-            Server.create(
-                _appJsConfig.appHostName + "/api/ad/get-all", { 'multiKeywords': allAdsKeywords }).done((data) => {
+            Server.fetch(_appJsConfig.appHostName + '/api/ad/get-all?keywords='+keysString).done((data) => {
                 
-                
-                    if (data.length < 1) {
-                        return;
-                    }
-                
-                    let k = 0;
-                    for (k; k < data.length; k++) {
+                let k = 0;
 
-                        if (data[k].length < 1) {
-                            continue;
-                        }
+                if (data.length < 1 ){
+                    console.log('no ads found with those keywords', keysString)
+                    return;
+                }
+                if (data.length > 1 ) {
+                    // If more than one matching, randomly show 
+                    // different ad on each page refresh
+                    k = Math.floor(Math.random()*(data.length));
+                } 
 
-                        let index = 0;
-                        if (data[k].length > 1) {
-                            index = Math.floor(Math.random() * data[k].length);
-                        }
+                const item = data[k];
+                const keys = item.keywords.split(',');
+                // const adElem = document.getElementById(keys[0]);
+                const adElem = $("#"+keys[0]);
 
-                        const item = data[k][index]
-                        const keys = item.keywords.split(",");
-                        const adElem = $("#"+keys[0]);
-                  
-                        if (item.media.path) {
-                            const html ='<div id="advertisment__' + keys[0] + '" class="advertisment advertisment__' + keys[0] + ' advertisment__' + keys[1] + '"> \
+                if (item.media.path){
+                    const html ='<div id="advertisment__' + keys[0] + '" class="advertisment advertisment__' + keys[0] + ' advertisment__' + keys[1] + '"> \
                                     <a href="' + item.button.url + '"> \
                                         <img src="' + item.media.path + '"> \
                                     </a> \
                                 </div>';
 
-                             // adElem.innerHTML = html;
-                            adElem.html(html);
-                            continue;
-                        }
+                    // adElem.innerHTML = html;
+                    adElem.html(html);
+                    return;
+                }
+                
+                if (item.description) {
+                    const html ='<div id="advertisment__' + keys[0] + '" class="advertisment advertisment__' + keys[0] + ' advertisment__' + keys[1] + '">' + item.description + '</div>';
+                    // adElem.innerHTML = html;
+                    adElem.html(html);
+                }
 
-                        if (item.description) {
-                            const html ='<div id="advertisment__' + keys[0] + '" class="advertisment advertisment__' + keys[0] + ' advertisment__' + keys[1] + '">' + item.description + '</div>';
-                            // adElem.innerHTML = html;
-                            adElem.html(html);
-                        }
-
-                        try {
-                            self.adPush(keys[0]);
-                        } catch (err) {
-                            console.log("no ad found to push at advertisment__" + keys[0], err);
-                        }
-                    }
+                try {
+                    self.adPush(keys[0]);
+                } catch(err) {
+                    console.log('no ad found to push at advertisment__' + keys[0], err)
+                }
             });
-        }
+        }    
     }
 
     adPush(slot) {
