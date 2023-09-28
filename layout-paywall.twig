@@ -55,6 +55,12 @@
     {% set themeColor = networkData['styling']['colours']['primaryColor'] %}
 {% endif %}
 
+{% if not _User.isGuest() %}
+    {% set redir = _Page.setHttpRedirects(
+        { '|^/.*|': networkData.defaultBlogUrl, }, false) 
+    %} 
+{% endif %}
+
 
 <div class="c-subscriptions c-subscriptions-xs">
     <div class="c-subscriptions__content">

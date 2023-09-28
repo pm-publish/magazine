@@ -2,7 +2,7 @@
 
 {% if not _User.isGuest() %}
     {% set redir = _Page.setHttpRedirects(
-        { '|^/.*|': networkData.defaultBlogUrl ~ '/user/edit-profile', }, false) 
+        { '|^/.*|': networkData.defaultBlogUrl, }, false) 
     %} 
 {% endif %}
 
