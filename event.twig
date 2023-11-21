@@ -168,8 +168,8 @@
         {% if event.address['state'] is not empty %}
             {% set googleMapAddress = googleMapAddress~','~event.address['state'] %}
         {% endif %}
-        {% if event.event.address['country_name'] is not empty %}
-            {% set googleMapAddress = googleMapAddress~','~event.address['country_name'] %}
+        {% if event.address['country'] is not empty %}
+            {% set googleMapAddress = googleMapAddress~','~event.address['country'] %}
         {% endif %}
         {% if event.address['postcode'] is not empty %}
             {% set googleMapAddress = googleMapAddress~' '~event.address['postcode'] %}
