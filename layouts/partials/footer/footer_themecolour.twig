@@ -220,12 +220,17 @@
                              {% endif %}
                             {% if config.social.twitter is defined and config.social.twitter is not empty %}
                                 <a href="{{config.social.twitter}}" target="_blank" class="u-generic-socialIcons__item">
-                                    <img src="{{networkData.templatePath}}/static/icons/twitter-white.svg" alt="image" />
+                                    <img src="{{networkData.templatePath}}/static/icons/twitter-new-white.svg" alt="image" />
                                 </a>
                             {% endif %}
                             {% if config.social.vimeo is defined and config.social.vimeo is not empty %}
                                 <a href="{{config.social.vimeo}}" target="_blank" class="u-generic-socialIcons__item">
                                     <img src="{{networkData.templatePath}}/static/icons/vimeo-white.svg" alt="image" />
+                                </a>
+                            {% endif %}
+                            {% if config.social.tiktok is defined and config.social.tiktok is not empty %}
+                                <a href="{{config.social.tiktok}}" class="u-generic-socialIcons__item" target="_blank">
+                                    <img src="{{networkData.templatePath}}/static/icons/tiktok_white.svg" alt="image" />
                                 </a>
                             {% endif %}
                         </div>

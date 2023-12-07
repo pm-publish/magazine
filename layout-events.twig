@@ -5,7 +5,7 @@
 
 {% set limit = 50 %}
 {% set date = date() %}
-{% set events = _Event.getEvents({"limit": limit, "upcomingDate": date() | date("Y-m-d") }) %}
+{% set events = _Event.getEvents({"limit": limit, "showOnGoingOnly": 1 }) %}
 {% set config       = _Network.getThemeConfig() %}
 {% set firstCount = events | length %}
 
@@ -14,7 +14,6 @@
 {% set eventCount = _AppHelper.getApplicationEnv() == 'DEV' ? 0 : 0 %}
 {% set dev = _AppHelper.getApplicationEnv() == 'DEV' ? false : false %}
 
-
     <main id="main" class="site-main" role="main">
         <div class="container u-margin-top-60 u-margin-bottom-60">
             <section class="row">
@@ -22,7 +21,7 @@
                     <div class="c-events__main">
                         <div class="c-page-head c-page-head-xs">
                             <div class="u-heading__large u-heading__large-xs u-pr--6 u-bg-white">{{this.title}}</div>
-                            {% if not _User.isGuest() %}
+                            {% if not _User.isGuest() and config.hideEventButton == false %}
                                 <a href="{{networkData.defaultBlogUrl}}/event-form" class="c-page-head__link d-none d-md-block">Submit an event</a>
                             {% endif %}
                         </div>

@@ -136,7 +136,7 @@
                 <div class="col-12 col-lg-6">
 
                     {% if config['inventory']['adSpace']['mrec'][0] is defined %}
-                        <div class="adBlocker adBlocker--d3 d-none d-xl-block mb-4">
+                        <div class="adBlocker adBlocker--d3  d-block mb-4">
                             <div class="j-adslot" id="{{config['inventory']['adSpace']['mrec'][0]}}" data-adshape="banner"></div>
                         </div>
                     {% endif %}
@@ -193,7 +193,7 @@
         </div>
     {% endif %}
     
-    <div class="j-keyword-cont" data-keywords="{{blogData.keywords}}"></div>
+    <div id="ad-keywords" class="j-keyword-cont" data-keywords="{{blogData.keywords}}"  data-pageName="" data-pageType="section" data-pageTag="" data-adsection=""></div>
 
 </main>
 
