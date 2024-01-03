@@ -19,10 +19,6 @@
 {% set startTime = _AppHelper.getDefaultTimezoneDateTime(event.startDate, 'g:ia') %}
 {% set endTime = _AppHelper.getDefaultTimezoneDateTime(event.endDate, 'g:ia') %}
 
-{% set date = date() %}
-{% set events = _Event.getEvents({"limit": 4, "showOnGoingOnly": 1}) %}
-
-
 <div class="o-body-container o-body-container-md c-eventdetail">
     <div class="c-eventdetail__topBar mt-4">
         <div class="container">
