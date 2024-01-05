@@ -472,6 +472,13 @@
         font-weight: 500;
         line-height: 1.33;
         padding: 10px;
+
+        a {
+          color: $white !important;
+          font-size: 12px !important;
+          font-weight: 500  !important;
+          font-family: var(--main-font) !important;
+        }
       }
     }
 
