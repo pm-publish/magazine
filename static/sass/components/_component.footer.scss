@@ -76,6 +76,10 @@
   &__main {
     border-top: 1px solid rgba($grey10, 0.5);
     padding: 25px 0 40px;
+
+    .container {
+      position: relative;
+    }
     @media #{$mobile} {
       padding: 25px 0 20px;
     }
