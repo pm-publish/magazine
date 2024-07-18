@@ -80,6 +80,28 @@
     .container {
       position: relative;
     }
+    .c-footer__additional_logos {
+      @include flexbox;
+      @include align-items(center);
+      &-item {
+        a {
+          @include flexbox;
+          width: 80px;
+        }
+
+        +.c-footer__additional_logos-item {
+          margin-left: 20px;
+        }
+      }
+
+      &.abs {
+        @media #{$tablet, $tablet-up} {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+      }
+    }
     @media #{$mobile} {
       padding: 25px 0 20px;
     }
