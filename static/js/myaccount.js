@@ -674,7 +674,6 @@ UserProfileController.prototype.stripeCardEvent = function () {
                         if(typeof idempotency_key !== "undefined" && idempotency_key != "") { 
                             requestData['idempotency_key'] = idempotency_key; // Duplicate Request Prevent 
                         }
-                        
                         if (r.success === 1) {
 
                             self.modal.renderLayout('message', {message: "Success"});
