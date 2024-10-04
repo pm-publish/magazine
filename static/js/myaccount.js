@@ -671,9 +671,10 @@ UserProfileController.prototype.stripeCardEvent = function () {
 
                     Server.create(_appJsConfig.baseHttpPath + '/user/update-payment-details', formdata).done((r) => {
                         var idempotency_key = $('#idempotency_key').html();
-                        if(typeof idempotency_key !== "undefined" && idempotency_key != "") {
+                        if(typeof idempotency_key !== "undefined" && idempotency_key != "") { 
                             requestData['idempotency_key'] = idempotency_key; // Duplicate Request Prevent 
                         }
+                        
                         if (r.success === 1) {
 
                             self.modal.renderLayout('message', {message: "Success"});
