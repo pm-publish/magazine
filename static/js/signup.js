@@ -189,7 +189,7 @@ SubscribeForm.prototype.submit = async function(event)
             }
           }
       
-        await submitForm();
+        await submitForm(); 
 
     } else {
 
