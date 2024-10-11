@@ -93,7 +93,7 @@ SubscribeForm.prototype.render = function(checkTerms)
         }
     }
 };
-SubscribeForm.prototype.submit = function(event) 
+SubscribeForm.prototype.submit = async function(event) 
 {
 
     var self = this;
@@ -114,22 +114,32 @@ SubscribeForm.prototype.submit = function(event)
     }
 
     
-    const submitResponse = function(r) {
+    const submitResponse = function (r) {
         // console.log(r);
+    
         if (r.success == 1) {
-                window.location.href = location.origin + '/auth/thank-you';
-
+          window.location.href = location.origin + "/auth/thank-you";
         } else {
-
-            var errorElement = document.getElementById('card-errors');
-            var text = '';
+          var errorElement = document.getElementById("card-errors");
+          var text = r.error;
+          if (Array.isArray(r.error)) {
+            text = "";
             for (var key in r.error) {
-                text = text + r.error[key] + " ";
-            } 
-            errorElement.textContent = text;
+              text = text + r.error[key] + " ";
+            }
+          } else if (typeof r.error === "object") {
+            text = "";
+            for (var key in r.error) {
+              text = text + r.error[key] + " ";
+            }
+          }
+          if(text.trim() == 'Email already exists. Please provide another email.') {
+            text = `This email address already exist, please provide another email or <a class="j-signin" href="javascript:;">click here to login</a>`
+          }
+          errorElement.innerHTML = text;
         }
-        self.signupModel.closeWindow();
-    }
+        self.signupModal.closeWindow();
+    };
 
 
     this.signupModal = new Modal('modal', 'spinner-modal', {"spinner": 'spinnerTmpl'});
@@ -147,16 +157,45 @@ SubscribeForm.prototype.submit = function(event)
             self.data['giftcode'] = $('#code-redeem').val();
         }
 
-        self.data['stripetoken'] = null;
-        Server.create('/auth/paywall-signup', self.data).done(submitResponse).fail(function(r) {
-            self.signupModal.closeWindow();
-        });
+        // self.data['stripetoken'] = null;
+        // Server.create('/auth/paywall-signup', self.data).done(submitResponse).fail(function(r) {
+        //     self.signupModal.closeWindow();
+        // });
+
+        async function generateRecaptchaToken() {
+            return new Promise((resolve) => {
+              grecaptcha.ready(function () {
+                grecaptcha
+                  .execute(window.Acme.captcha_site_key, { action: "submit" })
+                  .then(function (token) {
+                    resolve(token);
+                  });
+              });
+            });
+          }
+      
+          async function submitForm() {
+            // captcha_site_key is set in the subscribe twig template based on
+            // rules set in the theme config and reCaptcha integration
+            if (typeof window.Acme.captcha_site_key !== "undefined") {
+              self.data["g-recaptcha-response"] = await generateRecaptchaToken();
+            }
+            self.data["stripetoken"] = null;   
+            try {
+              const response = await Server.create("/auth/paywall-signup", self.data);
+              submitResponse(response);
+            } catch (error) {
+              self.signupModal.closeWindow();
+            }
+          }
+      
+        await submitForm();
 
     } else {
 
         // modal.render("spinner", "Your request is being processed.");
         this.signupModal.render("spinner", "Your request is being processed.");
-        var stripeCall = this.stripe.createToken(self.card).then(function(result) {
+        var stripeCall = this.stripe.createToken(self.card).then(async function(result) {
 
             if (result.error) {
                 self.signupModal.closeWindow();
@@ -169,9 +208,10 @@ SubscribeForm.prototype.submit = function(event)
                 self.data['stripetoken'] = result.token.id;
                 self.data['planid'] = $('#planid').val();
                 self.data['redirect'] = false;
-                Server.create('/auth/paywall-signup', self.data).done(submitResponse).fail(function(r) {
-                    self.signupModal.closeWindow();
-                });
+                // Server.create('/auth/paywall-signup', self.data).done(submitResponse).fail(function(r) {
+                //     self.signupModal.closeWindow();
+                // });
+                await submitForm();
             }
         });  
     }
