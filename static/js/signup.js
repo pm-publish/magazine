@@ -205,7 +205,7 @@ SubscribeForm.prototype.submit = async function(event)
                 self.signupModal.closeWindow();
                 // Inform the user if there was an error
                 var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error;
+                errorElement.textContent = result.error.message;
             } else {
                 // Send the token to your server
 
