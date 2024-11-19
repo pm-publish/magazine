@@ -1,7 +1,13 @@
 .article-gallery {
 
 
-
+    &__img {
+        @media #{$mobile} {
+            height: 300px;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
     &__image {
         position:relative;
         margin:0;
