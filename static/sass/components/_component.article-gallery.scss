@@ -180,4 +180,10 @@
             @include opacity(0.3);
         }
     }
+    .owl-carousel .owl-stage {
+        @media #{$mobile}{
+            display: flex;
+            align-items: flex-end;  
+        }
+    }
 }
