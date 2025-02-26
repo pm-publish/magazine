@@ -40,9 +40,9 @@ export default class AdLoader {
 
             
             elem.classList.remove("j-adslot");
-            elem.classList.add("j-adslot-filled");
+            elem.classList.add("j-adslot-filled"); 
             
-            const keysArray = [elem.id];
+            let keysArray = [elem.id];  
 
             if ((!elem.dataset.responsive || elem.dataset.responsive == "0") && this.deviceSize != "") {
                 keysArray.push(this.deviceSize);
